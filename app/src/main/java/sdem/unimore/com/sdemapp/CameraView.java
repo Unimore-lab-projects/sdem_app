@@ -4,8 +4,9 @@ import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.ImageFormat;
 import android.hardware.Camera;
-import android.hardware.Camera.*;
+import android.hardware.Camera.PreviewCallback;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
@@ -20,10 +21,11 @@ import java.util.List;
 public final class CameraView extends SurfaceView implements
         SurfaceHolder.Callback, Runnable, PreviewCallback {
 
-    SurfaceHolder mHolder;
-    Camera mCamera;
-    byte[] mBuffer = null;
-    boolean mThreadRun;
+    private SurfaceHolder mHolder;
+    private Camera mCamera;
+    private byte[] mBuffer = null;
+    private boolean mThreadRun;
+    private static final String TAG = "CameraView";
 
     /**
      * Costruttore oggetto Camera
@@ -32,8 +34,11 @@ public final class CameraView extends SurfaceView implements
      */
     public CameraView(Context context, AttributeSet attrs) {
         super(context, attrs);
+        // Install a SurfaceHolder.Callback so we get notified when the
+        // underlying surface is created and destroyed.
         mHolder = getHolder();
         mHolder.addCallback(this);
+        // deprecated setting, but required on Android versions prior to 3.0
         mHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
     }
 
@@ -41,8 +46,12 @@ public final class CameraView extends SurfaceView implements
      * Metodo di lancio della Camera. chiamato dalla activity genitore dopo aver impostato il contentView su CameraView
      */
     void openCamera() {
-        mCamera = Camera.open();
-        mCamera.setPreviewCallbackWithBuffer(this);
+        try {
+            mCamera = Camera.open(); // attempt to get a Camera instance
+            mCamera.setPreviewCallbackWithBuffer(this);
+        } catch (Exception e) {
+            // Camera is not available (in use or does not exist)
+        }
     }
 
     /**
@@ -105,11 +114,12 @@ public final class CameraView extends SurfaceView implements
         mBuffer = new byte[size];
         mCamera.addCallbackBuffer(mBuffer);
 
+        // The Surface has been created, now tell the camera where to draw the preview.
         try {
-            mCamera.setPreviewDisplay(mHolder);
+            mCamera.setPreviewDisplay(holder);
             mCamera.startPreview();
         } catch (IOException e) {
-            e.printStackTrace();
+            Log.d(TAG, "Error setting camera preview: " + e.getMessage());
         }
 
     }
@@ -123,6 +133,33 @@ public final class CameraView extends SurfaceView implements
      */
     @Override
     public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
+        // If your preview can change or rotate, take care of those events here.
+        // Make sure to stop the preview before resizing or reformatting it.
+
+        if (mHolder.getSurface() == null){
+            // preview surface does not exist
+            return;
+        }
+
+        // stop preview before making changes
+        try {
+            mCamera.stopPreview();
+        } catch (Exception e){
+            // ignore: tried to stop a non-existent preview
+        }
+
+        // set preview size and make any resize, rotate or
+        // reformatting changes here
+        //TO DO
+
+        // start preview with new settings
+        try {
+            mCamera.setPreviewDisplay(mHolder);
+            mCamera.startPreview();
+
+        } catch (Exception e){
+            Log.d(TAG, "Error starting camera preview: " + e.getMessage());
+        }
     }
 
     /**
