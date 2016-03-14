@@ -14,6 +14,9 @@ import android.view.ViewGroup;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Classe di gestione e configurazione della Camera.
+ */
 public final class CameraView extends SurfaceView implements
         SurfaceHolder.Callback, Runnable, PreviewCallback {
 
@@ -22,7 +25,11 @@ public final class CameraView extends SurfaceView implements
     byte[] mBuffer = null;
     boolean mThreadRun;
 
-
+    /**
+     * Costruttore oggetto Camera
+     * @param context
+     * @param attrs
+     */
     public CameraView(Context context, AttributeSet attrs) {
         super(context, attrs);
         mHolder = getHolder();
@@ -30,12 +37,20 @@ public final class CameraView extends SurfaceView implements
         mHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
     }
 
+    /**
+     * Metodo di lancio della Camera. chiamato dalla activity genitore dopo aver impostato il contentView su CameraView
+     */
     void openCamera() {
-        // Called from parent activity after setting content view to CameraView
         mCamera = Camera.open();
         mCamera.setPreviewCallbackWithBuffer(this);
     }
 
+    /**
+     * Implementazione interfaccia SurfaceView.
+     * Vengono impostate le dimensioni della preview della camera a seconda del dispositivo
+     * Inoltre viene creato il buffer per i frame della preview
+     * @param holder
+     */
     public void surfaceCreated(SurfaceHolder holder) {
         new Thread(this).start();
 
@@ -75,17 +90,16 @@ public final class CameraView extends SurfaceView implements
         final int previewWidth = bestSize.width;
         final int previewHeight = bestSize.height;
 
-        params.setPreviewSize(previewWidth, previewHeight);
-        mCamera.setParameters(params);
-
         ViewGroup.LayoutParams layoutParams = getLayoutParams();
         layoutParams.height = previewHeight;
         layoutParams.width = previewWidth;
         setLayoutParams(layoutParams);
 
         params.setPreviewFormat(ImageFormat.NV21);
+        params.setPreviewSize(previewWidth, previewHeight);
         mCamera.setParameters(params);
 
+        //buffer di uscita
         int size = previewWidth * previewHeight *
                 ImageFormat.getBitsPerPixel(params.getPreviewFormat()) / 8;
         mBuffer = new byte[size];
@@ -100,21 +114,36 @@ public final class CameraView extends SurfaceView implements
 
     }
 
+    /**
+     * Implementazione interfaccia SurfaceView.
+     * @param holder
+     * @param format
+     * @param width
+     * @param height
+     */
     @Override
     public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
     }
 
+    /**
+     * Implementazione interfaccia SurfaceView.
+     * @param data
+     * @param camera
+     */
     public void onPreviewFrame(byte[] data, Camera camera) {
         CameraView.this.notify();
     }
 
+    /**
+     * esecuzione del thread. I frame vengono salvati su mBuffer e processati da processFrame
+     */
     public void run() {
         mThreadRun = true;
         while (mThreadRun) {
             synchronized (this) {
                 try {
                     this.wait();
-                    //processFrame(mBuffer); // convert to RGB and rotate - not shown
+                    //processFrame(mBuffer); // PROCESSING DEI FRAME VERSO ARUCO
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
