@@ -75,17 +75,16 @@ public final class CameraView extends SurfaceView implements
         final int previewWidth = bestSize.width;
         final int previewHeight = bestSize.height;
 
-        params.setPreviewSize(previewWidth, previewHeight);
-        mCamera.setParameters(params);
-
         ViewGroup.LayoutParams layoutParams = getLayoutParams();
         layoutParams.height = previewHeight;
         layoutParams.width = previewWidth;
         setLayoutParams(layoutParams);
 
         params.setPreviewFormat(ImageFormat.NV21);
+        params.setPreviewSize(previewWidth, previewHeight);
         mCamera.setParameters(params);
 
+        //buffer di uscita
         int size = previewWidth * previewHeight *
                 ImageFormat.getBitsPerPixel(params.getPreviewFormat()) / 8;
         mBuffer = new byte[size];
@@ -114,7 +113,7 @@ public final class CameraView extends SurfaceView implements
             synchronized (this) {
                 try {
                     this.wait();
-                    //processFrame(mBuffer); // convert to RGB and rotate - not shown
+                    //processFrame(mBuffer); // VERSO ARUCO
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
