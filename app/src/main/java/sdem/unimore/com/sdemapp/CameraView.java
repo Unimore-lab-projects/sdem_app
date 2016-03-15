@@ -5,7 +5,6 @@ import android.content.res.Configuration;
 import android.graphics.ImageFormat;
 import android.hardware.Camera;
 import android.hardware.Camera.PreviewCallback;
-import android.util.AttributeSet;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -30,10 +29,9 @@ public final class CameraView extends SurfaceView implements
     /**
      * Costruttore oggetto Camera
      * @param context
-     * @param attrs
      */
-    public CameraView(Context context, AttributeSet attrs) {
-        super(context, attrs);
+    public CameraView(Context context) {
+        super(context);
         // Install a SurfaceHolder.Callback so we get notified when the
         // underlying surface is created and destroyed.
         mHolder = getHolder();
@@ -43,14 +41,14 @@ public final class CameraView extends SurfaceView implements
     }
 
     /**
-     * Metodo di lancio della Camera. chiamato dalla activity genitore dopo aver impostato il contentView su CameraView
+     * Accesso Istanza Camera
      */
-    void openCamera() {
+    public void getCameraInstance(){
         try {
             mCamera = Camera.open(); // attempt to get a Camera instance
             mCamera.setPreviewCallbackWithBuffer(this);
         } catch (Exception e) {
-            // Camera is not available (in use or does not exist)
+            Log.d(TAG, "Error getting Camera instance: " + e.getMessage());
         }
     }
 
@@ -71,12 +69,12 @@ public final class CameraView extends SurfaceView implements
         int minDiff = Integer.MAX_VALUE;
         Camera.Size bestSize = null;
 
-
+        /*
+        * Impostazione dimensione frame a seconda delle dimensioni ottimali e dell'orientamento
+        */
         if (getResources().getConfiguration().orientation
                 == Configuration.ORIENTATION_LANDSCAPE) {
-            // Find the camera preview width that best matches the
-            // width of the surface.
-            for (Camera.Size size : sizes) {
+                        for (Camera.Size size : sizes) {
                 final int diff = Math.abs(size.width - screenWidth);
                 if (diff < minDiff) {
                     minDiff = diff;
@@ -84,8 +82,6 @@ public final class CameraView extends SurfaceView implements
                 }
             }
         } else {
-            // Find the camera preview HEIGHT that best matches the 
-            // width of the surface, since the camera preview is rotated.
             mCamera.setDisplayOrientation(90);
             for (Camera.Size size : sizes) {
                 final int diff = Math.abs(size.height - screenWidth);
@@ -104,6 +100,7 @@ public final class CameraView extends SurfaceView implements
         layoutParams.width = previewWidth;
         setLayoutParams(layoutParams);
 
+        // FORMATO PREVIEW
         params.setPreviewFormat(ImageFormat.NV21);
         params.setPreviewSize(previewWidth, previewHeight);
         mCamera.setParameters(params);

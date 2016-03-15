@@ -8,14 +8,23 @@
     <!-- The primary full-screen view. This can be replaced with whatever view
          is needed to present your content, e.g. VideoView, SurfaceView,
          TextureView, etc. -->
+<!--
     <SurfaceView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/surfaceView"
         android:layout_gravity="center" />
+-->
 
     <!-- This FrameLayout insets its children based on system windows using
          android:fitsSystemWindows. -->
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/camera_preview">
+
+    </FrameLayout>
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -31,13 +40,13 @@
             android:orientation="horizontal"
             tools:ignore="UselessParent">
 
-            <Button
+           <!-- <Button
                 android:id="@+id/dummy_button"
                 style="?metaButtonBarButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/dummy_button" />
+                android:text="dummy button" />-->
 
         </LinearLayout>
 

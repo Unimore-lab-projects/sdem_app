@@ -1,12 +1,14 @@
 package sdem.unimore.com.sdemapp;
 
 import android.annotation.SuppressLint;
+import android.hardware.Camera;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.FrameLayout;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -83,6 +85,10 @@ public class FullscreenActivity extends AppCompatActivity {
         }
     };
 
+    private Camera mCamera;
+    private CameraView mPreview;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,7 +97,7 @@ public class FullscreenActivity extends AppCompatActivity {
 
         mVisible = true;
         mControlsView = findViewById(R.id.fullscreen_content_controls);
-        mContentView = findViewById(R.id.surfaceView);
+        mContentView = findViewById(R.id.camera_preview);
 
 
         // Set up the user interaction to manually show or hide the system UI.
@@ -105,7 +111,12 @@ public class FullscreenActivity extends AppCompatActivity {
         // Upon interacting with UI controls, delay any scheduled hide()
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
-        findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
+//        findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
+
+        mPreview = new CameraView(this);
+        FrameLayout preview = (FrameLayout) findViewById(R.id.camera_preview);
+        preview.addView(mPreview);
+        mPreview.getCameraInstance();
     }
 
     @Override
