@@ -197,4 +197,11 @@ public final class CameraView extends SurfaceView implements
     public void surfaceDestroyed(SurfaceHolder holder) {
         mThreadRun = false;
     }
+
+
+    private native void provaJNI(byte[] data);
+
+    static{
+        System.loadLibrary("SdemAppJNI");
+    }
 }
