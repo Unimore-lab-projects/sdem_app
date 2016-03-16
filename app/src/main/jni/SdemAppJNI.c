@@ -2,11 +2,22 @@
 
 #define NULL 0
 
-JNIEXPORT void JNICALL
+JNIEXPORT jbyte* JNICALL
 Java_sdem_unimore_com_sdemapp_CameraView_provaJNI(JNIEnv *env, jobject instance, jbyteArray data_) {
-    jbyte *data = (*env)->GetByteArrayElements(env, data_, NULL);
 
-    // TODO
+    int i = 0;
+
+    jbyte buf = 0,prevByte = 0;
+    jbyte *data = (*env)->GetByteArrayElements(env, data_, NULL);
+    jsize length = (*env)->GetArrayLength(env,data_);
+
+    for(i=0;i<length;i++){
+        buf=data[i];
+        data[i]=data[i]|prevByte;
+        prevByte=buf;
+    }
 
     (*env)->ReleaseByteArrayElements(env, data_, data, 0);
+
+    return data;
 }
