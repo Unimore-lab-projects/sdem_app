@@ -74,7 +74,7 @@ public final class CameraView extends SurfaceView implements
         */
         if (getResources().getConfiguration().orientation
                 == Configuration.ORIENTATION_LANDSCAPE) {
-                        for (Camera.Size size : sizes) {
+            for (Camera.Size size : sizes) {
                 final int diff = Math.abs(size.width - screenWidth);
                 if (diff < minDiff) {
                     minDiff = diff;
@@ -177,9 +177,9 @@ public final class CameraView extends SurfaceView implements
             synchronized (this) {
                 try {
                     this.wait();
-                    //processFrame(mBuffer); // PROCESSING DEI FRAME VERSO ARUCO
+                    provaJNI(mBuffer); // PROCESSING DEI FRAME
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    Log.d(TAG, "Error in frame processing thread: " + e.getMessage());
                 }
             }
             // Request a new frame from the camera by putting 
@@ -197,7 +197,6 @@ public final class CameraView extends SurfaceView implements
     public void surfaceDestroyed(SurfaceHolder holder) {
         mThreadRun = false;
     }
-
 
     private native byte[] provaJNI(byte[] data);
 
