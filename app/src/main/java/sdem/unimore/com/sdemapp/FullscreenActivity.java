@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -88,6 +89,11 @@ public class FullscreenActivity extends AppCompatActivity {
     private Camera mCamera;
     private CameraView mPreview;
 
+    private CameraView camPreview;
+    private ImageView MyCameraPreview = null;
+    private FrameLayout mainLayout;
+    private int PreviewSizeWidth = 640;
+    private int PreviewSizeHeight= 480;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,6 +123,7 @@ public class FullscreenActivity extends AppCompatActivity {
         FrameLayout preview = (FrameLayout) findViewById(R.id.camera_preview);
         preview.addView(mPreview);
         mPreview.getCameraInstance();
+
     }
 
     @Override
@@ -171,4 +178,5 @@ public class FullscreenActivity extends AppCompatActivity {
         mHideHandler.removeCallbacks(mHideRunnable);
         mHideHandler.postDelayed(mHideRunnable, delayMillis);
     }
+
 }
