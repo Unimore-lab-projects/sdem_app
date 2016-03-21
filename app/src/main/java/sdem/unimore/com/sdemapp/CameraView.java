@@ -60,7 +60,7 @@ public final class CameraView extends SurfaceView implements
      * @param holder
      */
     public void surfaceCreated(SurfaceHolder holder) {
-        Log.i(TAG,"surface created");
+        Log.i(TAG, "surface created");
         new Thread(this).start();
 
         // Set CameraView to the optimal camera preview size
@@ -133,7 +133,7 @@ public final class CameraView extends SurfaceView implements
      */
     @Override
     public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
-        Log.i(TAG,"surface changed");
+        Log.i(TAG, "surface changed");
 
         // If your preview can change or rotate, take care of those events here.
         // Make sure to stop the preview before resizing or reformatting it.
@@ -156,6 +156,7 @@ public final class CameraView extends SurfaceView implements
 
         // start preview with new settings
         try {
+            mCamera.setPreviewCallback(this);
             mCamera.setPreviewDisplay(mHolder);
             mCamera.startPreview();
             Log.i(TAG, "surface changed");
@@ -170,7 +171,9 @@ public final class CameraView extends SurfaceView implements
      * @param camera
      */
     public void onPreviewFrame(byte[] data, Camera camera) {
-        CameraView.this.notifyAll();
+        synchronized (this) {
+            CameraView.this.notify();
+        }
         Log.i(TAG, "on preview frame");
     }
 
@@ -184,15 +187,16 @@ public final class CameraView extends SurfaceView implements
         while (mThreadRun) {
             synchronized (this) {
                 try {
-                    this.wait(30);
+                    this.wait();
                     provaJNI(mBuffer);
-                    Log.i(TAG,"processed");
+                    processedFrame=mBuffer;
+                    Log.i(TAG,"frame processed");
                 } catch (InterruptedException e) {
                     Log.e(TAG, "Error in frame processing thread: " + e.getMessage());
                 }
             }
 
-            Log.i(TAG,"process done, frame lenght: " + mBuffer.length );
+            Log.i(TAG,"process done, frame length: " + processedFrame.length );
             // Request a new frame from the camera by putting
             // the buffer back into the queue
             mCamera.addCallbackBuffer(mBuffer);
@@ -204,13 +208,14 @@ public final class CameraView extends SurfaceView implements
         mCamera.setPreviewCallback(null);
         mCamera.release();
         mCamera = null;
+        Log.i(TAG, "camera released");
     }
 
     public void surfaceDestroyed(SurfaceHolder holder) {
         mThreadRun = false;
     }
 
-    private native byte[] provaJNI(byte[] data);
+    private native void provaJNI(byte[] data);
 
 
     static{
