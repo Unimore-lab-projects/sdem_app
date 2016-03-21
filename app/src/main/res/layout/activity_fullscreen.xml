@@ -9,8 +9,12 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:id="@+id/camera_preview">
-
     </FrameLayout>
+
+    <SurfaceView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/drawing_area"/>
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -36,7 +40,6 @@
                 android:text="dummy button" />-->
 
         </LinearLayout>
-
 
     </FrameLayout>
 

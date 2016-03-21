@@ -9,7 +9,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -34,6 +33,20 @@ public class FullscreenActivity extends AppCompatActivity {
      */
     private static final int UI_ANIMATION_DELAY = 300;
     private final Handler mHideHandler = new Handler();
+    /**
+     * Touch listener to use for in-layout UI controls to delay hiding the
+     * system UI. This is to prevent the jarring behavior of controls going away
+     * while interacting with activity UI.
+     */
+    private final View.OnTouchListener mDelayHideTouchListener = new View.OnTouchListener() {
+        @Override
+        public boolean onTouch(View view, MotionEvent motionEvent) {
+            if (AUTO_HIDE) {
+                delayedHide(AUTO_HIDE_DELAY_MILLIS);
+            }
+            return false;
+        }
+    };
     private View mContentView;
     private final Runnable mHidePart2Runnable = new Runnable() {
         @SuppressLint("InlinedApi")
@@ -71,29 +84,11 @@ public class FullscreenActivity extends AppCompatActivity {
             hide();
         }
     };
-    /**
-     * Touch listener to use for in-layout UI controls to delay hiding the
-     * system UI. This is to prevent the jarring behavior of controls going away
-     * while interacting with activity UI.
-     */
-    private final View.OnTouchListener mDelayHideTouchListener = new View.OnTouchListener() {
-        @Override
-        public boolean onTouch(View view, MotionEvent motionEvent) {
-            if (AUTO_HIDE) {
-                delayedHide(AUTO_HIDE_DELAY_MILLIS);
-            }
-            return false;
-        }
-    };
+
 
     private Camera mCamera;
     private CameraView mPreview;
-
-    private CameraView camPreview;
-    private ImageView MyCameraPreview = null;
-    private FrameLayout mainLayout;
-    private int PreviewSizeWidth = 640;
-    private int PreviewSizeHeight= 480;
+    private DrawView dv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,10 +114,21 @@ public class FullscreenActivity extends AppCompatActivity {
         // while interacting with the UI.
 //        findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
 
+
         mPreview = new CameraView(this);
         FrameLayout preview = (FrameLayout) findViewById(R.id.camera_preview);
         preview.addView(mPreview);
         mPreview.getCameraInstance();
+
+        dv = new DrawView(this);
+        preview.addView(dv);
+//        SurfaceView sfvTrack = (SurfaceView)findViewById(R.id.drawing_area);
+//        sfvTrack.setZOrderOnTop(true);    // necessary
+//        SurfaceHolder sfhTrackHolder = sfvTrack.getHolder();
+//        sfhTrackHolder.setFormat(PixelFormat.TRANSPARENT);
+//        Canvas can;
+//        sfhTrackHolder.lockCanvas();
+
 
     }
 
