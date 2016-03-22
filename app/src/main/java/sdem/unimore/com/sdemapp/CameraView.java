@@ -1,15 +1,18 @@
 package sdem.unimore.com.sdemapp;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.ImageFormat;
 import android.hardware.Camera;
 import android.hardware.Camera.PreviewCallback;
+import android.os.Handler;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import java.io.IOException;
 import java.util.List;
@@ -25,7 +28,7 @@ public final class CameraView extends SurfaceView implements
     private byte[] mBuffer = null;
     private boolean mThreadRun;
     private static final String TAG = "CameraView";
-
+    private Context mContext;
     /**
      * Costruttore oggetto Camera
      *
@@ -33,6 +36,7 @@ public final class CameraView extends SurfaceView implements
      */
     public CameraView(Context context) {
         super(context);
+        mContext=context;
         // Install a SurfaceHolder.Callback so we get notified when the
         // underlying surface is created and destroyed.
         mHolder = getHolder();
@@ -184,20 +188,34 @@ public final class CameraView extends SurfaceView implements
     /**
      * esecuzione del thread. I frame vengono salvati su mBuffer e processati da processFrame
      */
+
+    private int i=0;
+
+
+    private  TextView fps = null;
+
     public void run() {
         Log.i(TAG, "thread started");
+        fps= (TextView) ((Activity)mContext).findViewById(R.id.fpsCount);
         mThreadRun = true;
-        int i = 0;
         while (mThreadRun) {
             synchronized (this) {
                 try {
                     this.wait();
                     provaJNI(mBuffer);
+                    ++i;
                 } catch (InterruptedException e) {
                     Log.e(TAG, "Error in frame processing thread: " + e.getMessage());
                 }
+                Utils.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                            // UI updation related code.
+                        fps.setText(String.valueOf(i));
+                    }
+                });
             }
-            Log.i(TAG, "process done " + ++i);
+//            Log.i(TAG, "process done " + ++i);
             // Request a new frame from the camera by putting
             // the buffer back into the queue
             mCamera.addCallbackBuffer(mBuffer);
