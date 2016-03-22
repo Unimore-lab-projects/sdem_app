@@ -9,7 +9,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.TextView;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -89,7 +88,6 @@ public class FullscreenActivity extends AppCompatActivity {
 
     private Camera mCamera;
     private CameraView mPreview;
-    private DrawView dv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,20 +118,6 @@ public class FullscreenActivity extends AppCompatActivity {
         FrameLayout preview = (FrameLayout) findViewById(R.id.camera_preview);
         preview.addView(mPreview);
         mPreview.getCameraInstance();
-
-        TextView fps = (TextView) findViewById(R.id.fpsCount);
-
-/*
-        dv = new DrawView(this);
-        preview.addView(dv);
-*/
-//        SurfaceView sfvTrack = (SurfaceView)findViewById(R.id.drawing_area);
-//        sfvTrack.setZOrderOnTop(true);    // necessary
-//        SurfaceHolder sfhTrackHolder = sfvTrack.getHolder();
-//        sfhTrackHolder.setFormat(PixelFormat.TRANSPARENT);
-//        Canvas can;
-//        sfhTrackHolder.lockCanvas();
-
 
     }
 

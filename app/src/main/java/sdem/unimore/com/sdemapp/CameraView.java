@@ -3,10 +3,10 @@ package sdem.unimore.com.sdemapp;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.graphics.ImageFormat;
 import android.hardware.Camera;
 import android.hardware.Camera.PreviewCallback;
-import android.os.Handler;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Classe di gestione e configurazione della Camera.
@@ -29,6 +30,8 @@ public final class CameraView extends SurfaceView implements
     private boolean mThreadRun;
     private static final String TAG = "CameraView";
     private Context mContext;
+    private float focalLenght;
+
     /**
      * Costruttore oggetto Camera
      *
@@ -36,7 +39,7 @@ public final class CameraView extends SurfaceView implements
      */
     public CameraView(Context context) {
         super(context);
-        mContext=context;
+        mContext = context;
         // Install a SurfaceHolder.Callback so we get notified when the
         // underlying surface is created and destroyed.
         mHolder = getHolder();
@@ -45,9 +48,6 @@ public final class CameraView extends SurfaceView implements
         mHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
     }
 
-    /**
-     * Accesso Istanza Camera
-     */
     public void getCameraInstance() {
         try {
             mCamera = Camera.open(); // attempt to get a Camera instance
@@ -58,13 +58,6 @@ public final class CameraView extends SurfaceView implements
         }
     }
 
-    /**
-     * Implementazione interfaccia SurfaceView.
-     * Vengono impostate le dimensioni della preview della camera a seconda del dispositivo
-     * Inoltre viene creato il buffer per i frame della preview
-     *
-     * @param holder
-     */
     public void surfaceCreated(SurfaceHolder holder) {
         Log.i(TAG, "surface created");
         new Thread(this).start();
@@ -76,6 +69,8 @@ public final class CameraView extends SurfaceView implements
         final int screenWidth = ((View) getParent()).getWidth();
         int minDiff = Integer.MAX_VALUE;
         Camera.Size bestSize = null;
+
+        focalLenght = params.getFocalLength();
 
         /*
         * Impostazione dimensione frame a seconda delle dimensioni ottimali e dell'orientamento
@@ -130,14 +125,7 @@ public final class CameraView extends SurfaceView implements
 
     }
 
-    /**
-     * Implementazione interfaccia SurfaceView.
-     *
-     * @param holder
-     * @param format
-     * @param width
-     * @param height
-     */
+
     @Override
     public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
         Log.i(TAG, "surface changed");
@@ -172,50 +160,47 @@ public final class CameraView extends SurfaceView implements
         }
     }
 
-    /**
-     * Implementazione interfaccia SurfaceView.
-     *
-     * @param data
-     * @param camera
-     */
     public void onPreviewFrame(byte[] data, Camera camera) {
         synchronized (this) {
             CameraView.this.notify();
         }
-//        Log.i(TAG, "on preview frame");
     }
 
-    /**
-     * esecuzione del thread. I frame vengono salvati su mBuffer e processati da processFrame
-     */
-
-    private int i=0;
-
-
-    private  TextView fps = null;
+    private float[] points = new float[4]; // vettore di 2 punti x,y
+    private TextView distText = null;
 
     public void run() {
         Log.i(TAG, "thread started");
-        fps= (TextView) ((Activity)mContext).findViewById(R.id.fpsCount);
+        distText = (TextView) ((Activity) mContext).findViewById(R.id.distance);
         mThreadRun = true;
+
         while (mThreadRun) {
             synchronized (this) {
                 try {
                     this.wait();
-                    provaJNI(mBuffer);
-                    ++i;
+                    //provaJNI(mBuffer);
+
+                    //valori casuali di prova
+                    points[0] = 100;
+                    points[1] = randInt(0,100);
+                    points[2] = 100;
+                    points[3] = randInt(0,100);
+
+
                 } catch (InterruptedException e) {
                     Log.e(TAG, "Error in frame processing thread: " + e.getMessage());
                 }
+
+                // aggiornamento della UI
                 Utils.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                            // UI updation related code.
-                        fps.setText(String.valueOf(i));
+                        distText.setText(String.valueOf(Utils.getDistanceFromMarker(50, focalLenght, points)));
+                        distText.setTextColor(Color.rgb(randInt(0,255),randInt(0,255),randInt(0,255)));
                     }
+
                 });
             }
-//            Log.i(TAG, "process done " + ++i);
             // Request a new frame from the camera by putting
             // the buffer back into the queue
             mCamera.addCallbackBuffer(mBuffer);
@@ -239,5 +224,32 @@ public final class CameraView extends SurfaceView implements
 
     static {
         System.loadLibrary("SdemAppJNI");
+    }
+
+    /**
+     * Returns a pseudo-random number between min and max, inclusive.
+     * The difference between min and max can be at most
+     * <code>Integer.MAX_VALUE - 1</code>.
+     *
+     * @param min Minimum value
+     * @param max Maximum value.  Must be greater than min.
+     * @return Integer between min and max, inclusive.
+     * @see java.util.Random#nextInt(int)
+     */
+    public static int randInt(int min, int max) {
+
+        // NOTE: This will (intentionally) not run as written so that folks
+        // copy-pasting have to think about how to initialize their
+        // Random instance.  Initialization of the Random instance is outside
+        // the main scope of the question, but some decent options are to have
+        // a field that is initialized once and then re-used as needed or to
+        // use ThreadLocalRandom (if using at least Java 1.7).
+        Random rand = new Random();
+
+        // nextInt is normally exclusive of the top value,
+        // so add 1 to make it inclusive
+        int randomNum = rand.nextInt((max - min) + 1) + min;
+
+        return randomNum;
     }
 }

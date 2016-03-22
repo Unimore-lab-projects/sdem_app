@@ -51,9 +51,8 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Medium Text"
-        android:id="@+id/fpsCount"
+        android:id="@+id/distance"
         android:layout_gravity="left|bottom"
-        style="AppTheme"
         android:textSize="30sp"
         android:textStyle="bold"
         android:textColor="#FF303F9F" />
