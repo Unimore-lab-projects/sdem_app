@@ -180,8 +180,9 @@ public final class CameraView extends SurfaceView implements
 
     public void run() {
         Log.i(TAG, "thread started");
-//        distText = (TextView) ((Activity) mContext).findViewById(R.id.distance);
         imageView = (ImageView) ((Activity) mContext).findViewById(R.id.imageView);
+        imageView.setMaxHeight(mHeight);
+        imageView.setMaxWidth(mWidth);
         mThreadRun = true;
 
         while (mThreadRun) {
@@ -203,9 +204,6 @@ public final class CameraView extends SurfaceView implements
                 Utils.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-//                        distText.setText(String.valueOf(Utils.getDistanceFromMarker(50, focalLenght, points)));
-//                        distText.setTextColor(Color.rgb(randInt(0, 255), randInt(0, 255), randInt(0, 255)));
-
                         imageView.setImageBitmap(bmp);
                     }
 

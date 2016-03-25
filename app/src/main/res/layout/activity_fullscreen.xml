@@ -9,12 +9,17 @@
     <FrameLayout
         android:id="@+id/camera_preview"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"></FrameLayout>
+        android:layout_height="fill_parent">
 
-    <!--<SurfaceView-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent"-->
-    <!--android:id="@+id/drawing_area"/>-->
+    </FrameLayout>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:adjustViewBounds="false"
+        />
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -42,27 +47,6 @@
         </LinearLayout>
 
 
-
-
     </FrameLayout>
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="left|bottom"
-        android:contentDescription="bufferProcessed" />
-<!--
-    <TextView
-        android:id="@+id/distance"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="left|bottom"
-        android:text="Medium Text"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="#FF303F9F"
-        android:textSize="30sp"
-        android:textStyle="bold" />-->
-
 
 </FrameLayout>
