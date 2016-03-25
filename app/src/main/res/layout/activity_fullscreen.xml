@@ -6,18 +6,15 @@
     tools:context="sdem.unimore.com.sdemapp.FullscreenActivity">
 
 
-
-
     <FrameLayout
+        android:id="@+id/camera_preview"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:id="@+id/camera_preview">
-    </FrameLayout>
+        android:layout_height="fill_parent"></FrameLayout>
 
     <!--<SurfaceView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:id="@+id/drawing_area"/>-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:id="@+id/drawing_area"/>-->
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -34,27 +31,38 @@
             android:orientation="horizontal"
             tools:ignore="UselessParent">
 
-           <!-- <Button
-                android:id="@+id/dummy_button"
-                style="?metaButtonBarButtonStyle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="dummy button" />-->
+            <!-- <Button
+                 android:id="@+id/dummy_button"
+                 style="?metaButtonBarButtonStyle"
+                 android:layout_width="0dp"
+                 android:layout_height="wrap_content"
+                 android:layout_weight="1"
+                 android:text="dummy button" />-->
 
         </LinearLayout>
 
+
+
+
     </FrameLayout>
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="left|bottom"
+        android:contentDescription="bufferProcessed" />
+<!--
     <TextView
+        android:id="@+id/distance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Medium Text"
-        android:id="@+id/distance"
         android:layout_gravity="left|bottom"
+        android:text="Medium Text"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#FF303F9F"
         android:textSize="30sp"
-        android:textStyle="bold"
-        android:textColor="#FF303F9F" />
+        android:textStyle="bold" />-->
+
 
 </FrameLayout>

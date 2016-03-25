@@ -3,8 +3,11 @@ package sdem.unimore.com.sdemapp;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Configuration;
-import android.graphics.Color;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.ImageFormat;
+import android.graphics.Rect;
+import android.graphics.YuvImage;
 import android.hardware.Camera;
 import android.hardware.Camera.PreviewCallback;
 import android.util.Log;
@@ -12,8 +15,9 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.ImageView;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.List;
 import java.util.Random;
@@ -31,6 +35,8 @@ public final class CameraView extends SurfaceView implements
     private static final String TAG = "CameraView";
     private Context mContext;
     private float focalLenght;
+    private int mHeight;
+    private int mWidth;
 
     /**
      * Costruttore oggetto Camera
@@ -94,14 +100,16 @@ public final class CameraView extends SurfaceView implements
                 }
             }
         }
-
         final int previewWidth = bestSize.width;
         final int previewHeight = bestSize.height;
+        mHeight = previewHeight;
+        mWidth = previewWidth;
 
         ViewGroup.LayoutParams layoutParams = getLayoutParams();
         layoutParams.height = previewHeight;
         layoutParams.width = previewWidth;
         setLayoutParams(layoutParams);
+
 
         // FORMATO PREVIEW
         params.setPreviewFormat(ImageFormat.NV21);
@@ -163,29 +171,29 @@ public final class CameraView extends SurfaceView implements
     public void onPreviewFrame(byte[] data, Camera camera) {
         synchronized (this) {
             CameraView.this.notify();
+            mBuffer = data;
         }
     }
 
-    private float[] points = new float[4]; // vettore di 2 punti x,y
-    private TextView distText = null;
+    private ImageView imageView = null;
+    Bitmap bmp;
 
     public void run() {
         Log.i(TAG, "thread started");
-        distText = (TextView) ((Activity) mContext).findViewById(R.id.distance);
+//        distText = (TextView) ((Activity) mContext).findViewById(R.id.distance);
+        imageView = (ImageView) ((Activity) mContext).findViewById(R.id.imageView);
         mThreadRun = true;
 
         while (mThreadRun) {
             synchronized (this) {
                 try {
                     this.wait();
-                    //provaJNI(mBuffer);
-
-                    //valori casuali di prova
-                    points[0] = 100;
-                    points[1] = randInt(0,100);
-                    points[2] = 100;
-                    points[3] = randInt(0,100);
-
+                    provaJNI(mBuffer);
+                    ByteArrayOutputStream out = new ByteArrayOutputStream();
+                    YuvImage yuvImage = new YuvImage(mBuffer, ImageFormat.NV21, mWidth, mHeight, null);
+                    yuvImage.compressToJpeg(new Rect(0, 0, mWidth, mHeight), 50, out);
+                    byte[] imageBytes = out.toByteArray();
+                    bmp = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
 
                 } catch (InterruptedException e) {
                     Log.e(TAG, "Error in frame processing thread: " + e.getMessage());
@@ -195,8 +203,10 @@ public final class CameraView extends SurfaceView implements
                 Utils.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        distText.setText(String.valueOf(Utils.getDistanceFromMarker(50, focalLenght, points)));
-                        distText.setTextColor(Color.rgb(randInt(0,255),randInt(0,255),randInt(0,255)));
+//                        distText.setText(String.valueOf(Utils.getDistanceFromMarker(50, focalLenght, points)));
+//                        distText.setTextColor(Color.rgb(randInt(0, 255), randInt(0, 255), randInt(0, 255)));
+
+                        imageView.setImageBitmap(bmp);
                     }
 
                 });
