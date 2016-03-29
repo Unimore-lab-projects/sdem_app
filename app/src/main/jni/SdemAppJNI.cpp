@@ -1,10 +1,13 @@
 #include <jni.h>
 
+#include <opencv2/core/core.hpp>
+#include <opencv2/imgproc/imgproc_c.h>
+
 
 
 #define NULL 0
 
-extern "C"{
+extern "C" {
 JNIEXPORT void JNICALL
 Java_sdem_unimore_com_sdemapp_CameraView_provaJNI(JNIEnv *env, jobject instance, jbyteArray data_) {
 
