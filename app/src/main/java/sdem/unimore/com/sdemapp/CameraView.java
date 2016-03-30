@@ -229,6 +229,8 @@ public final class CameraView extends SurfaceView implements
 
     private native void provaJNI(byte[] data);
 
+    private native void detectAndDrawMarkersJNI(byte[] data,int height,int width);
+
 
     static {
         System.loadLibrary("SdemAppJNI");
