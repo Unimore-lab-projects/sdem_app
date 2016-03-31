@@ -14,24 +14,27 @@ using namespace aruco;
 using  namespace std;
 
 
-
 class detection_marker {
 
-	Ptr<Dictionary> _dictionary;// use: (DICT_6X6_250);
-	vector<int> _markerIds;
-	vector<vector<Point2f>> _markerCorners;
-	Mat inImage;
+    Ptr<Dictionary> _dictionary;
+    // use: (DICT_6X6_250);
+    vector<int> _markerIds;
+    vector<vector<Point2f>> _markerCorners;
+    Mat inImage;
 
 public:
 
-	detection_marker(PREDEFINED_DICTIONARY_NAME name);
+    detection_marker(PREDEFINED_DICTIONARY_NAME name);
 
-	const vector<int>& ids() const;
-	const vector<vector<Point2f>>& corners() const;
-	const Mat& img() const;
+    const vector<int> &ids() const;
 
-	void detectAndDraw(Mat& inImage);
-	void detect(Mat& inImage);
+    const vector<vector<Point2f>> &corners() const;
+
+    const Mat &img() const;
+
+    void detectAndDraw(Mat &inImage);
+
+    void detect(Mat &inImage);
 
 };
 

@@ -189,9 +189,9 @@ public final class CameraView extends SurfaceView implements
             synchronized (this) {
                 try {
                     this.wait();
-                    provaJNI(mBuffer);
+                    detectAndDrawMarkersJNI(mBuffer, mHeight, mWidth);
                     ByteArrayOutputStream out = new ByteArrayOutputStream();
-                    YuvImage yuvImage = new YuvImage(mBuffer, ImageFormat.NV21, mWidth, mHeight, null);
+                    YuvImage yuvImage = new YuvImage(mBuffer,ImageFormat.NV21, mWidth, mHeight, null);
                     yuvImage.compressToJpeg(new Rect(0, 0, mWidth, mHeight), 50, out);
                     byte[] imageBytes = out.toByteArray();
                     bmp = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
@@ -229,7 +229,7 @@ public final class CameraView extends SurfaceView implements
 
     private native void provaJNI(byte[] data);
 
-    private native void detectAndDrawMarkersJNI(byte[] data,int height,int width);
+    private native void detectAndDrawMarkersJNI(byte[] data, int height, int width);
 
 
     static {
