@@ -1,16 +1,8 @@
 #include <jni.h>
 
 #include <opencv/cv.h>
-#include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
-#include <opencv2/imgproc/imgproc_c.h>
-//#include <detection.h>#include <iostream>
-//#include "opencv2/ts.hpp"
-//#include "opencv2/core/private.hpp"
 #include "opencv2/imgproc.hpp"
-#include "opencv2/imgcodecs.hpp"
-
-#include "opencv2/imgproc/imgproc_c.h"
 
 
 #include "detection.h"
@@ -51,8 +43,10 @@ Java_sdem_unimore_com_sdemapp_CameraView_detectAndDrawMarkersJNI(JNIEnv *env, jo
 
     jbyte *data = env->GetByteArrayElements(data_, NULL);
     Mat *m = new Mat(height_+height_/2,width_,CV_8UC1,(uchar*)data);
-    cv::cvtColor(*m,*m,CV_YUV2RGB_NV21);
+    Mat *m2 = new Mat(height_,width_,CV_8UC3);
     detection_marker *dm=new detection_marker(DICT_6X6_250);
+
+    cv::cvtColor(*m,*m2,CV_YUV2RGB_NV21);
     dm->detectAndDraw(*m);
 
 
@@ -68,11 +62,14 @@ Java_sdem_unimore_com_sdemapp_CameraView_detectMarkers(JNIEnv *env, jobject inst
     jfloat *markers = env->GetFloatArrayElements(markers_, NULL);
 
     Mat *m = new Mat(height+height/2,width,CV_8UC1,(uchar*)data);
+    Mat *m2 = new Mat(height,width,CV_8UC3);
     detection_marker *dm=new detection_marker(DICT_6X6_250);
+
     vector<vector<Point2f>> v;
     vector<float> out;
 
-    cv::cvtColor(*m,*m,CV_YUV2RGB_NV21);
+
+    cv::cvtColor(*m,*m2,CV_YUV2RGB_NV21);
     dm->detect(*m);
     v=dm->corners();
 
@@ -82,7 +79,11 @@ Java_sdem_unimore_com_sdemapp_CameraView_detectMarkers(JNIEnv *env, jobject inst
             out.push_back(v[i][j].y);
         }
     }
-    markers=out.data();
+
+    for(i=0;i<out.size();i++){
+        markers[i]=out[i];
+    }
+    //markers=out.data();
 
     env->ReleaseByteArrayElements(data_, data, 0);
     env->ReleaseFloatArrayElements(markers_, markers, 0);
