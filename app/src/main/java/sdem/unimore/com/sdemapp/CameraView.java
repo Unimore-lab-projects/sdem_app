@@ -4,10 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.ImageFormat;
-import android.graphics.Rect;
-import android.graphics.YuvImage;
 import android.hardware.Camera;
 import android.hardware.Camera.PreviewCallback;
 import android.util.Log;
@@ -17,10 +14,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.List;
-import java.util.Random;
 
 /**
  * Classe di gestione e configurazione della Camera.
@@ -177,9 +172,10 @@ public final class CameraView extends SurfaceView implements
 
     private ImageView imageView = null;
     Bitmap bmp;
+    float[] cornersList = null;
 
     public void run() {
-        Log.i(TAG, "thread started");
+        Log.i(TAG, "frame processing thread started");
         imageView = (ImageView) ((Activity) mContext).findViewById(R.id.imageView);
         imageView.setMaxHeight(mHeight);
         imageView.setMaxWidth(mWidth);
@@ -189,22 +185,20 @@ public final class CameraView extends SurfaceView implements
             synchronized (this) {
                 try {
                     this.wait();
-                    detectAndDrawMarkersJNI(mBuffer, mHeight, mWidth);
-                    ByteArrayOutputStream out = new ByteArrayOutputStream();
-                    YuvImage yuvImage = new YuvImage(mBuffer,ImageFormat.NV21, mWidth, mHeight, null);
-                    yuvImage.compressToJpeg(new Rect(0, 0, mWidth, mHeight), 50, out);
-                    byte[] imageBytes = out.toByteArray();
-                    bmp = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
+                    detectAndDrawMarkersJNI(mBuffer, mHeight, mWidth, cornersList);
+                    if (cornersList != null && cornersList.length > 0) {
+                        Log.v(TAG, "markers detected, array length: " + cornersList.length);
+                    }
 
                 } catch (InterruptedException e) {
                     Log.e(TAG, "Error in frame processing thread: " + e.getMessage());
                 }
 
-                // aggiornamento della UI
+                // thread di aggiornamento della UI
                 Utils.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        imageView.setImageBitmap(bmp);
+//                        imageView.setImageBitmap(bmp);
                     }
 
                 });
@@ -214,7 +208,7 @@ public final class CameraView extends SurfaceView implements
             mCamera.addCallbackBuffer(mBuffer);
         }
 
-        Log.i(TAG, "thread loop ended");
+        Log.i(TAG, "frame processing thread loop ended");
         mHolder.removeCallback(this);
         mCamera.stopPreview();
         mCamera.setPreviewCallback(null);
@@ -229,37 +223,11 @@ public final class CameraView extends SurfaceView implements
 
     private native void provaJNI(byte[] data);
 
-    private native void detectAndDrawMarkersJNI(byte[] data, int height, int width);
+    private native void detectAndDrawMarkersJNI(byte[] data, int height, int width, float[] markerList);
 
 
     static {
         System.loadLibrary("SdemAppJNI");
     }
 
-    /**
-     * Returns a pseudo-random number between min and max, inclusive.
-     * The difference between min and max can be at most
-     * <code>Integer.MAX_VALUE - 1</code>.
-     *
-     * @param min Minimum value
-     * @param max Maximum value.  Must be greater than min.
-     * @return Integer between min and max, inclusive.
-     * @see java.util.Random#nextInt(int)
-     */
-    public static int randInt(int min, int max) {
-
-        // NOTE: This will (intentionally) not run as written so that folks
-        // copy-pasting have to think about how to initialize their
-        // Random instance.  Initialization of the Random instance is outside
-        // the main scope of the question, but some decent options are to have
-        // a field that is initialized once and then re-used as needed or to
-        // use ThreadLocalRandom (if using at least Java 1.7).
-        Random rand = new Random();
-
-        // nextInt is normally exclusive of the top value,
-        // so add 1 to make it inclusive
-        int randomNum = rand.nextInt((max - min) + 1) + min;
-
-        return randomNum;
-    }
 }
