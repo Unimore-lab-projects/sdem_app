@@ -22,6 +22,9 @@ model {
             minifyEnabled = false
             proguardFiles.add(file('proguard-rules.txt'))
         }
+        debug {
+            debuggable = true
+        }
     }
     android.ndk {
         File curDir= file('./')

@@ -54,16 +54,17 @@ Java_sdem_unimore_com_sdemapp_CameraView_detectAndDrawMarkersJNI(JNIEnv *env, jo
     env->ReleaseByteArrayElements(data_, data, 0);
 }
 JNIEXPORT void JNICALL
-Java_sdem_unimore_com_sdemapp_CameraView_detectMarkers(JNIEnv *env, jobject instance,
+Java_sdem_unimore_com_sdemapp_CameraView_detectMarkersJNI(JNIEnv *env, jobject instance,
                                                        jbyteArray data_, jint height, jint width,
                                                        jfloatArray markers_,
                                                        jintArray markersSize_) {
 
     int i = 0, j = 0;
     jbyte *data = env->GetByteArrayElements(data_, NULL);
-    jfloat *markers = env->GetFloatArrayElements(markers_, NULL);
+    //jfloat *markers = env->GetFloatArrayElements(markers_, NULL);
+    jfloat *markers;
     jint *ids = env->GetIntArrayElements(markersSize_, NULL);
-//    jin
+
 
     Mat *m = new Mat(height + height / 2, width, CV_8UC1, (uchar *) data);
     Mat *m2 = new Mat(height, width, CV_8UC3);
@@ -85,15 +86,16 @@ Java_sdem_unimore_com_sdemapp_CameraView_detectMarkers(JNIEnv *env, jobject inst
         }
     }
 
-    for (i = 0; i < out.size(); i++) {
+  /*  for (i = 0; i < out.size(); i++) {
         markers[i] = out[i];
-    }
-//    markers=out.data();
+    }*/
+    markers=out.data();
 
-    for (int i = 0; i < idsarray.size(); i++) {
+    /*for (int i = 0; i < idsarray.size(); i++) {
         ids[i]=idsarray[i];
-    }
+    }*/
 
+    env->SetFloatArrayRegion(markers_, 0,out.size(), markers);
 
     env->ReleaseByteArrayElements(data_, data, 0);
     env->ReleaseFloatArrayElements(markers_, markers, 0);
