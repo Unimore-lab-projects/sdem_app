@@ -94,8 +94,9 @@ Java_sdem_unimore_com_sdemapp_CameraView_detectMarkersJNI(JNIEnv *env, jobject i
     /*for (int i = 0; i < idsarray.size(); i++) {
         ids[i]=idsarray[i];
     }*/
-
-    env->SetFloatArrayRegion(markers_, 0,out.size(), markers);
+    if(out.size() >0){
+        env->SetFloatArrayRegion(markers_, 0,out.size(), markers);
+    }
 
     env->ReleaseByteArrayElements(data_, data, 0);
     env->ReleaseFloatArrayElements(markers_, markers, 0);
