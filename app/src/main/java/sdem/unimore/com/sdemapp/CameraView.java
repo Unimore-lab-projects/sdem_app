@@ -4,7 +4,10 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.ImageFormat;
+import android.graphics.Rect;
+import android.graphics.YuvImage;
 import android.hardware.Camera;
 import android.hardware.Camera.PreviewCallback;
 import android.util.Log;
@@ -14,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.List;
 
@@ -173,12 +177,18 @@ public final class CameraView extends SurfaceView implements
     private ImageView imageView = null;
     Bitmap bmp;
     float[] cornersList = null;
+//    private TextView idText=null;
 
     public void run() {
         Log.i(TAG, "frame processing thread started");
         imageView = (ImageView) ((Activity) mContext).findViewById(R.id.imageView);
         imageView.setMaxHeight(mHeight);
         imageView.setMaxWidth(mWidth);
+//
+//        idText = (TextView) ((Activity) mContext).findViewById(R.id.textID);
+//        idText.setTextColor(Color.RED);
+
+
         mThreadRun = true;
 
         while (mThreadRun) {
@@ -186,9 +196,13 @@ public final class CameraView extends SurfaceView implements
                 try {
                     this.wait();
                     detectAndDrawMarkersJNI(mBuffer, mHeight, mWidth, cornersList);
-                    if (cornersList != null && cornersList.length > 0) {
-                        Log.v(TAG, "markers detected, array length: " + cornersList.length);
-                    }
+
+                    ByteArrayOutputStream out = new ByteArrayOutputStream();
+                    YuvImage yuvImage = new YuvImage(mBuffer,ImageFormat.NV21, mWidth, mHeight, null);
+                    yuvImage.compressToJpeg(new Rect(0, 0, mWidth, mHeight), 50, out);
+                    byte[] imageBytes = out.toByteArray();
+                    bmp = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
+
 
                 } catch (InterruptedException e) {
                     Log.e(TAG, "Error in frame processing thread: " + e.getMessage());
@@ -198,7 +212,8 @@ public final class CameraView extends SurfaceView implements
                 Utils.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-//                        imageView.setImageBitmap(bmp);
+
+                        imageView.setImageBitmap(bmp);
                     }
 
                 });
