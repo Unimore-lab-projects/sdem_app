@@ -191,7 +191,7 @@ public final class CameraView extends SurfaceView implements
             synchronized (this) {
                 try {
                     this.wait();
-                    detectMarkersJNI(mBuffer, mHeight, mWidth, cornersList, ids);
+                    detectMarkersJNI(mBuffer, mHeight, mWidth, cornersList);
 
 //                    ByteArrayOutputStream out = new ByteArrayOutputStream();
 //                    YuvImage yuvImage = new YuvImage(mBuffer,ImageFormat.NV21, mWidth, mHeight, null);
@@ -238,6 +238,8 @@ public final class CameraView extends SurfaceView implements
     private native void detectAndDrawMarkersJNI(byte[] data, int height, int width, float[] markerList, int[] ids);
 
     private native void detectMarkersJNI(byte[] data, int height, int width,float[] markers);
+
+    private native int getMarkersNumber(byte[] data, int height,int width);
 
     static {
         System.loadLibrary("SdemAppJNI");

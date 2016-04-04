@@ -11,6 +11,7 @@
 #define NULL 0
 
 
+
 using namespace cv;
 
 extern "C" {
@@ -56,14 +57,11 @@ Java_sdem_unimore_com_sdemapp_CameraView_detectAndDrawMarkersJNI(JNIEnv *env, jo
 JNIEXPORT void JNICALL
 Java_sdem_unimore_com_sdemapp_CameraView_detectMarkersJNI(JNIEnv *env, jobject instance,
                                                        jbyteArray data_, jint height, jint width,
-                                                       jfloatArray markers_,
-                                                       jintArray markersSize_) {
+                                                       jfloatArray markers_) {
 
     int i = 0, j = 0;
     jbyte *data = env->GetByteArrayElements(data_, NULL);
-    //jfloat *markers = env->GetFloatArrayElements(markers_, NULL);
-    jfloat *markers;
-    jint *ids = env->GetIntArrayElements(markersSize_, NULL);
+    jfloat *markers = env->GetFloatArrayElements(markers_, NULL);
 
 
     Mat *m = new Mat(height + height / 2, width, CV_8UC1, (uchar *) data);
@@ -72,12 +70,11 @@ Java_sdem_unimore_com_sdemapp_CameraView_detectMarkersJNI(JNIEnv *env, jobject i
 
     vector<vector<Point2f>> v;
     vector<float> out;
-    vector<int> idsarray;
+
 
     cv::cvtColor(*m, *m2, CV_YUV2RGB_NV21);
     dm->detect(*m);
     v = dm->corners();
-    idsarray = dm->ids();
 
     for (i = 0; i < v.size(); i++) {
         for (j = 0; j < v[i].size(); j++) {
@@ -86,21 +83,47 @@ Java_sdem_unimore_com_sdemapp_CameraView_detectMarkersJNI(JNIEnv *env, jobject i
         }
     }
 
-  /*  for (i = 0; i < out.size(); i++) {
-        markers[i] = out[i];
-    }*/
-    markers=out.data();
-
-    /*for (int i = 0; i < idsarray.size(); i++) {
-        ids[i]=idsarray[i];
-    }*/
-    if(out.size() >0){
-        env->SetFloatArrayRegion(markers_, 0,out.size(), markers);
+    for(i=0;i<out.size();i++){
+        markers[i]=out[i];
     }
+
+    //markers=out.data();
+
+
+   /* if(out.size() >0){
+        env->SetFloatArrayRegion(markers_, 0,out.size(), markers);
+    }*/
 
     env->ReleaseByteArrayElements(data_, data, 0);
     env->ReleaseFloatArrayElements(markers_, markers, 0);
 }
+
+JNIEXPORT jint JNICALL
+Java_sdem_unimore_com_sdemapp_CameraView_getMarkersNumber(JNIEnv *env, jobject instance,
+                                                          jbyteArray data_, jint height,
+                                                          jint width) {
+    int i = 0, j = 0;
+    jbyte *data = env->GetByteArrayElements(data_, NULL);
+
+
+
+    Mat *m = new Mat(height + height / 2, width, CV_8UC1, (uchar *) data);
+    Mat *m2 = new Mat(height, width, CV_8UC3);
+    detection_marker *dm = new detection_marker(DICT_6X6_250);
+
+    vector<vector<Point2f>> v;
+    vector<float> out;
+
+
+    cv::cvtColor(*m, *m2, CV_YUV2RGB_NV21);
+    dm->detect(*m);
+    v = dm->corners();
+
+    env->ReleaseByteArrayElements(data_, data, 0);
+
+    return v.size();
+}
+
 
 
 };
