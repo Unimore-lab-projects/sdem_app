@@ -1,9 +1,7 @@
 package sdem.unimore.com.sdemapp;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.res.Configuration;
-import android.graphics.Bitmap;
 import android.graphics.ImageFormat;
 import android.hardware.Camera;
 import android.hardware.Camera.PreviewCallback;
@@ -12,8 +10,7 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.FrameLayout;
 
 import java.io.IOException;
 import java.util.List;
@@ -30,10 +27,9 @@ public final class CameraView extends SurfaceView implements
     private boolean mThreadRun;
     private static final String TAG = "CameraView";
     private Context mContext;
-    private float focalLenght;
     private int mHeight;
     private int mWidth;
-    private float[] markers=new float[4];
+
 
     /**
      * Costruttore oggetto Camera
@@ -43,8 +39,6 @@ public final class CameraView extends SurfaceView implements
     public CameraView(Context context) {
         super(context);
         mContext = context;
-        // Install a SurfaceHolder.Callback so we get notified when the
-        // underlying surface is created and destroyed.
         mHolder = getHolder();
         mHolder.addCallback(this);
         // deprecated setting, but required on Android versions prior to 3.0
@@ -65,15 +59,11 @@ public final class CameraView extends SurfaceView implements
         Log.i(TAG, "surface created");
         new Thread(this).start();
 
-        // Set CameraView to the optimal camera preview size
-
         final Camera.Parameters params = mCamera.getParameters();
         final List<Camera.Size> sizes = params.getSupportedPreviewSizes();
         final int screenWidth = ((View) getParent()).getWidth();
         int minDiff = Integer.MAX_VALUE;
         Camera.Size bestSize = null;
-
-        focalLenght = params.getFocalLength();
 
         /*
         * Impostazione dimensione frame a seconda delle dimensioni ottimali e dell'orientamento
@@ -97,6 +87,7 @@ public final class CameraView extends SurfaceView implements
                 }
             }
         }
+
         final int previewWidth = bestSize.width;
         final int previewHeight = bestSize.height;
         mHeight = previewHeight;
@@ -106,7 +97,6 @@ public final class CameraView extends SurfaceView implements
         layoutParams.height = previewHeight;
         layoutParams.width = previewWidth;
         setLayoutParams(layoutParams);
-
 
         // FORMATO PREVIEW
         params.setPreviewFormat(ImageFormat.NV21);
@@ -119,7 +109,7 @@ public final class CameraView extends SurfaceView implements
         mBuffer = new byte[size];
         mCamera.addCallbackBuffer(mBuffer);
 
-        // The Surface has been created, now tell the camera where to draw the preview.
+        // Esecuzione preview
         try {
             mCamera.setPreviewDisplay(holder);
             mCamera.startPreview();
@@ -150,11 +140,7 @@ public final class CameraView extends SurfaceView implements
             // ignore: tried to stop a non-existent preview
         }
 
-        // set preview size and make any resize, rotate or
-        // reformatting changes here
-        //TO DO
-
-        // start preview with new settings
+          // start preview with new settings
         try {
             mCamera.setPreviewCallback(this);
             mCamera.setPreviewDisplay(mHolder);
@@ -168,39 +154,39 @@ public final class CameraView extends SurfaceView implements
     public void onPreviewFrame(byte[] data, Camera camera) {
         synchronized (this) {
             CameraView.this.notify();
-            mBuffer = data;
+            mBuffer = data; // migliorabile
         }
     }
 
-    private ImageView imageView = null;
-    Bitmap bmp;
-    float[] cornersList = null;
-    private TextView idText = null;
-    private int[] ids = null;
-    public void run() {
-        Log.i(TAG, "frame processing thread started");
-        imageView = (ImageView) ((Activity) mContext).findViewById(R.id.imageView);
-        imageView.setMaxHeight(mHeight);
-        imageView.setMaxWidth(mWidth);
+    /**
+     *
+     *
+     * Sezione AR
+     *
+     *
+     *
+     * */
 
-        idText = (TextView) ((Activity) mContext).findViewById(R.id.textID);
+    float[] cornersList = null;
+    private int nMarkers = 0;
+    private DrawView dv = null;
+    FrameLayout preview = null;
+
+    public void run() {
         mThreadRun = true;
-        cornersList = new float[8];
-        ids = new int[2];
+        Log.i(TAG, "frame processing thread started");
+
+        preview = (FrameLayout) findViewById(R.id.camera_preview);
+        dv = new DrawView(mContext);
+
         while (mThreadRun) {
             synchronized (this) {
                 try {
                     this.wait();
-                    detectMarkersJNI(mBuffer, mHeight, mWidth, cornersList);
-
-//                    ByteArrayOutputStream out = new ByteArrayOutputStream();
-//                    YuvImage yuvImage = new YuvImage(mBuffer,ImageFormat.NV21, mWidth, mHeight, null);
-//                    yuvImage.compressToJpeg(new Rect(0, 0, mWidth, mHeight), 50, out);
-//                    byte[] imageBytes = out.toByteArray();
-//                    bmp = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
-
-                    Log.v(TAG, "id: "+ids[0]+" first corner: "+cornersList[0] );
-
+                    nMarkers = getMarkersNumber(mBuffer, mHeight, mWidth); //ottengo numero di markers rilevati
+                    cornersList = new float[8 * nMarkers]; //Allocazione del vettorei di punti del marker
+                    detectMarkersJNI(mBuffer, mHeight, mWidth, cornersList); // riconoscimento markers
+                    dv.setCorners(cornersList);
                 } catch (InterruptedException e) {
                     Log.e(TAG, "Error in frame processing thread: " + e.getMessage());
                 }
@@ -209,14 +195,11 @@ public final class CameraView extends SurfaceView implements
                 Utils.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        idText.setText("ID: "+String.valueOf(ids[0]));
-//                        imageView.setImageBitmap(bmp);
+                        dv.drawMarkerContour(mHolder);
                     }
-
                 });
             }
-            // Request a new frame from the camera by putting
-            // the buffer back into the queue
+            //richiesta nuovo frame alla camera
             mCamera.addCallbackBuffer(mBuffer);
         }
 
@@ -233,13 +216,13 @@ public final class CameraView extends SurfaceView implements
         mThreadRun = false;
     }
 
-    private native void provaJNI(byte[] data);
+//    private native void provaJNI(byte[] data);
 
-    private native void detectAndDrawMarkersJNI(byte[] data, int height, int width, float[] markerList, int[] ids);
+    private native void detectAndDrawMarkersJNI(byte[] data, int height, int width);
 
-    private native void detectMarkersJNI(byte[] data, int height, int width,float[] markers);
+    private native void detectMarkersJNI(byte[] data, int height, int width, float[] markerList);
 
-    private native int getMarkersNumber(byte[] data, int height,int width);
+    private native int getMarkersNumber(byte[] data, int height, int width);
 
     static {
         System.loadLibrary("SdemAppJNI");

@@ -6,6 +6,8 @@
     tools:context="sdem.unimore.com.sdemapp.FullscreenActivity">
 
 
+
+
     <FrameLayout
         android:id="@+id/camera_preview"
         android:layout_width="fill_parent"
@@ -13,13 +15,13 @@
 
     </FrameLayout>
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="fitXY"
-        android:adjustViewBounds="false"
-        />
+    <!--<ImageView-->
+        <!--android:id="@+id/imageView"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:scaleType="fitXY"-->
+        <!--android:adjustViewBounds="false"-->
+        <!--/>-->
 
     <FrameLayout
         android:layout_width="match_parent"
