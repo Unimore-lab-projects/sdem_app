@@ -4,10 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.ImageFormat;
-import android.graphics.Rect;
-import android.graphics.YuvImage;
 import android.hardware.Camera;
 import android.hardware.Camera.PreviewCallback;
 import android.util.Log;
@@ -16,8 +13,8 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.List;
 
@@ -177,32 +174,31 @@ public final class CameraView extends SurfaceView implements
     private ImageView imageView = null;
     Bitmap bmp;
     float[] cornersList = null;
-//    private TextView idText=null;
-
+    private TextView idText = null;
+    private int[] ids = null;
     public void run() {
         Log.i(TAG, "frame processing thread started");
         imageView = (ImageView) ((Activity) mContext).findViewById(R.id.imageView);
         imageView.setMaxHeight(mHeight);
         imageView.setMaxWidth(mWidth);
-//
-//        idText = (TextView) ((Activity) mContext).findViewById(R.id.textID);
-//        idText.setTextColor(Color.RED);
 
-
+        idText = (TextView) ((Activity) mContext).findViewById(R.id.textID);
         mThreadRun = true;
-
+        cornersList = new float[8];
+        ids = new int[2];
         while (mThreadRun) {
             synchronized (this) {
                 try {
                     this.wait();
-                    detectAndDrawMarkersJNI(mBuffer, mHeight, mWidth, cornersList);
+                    detectAndDrawMarkersJNI(mBuffer, mHeight, mWidth, cornersList, ids);
 
-                    ByteArrayOutputStream out = new ByteArrayOutputStream();
-                    YuvImage yuvImage = new YuvImage(mBuffer,ImageFormat.NV21, mWidth, mHeight, null);
-                    yuvImage.compressToJpeg(new Rect(0, 0, mWidth, mHeight), 50, out);
-                    byte[] imageBytes = out.toByteArray();
-                    bmp = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
+//                    ByteArrayOutputStream out = new ByteArrayOutputStream();
+//                    YuvImage yuvImage = new YuvImage(mBuffer,ImageFormat.NV21, mWidth, mHeight, null);
+//                    yuvImage.compressToJpeg(new Rect(0, 0, mWidth, mHeight), 50, out);
+//                    byte[] imageBytes = out.toByteArray();
+//                    bmp = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
 
+                    Log.v(TAG, "id: "+ids[0]+" first corner: "+cornersList[0] );
 
                 } catch (InterruptedException e) {
                     Log.e(TAG, "Error in frame processing thread: " + e.getMessage());
@@ -212,8 +208,8 @@ public final class CameraView extends SurfaceView implements
                 Utils.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-
-                        imageView.setImageBitmap(bmp);
+                        idText.setText("ID: "+String.valueOf(ids[0]));
+//                        imageView.setImageBitmap(bmp);
                     }
 
                 });
@@ -238,7 +234,7 @@ public final class CameraView extends SurfaceView implements
 
     private native void provaJNI(byte[] data);
 
-    private native void detectAndDrawMarkersJNI(byte[] data, int height, int width, float[] markerList);
+    private native void detectAndDrawMarkersJNI(byte[] data, int height, int width, float[] markerList, int[] ids);
 
 
     static {
