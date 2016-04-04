@@ -6,8 +6,6 @@
     tools:context="sdem.unimore.com.sdemapp.FullscreenActivity">
 
 
-
-
     <FrameLayout
         android:id="@+id/camera_preview"
         android:layout_width="fill_parent"

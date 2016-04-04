@@ -1,5 +1,6 @@
 package sdem.unimore.com.sdemapp;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.ImageFormat;
@@ -10,7 +11,7 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
+import android.widget.TextView;
 
 import java.io.IOException;
 import java.util.List;
@@ -30,7 +31,6 @@ public final class CameraView extends SurfaceView implements
     private int mHeight;
     private int mWidth;
 
-
     /**
      * Costruttore oggetto Camera
      *
@@ -43,6 +43,8 @@ public final class CameraView extends SurfaceView implements
         mHolder.addCallback(this);
         // deprecated setting, but required on Android versions prior to 3.0
         mHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
+
+
     }
 
     public void getCameraInstance() {
@@ -167,26 +169,29 @@ public final class CameraView extends SurfaceView implements
      *
      * */
 
+    private TextView textID=null;
     float[] cornersList = null;
-    private int nMarkers = 0;
-    private DrawView dv = null;
-    FrameLayout preview = null;
+    private int[] nMarkers = new int[1];
+    private int[] idList = null;
 
     public void run() {
         mThreadRun = true;
         Log.i(TAG, "frame processing thread started");
 
-        preview = (FrameLayout) findViewById(R.id.camera_preview);
-        dv = new DrawView(mContext);
+        nMarkers[0]=0;
+        textID = (TextView) ((Activity) mContext).findViewById(R.id.textID);
+//        textID.setTextSize(30);
 
         while (mThreadRun) {
             synchronized (this) {
                 try {
                     this.wait();
-                    nMarkers = getMarkersNumber(mBuffer, mHeight, mWidth); //ottengo numero di markers rilevati
-                    cornersList = new float[8 * nMarkers]; //Allocazione del vettorei di punti del marker
-                    detectMarkersJNI(mBuffer, mHeight, mWidth, cornersList); // riconoscimento markers
-                    dv.setCorners(cornersList);
+
+                    cornersList=new float[nMarkers[0]*4];
+                    idList = new int[nMarkers[0]];
+
+                    detectJNI(mBuffer, mHeight, mWidth, nMarkers, idList, cornersList);
+//                    dv.setCorners(cornersList);
                 } catch (InterruptedException e) {
                     Log.e(TAG, "Error in frame processing thread: " + e.getMessage());
                 }
@@ -195,7 +200,8 @@ public final class CameraView extends SurfaceView implements
                 Utils.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        dv.drawMarkerContour(mHolder);
+                        textID.setText(String.valueOf(nMarkers[0]));
+//                        dv.drawMarkerContour(mHolder);
                     }
                 });
             }
@@ -223,6 +229,8 @@ public final class CameraView extends SurfaceView implements
     private native void detectMarkersJNI(byte[] data, int height, int width, float[] markerList);
 
     private native int getMarkersNumber(byte[] data, int height, int width);
+
+    private native void detectJNI(byte[] data,int height,int width,int[] nMarker,int[] idList, float[] cornerList );
 
     static {
         System.loadLibrary("SdemAppJNI");
