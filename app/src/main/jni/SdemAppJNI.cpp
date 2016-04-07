@@ -10,9 +10,13 @@
 
 #define NULL 0
 
+
 using namespace cv;
 
 extern "C" {
+
+
+
 
 
 JNIEXPORT void JNICALL
@@ -24,18 +28,18 @@ Java_sdem_unimore_com_sdemapp_CameraView_detectJNI(JNIEnv *env, jobject instance
     jint *idList = env->GetIntArrayElements(idList_, NULL);
     jfloat *cornerList = env->GetFloatArrayElements(cornerList_, NULL);
 
-    int i = 0, j = 0;
-    Mat *m = new Mat(height, width, CV_8UC1, (uchar *) data);
-    detection_marker *dm = new detection_marker(DICT_6X6_250);
+    int i = 0, j = 0,counter;
+    Mat m(height, width, CV_8UC1, (uchar *) data);
+    detection_marker dm(DICT_6X6_250);
 
     vector<vector<Point2f>> v;
     vector<float> out;
     vector<int> detectedMarkersId;
 
 
-    dm->detect(*m);
-    v = dm->corners();
-    detectedMarkersId = dm->ids();
+    dm.detect(m);
+    v = dm.corners();
+    detectedMarkersId = dm.ids();
 
     for (i = 0; i < v.size(); i++) {
         for (j = 0; j < v[i].size(); j++) {
@@ -43,21 +47,24 @@ Java_sdem_unimore_com_sdemapp_CameraView_detectJNI(JNIEnv *env, jobject instance
             out.push_back(v[i][j].y);
         }
     }
+    if(i>0){
+        counter=i;
 
-    for (i = 0; i < (*nMarker) * 4; i++) {
-        cornerList[i] = out[i];
+        for (i = 0; i < (*nMarker) * 8; i++) {
+            cornerList[i] = out[i];
+        }
+
+        for (i = 0; i < (*nMarker); i++) {
+            idList[i] = detectedMarkersId[i];
+        }
+
+        *nMarker = counter;
+    }else{
+        *nMarker=0;
     }
 
-    for (i = 0; i < (*nMarker); i++) {
-        idList[i] = detectedMarkersId[i];
-    }
 
-//    if ( detectedMarkersId!= static_cast<std::vector<int>>(nullptr) ) {
-        *nMarker = detectedMarkersId.size();
-    /*} else {
-        *nMarker = 0;
-    }
-*/
+
     env->ReleaseByteArrayElements(data_, data, 0);
     env->ReleaseIntArrayElements(nMarker_, nMarker, 0);
     env->ReleaseIntArrayElements(idList_, idList, 0);

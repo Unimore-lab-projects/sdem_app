@@ -186,8 +186,9 @@ public final class CameraView extends SurfaceView implements
                 try {
                     this.wait();
 
-                    cornersList = new float[nMarkers[0] * 4];
+                    cornersList = new float[nMarkers[0] * 8];
                     idList = new int[nMarkers[0]];
+
                     detectJNI(mBuffer, mHeight, mWidth, nMarkers, idList, cornersList);
 
                 } catch (InterruptedException e) {
@@ -198,7 +199,8 @@ public final class CameraView extends SurfaceView implements
                 Utils.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        textID.setText(Arrays.toString(cornersList));
+                        //textID.setText(Arrays.toString(cornersList));
+                        textID.setText(Arrays.toString(nMarkers));
 
 //                        drawView.setCorners(cornersList);
                         postInvalidate();
