@@ -11,9 +11,11 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -34,7 +36,7 @@ public final class CameraView extends SurfaceView implements
     /**
      * Costruttore oggetto Camera
      *
-     * @param context
+     * @param context Context
      */
     public CameraView(Context context) {
         super(context);
@@ -122,7 +124,6 @@ public final class CameraView extends SurfaceView implements
 
     }
 
-
     @Override
     public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
         Log.i(TAG, "surface changed");
@@ -142,7 +143,7 @@ public final class CameraView extends SurfaceView implements
             // ignore: tried to stop a non-existent preview
         }
 
-          // start preview with new settings
+        // start preview with new settings
         try {
             mCamera.setPreviewCallback(this);
             mCamera.setPreviewDisplay(mHolder);
@@ -161,37 +162,34 @@ public final class CameraView extends SurfaceView implements
     }
 
     /**
-     *
-     *
      * Sezione AR
-     *
-     *
-     *
-     * */
+     */
 
-    private TextView textID=null;
-    float[] cornersList = null;
+    private TextView textID = null;
+    private FrameLayout bigParent = null;
+
+    float[] cornersList = new float[0];
     private int[] nMarkers = new int[1];
     private int[] idList = null;
+    DrawView drawView = new DrawView(getContext());
+
 
     public void run() {
         mThreadRun = true;
         Log.i(TAG, "frame processing thread started");
 
-        nMarkers[0]=0;
+        nMarkers[0] = 0;
         textID = (TextView) ((Activity) mContext).findViewById(R.id.textID);
-//        textID.setTextSize(30);
 
         while (mThreadRun) {
             synchronized (this) {
                 try {
                     this.wait();
 
-                    cornersList=new float[nMarkers[0]*4];
+                    cornersList = new float[nMarkers[0] * 4];
                     idList = new int[nMarkers[0]];
-
                     detectJNI(mBuffer, mHeight, mWidth, nMarkers, idList, cornersList);
-//                    dv.setCorners(cornersList);
+
                 } catch (InterruptedException e) {
                     Log.e(TAG, "Error in frame processing thread: " + e.getMessage());
                 }
@@ -200,8 +198,10 @@ public final class CameraView extends SurfaceView implements
                 Utils.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        textID.setText(String.valueOf(nMarkers[0]));
-//                        dv.drawMarkerContour(mHolder);
+                        textID.setText(Arrays.toString(cornersList));
+
+//                        drawView.setCorners(cornersList);
+                        postInvalidate();
                     }
                 });
             }
@@ -230,7 +230,7 @@ public final class CameraView extends SurfaceView implements
 
     private native int getMarkersNumber(byte[] data, int height, int width);
 
-    private native void detectJNI(byte[] data,int height,int width,int[] nMarker,int[] idList, float[] cornerList );
+    private native void detectJNI(byte[] data, int height, int width, int[] nMarker, int[] idList, float[] cornerList);
 
     static {
         System.loadLibrary("SdemAppJNI");

@@ -16,16 +16,16 @@ import android.view.SurfaceView;
 public class DrawView extends SurfaceView implements SurfaceHolder.Callback {
 
     private Paint linePaint = new Paint();
-    private Path[] markers = null;
     private float[] corners = null;
 
 
     public DrawView(Context context) {
         super(context);
+        getHolder().addCallback(this);
+
         this.setBackgroundColor(Color.TRANSPARENT);
         this.setZOrderOnTop(true); //necessary
         getHolder().setFormat(PixelFormat.TRANSPARENT);
-        getHolder().addCallback(this);
 
         linePaint.setColor(Color.RED);
         linePaint.setStrokeWidth(3);
@@ -37,26 +37,26 @@ public class DrawView extends SurfaceView implements SurfaceHolder.Callback {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-    }
-
-    public void drawMarkerContour(SurfaceHolder holder) {
-        Path myPath = new Path();
+//        corners[0]=100;
+//        corners[1]=200;
 
         if (corners != null) {
-            myPath.moveTo(corners[0], corners[1]);
-            myPath.lineTo(corners[2], corners[3]);
-            myPath.lineTo(corners[4], corners[5]);
-            myPath.lineTo(corners[6], corners[7]);
-        }
-
-        Canvas canvas = holder.lockCanvas();
-        if (canvas == null) {
-            Log.e("DrawView", "Cannot draw onto the canvas as it's null");
+            canvas.drawPath(drawMarkerContour(), linePaint);
         } else {
-            canvas.drawPath(myPath, linePaint);
-            holder.unlockCanvasAndPost(canvas);
+            Log.d("DrawView", "corners==Null");
         }
+    }
 
+    public Path drawMarkerContour() {
+        Path path = new Path();
+        for (int i = 0; i < corners.length; ++i) {
+            if ((i % 4) == 0) {
+                path.moveTo(i, i + 1);
+                continue;
+            }
+            path.lineTo(i, i + 1);
+        }
+        return path;
     }
 
     public void setCorners(float[] corners) {
@@ -77,4 +77,50 @@ public class DrawView extends SurfaceView implements SurfaceHolder.Callback {
     public void surfaceDestroyed(SurfaceHolder holder) {
 
     }
+
+    class PanelThread extends Thread {
+        private SurfaceHolder _surfaceHolder;
+        private DrawView _panel;
+        private boolean _run = false;
+
+
+        public PanelThread(SurfaceHolder surfaceHolder, DrawView panel) {
+            _surfaceHolder = surfaceHolder;
+            _panel = panel;
+        }
+
+
+        public void setRunning(boolean run) { //Allow us to stop the thread
+            _run = run;
+        }
+
+
+        @Override
+        public void run() {
+            Canvas c;
+            while (_run) {     //When setRunning(false) occurs, _run is
+                c = null;      //set to false and loop ends, stopping thread
+
+
+                try {
+
+
+                    c = _surfaceHolder.lockCanvas(null);
+                    synchronized (_surfaceHolder) {
+
+                        c.drawPath(drawMarkerContour(), linePaint);
+                        //Insert methods to modify positions of items in onDraw()
+                        postInvalidate();
+                    }
+                } finally {
+                    if (c != null) {
+                        _surfaceHolder.unlockCanvasAndPost(c);
+                    }
+                }
+            }
+        }
+    }
+
+
 }
+

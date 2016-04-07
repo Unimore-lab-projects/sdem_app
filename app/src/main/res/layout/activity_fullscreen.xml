@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#0099cc"
-    tools:context="sdem.unimore.com.sdemapp.FullscreenActivity">
+    tools:context="sdem.unimore.com.sdemapp.FullscreenActivity"
+    android:id="@+id/bigParent">
 
 
     <FrameLayout
@@ -20,6 +21,21 @@
         <!--android:scaleType="fitXY"-->
         <!--android:adjustViewBounds="false"-->
         <!--/>-->
+
+    <!--<SurfaceView-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="fill_parent"-->
+        <!--android:id="@+id/drawingSurface" />-->
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Large Text"
+        android:id="@+id/textID"
+        android:layout_gravity="left|bottom"
+        android:textColor="#3F51B5"
+        android:textSize="40sp" />
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -45,15 +61,6 @@
                  android:text="dummy button" />-->
 
         </LinearLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Large Text"
-            android:id="@+id/textID"
-            android:layout_gravity="left|bottom"
-            android:textColor="#3F51B5" />
 
 
     </FrameLayout>

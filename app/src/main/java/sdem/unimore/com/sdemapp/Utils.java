@@ -13,14 +13,14 @@ public class Utils {
         UIHandler .post(runnable);
     }
 
-
-    /**
+/*
+    *//**
      * calcola e ritorna la distanza del marker dalla telecamera
      * @param knownWidth dimensione del marker conosciuta
      * @param focalLenght distanza focale in mm
      * @param points 2 vertici consecutivi del marker
      * @return
-     */
+     *//*
     public static double getDistanceFromMarker(int knownWidth, float focalLenght, float[] points){
 
         float x1,x2,y1,y2;
@@ -35,14 +35,14 @@ public class Utils {
         return (knownWidth*focalLenght)/perWidth;
     }
 
-    /**
+    *//**
      * Converts YUV420 NV21 to RGB8888
      *
      * @param data byte array on YUV420 NV21 format.
      * @param width pixels width
      * @param height pixels height
      * @return a RGB8888 pixels int array. Where each int is a pixels ARGB.
-     */
+     *//*
     public static int[] convertYUV420_NV21toRGB8888(byte [] data, int width, int height) {
         int size = width*height;
         int offset = size;
@@ -84,7 +84,7 @@ public class Utils {
         g = g>255? 255 : g<0 ? 0 : g;
         b = b>255? 255 : b<0 ? 0 : b;
         return 0xff000000 | (b<<16) | (g<<8) | r;
-    }
+    }*/
 }
 
 

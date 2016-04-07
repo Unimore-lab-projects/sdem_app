@@ -117,9 +117,11 @@ public class FullscreenActivity extends AppCompatActivity {
 
         mPreview = new CameraView(this);
         dv = new DrawView(this);
+        FrameLayout bigParent = (FrameLayout) findViewById(R.id.bigParent);
         FrameLayout preview = (FrameLayout) findViewById(R.id.camera_preview);
+
         preview.addView(mPreview);
-        preview.addView(dv);
+        bigParent.addView(dv);
         mPreview.getCameraInstance();
 
     }
