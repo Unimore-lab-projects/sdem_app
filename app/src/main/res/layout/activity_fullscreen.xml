@@ -2,9 +2,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:class="http://schemas.android.com/apk/res-auto"
     android:background="#0099cc"
     tools:context="sdem.unimore.com.sdemapp.FullscreenActivity"
     android:id="@+id/bigParent">
+
 
 
     <FrameLayout
@@ -14,18 +16,10 @@
 
     </FrameLayout>
 
-    <!--<ImageView-->
-        <!--android:id="@+id/imageView"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:scaleType="fitXY"-->
-        <!--android:adjustViewBounds="false"-->
-        <!--/>-->
-
-    <!--<SurfaceView-->
-        <!--android:layout_width="fill_parent"-->
-        <!--android:layout_height="fill_parent"-->
-        <!--android:id="@+id/drawingSurface" />-->
+    <sdem.unimore.com.sdemapp.DrawView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/drawingSurface" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -35,7 +29,7 @@
         android:id="@+id/textID"
         android:layout_gravity="left|bottom"
         android:textColor="#3F51B5"
-        android:textSize="40sp" />
+        android:textSize="20sp" />
 
     <FrameLayout
         android:layout_width="match_parent"

@@ -32,6 +32,7 @@ public final class CameraView extends SurfaceView implements
     private Context mContext;
     private int mHeight;
     private int mWidth;
+    private boolean previewIsRunning;
 
     /**
      * Costruttore oggetto Camera
@@ -105,6 +106,8 @@ public final class CameraView extends SurfaceView implements
         // FORMATO PREVIEW
         params.setPreviewFormat(ImageFormat.NV21);
         params.setPreviewSize(previewWidth, previewHeight);
+        params.setFocusMode(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE);
+
         mCamera.setParameters(params);
 
         //buffer di uscita
@@ -161,6 +164,21 @@ public final class CameraView extends SurfaceView implements
         }
     }
 
+    public void myStartPreview() {
+        if (!previewIsRunning && (mCamera != null)) {
+            mCamera.startPreview();
+            previewIsRunning = true;
+        }
+    }
+
+    // same for stopping the preview
+    public void myStopPreview() {
+        if (previewIsRunning && (mCamera != null)) {
+            mCamera.stopPreview();
+            previewIsRunning = false;
+        }
+    }
+
     /**
      * Sezione AR
      */
@@ -171,8 +189,12 @@ public final class CameraView extends SurfaceView implements
     float[] cornersList = new float[0];
     private int[] nMarkers = new int[1];
     private int[] idList = null;
-    DrawView drawView = new DrawView(getContext());
+    DrawView drawView;
 
+
+    public float[] getCornersList() {
+        return cornersList;
+    }
 
     public void run() {
         mThreadRun = true;
@@ -180,7 +202,8 @@ public final class CameraView extends SurfaceView implements
 
         nMarkers[0] = 0;
         textID = (TextView) ((Activity) mContext).findViewById(R.id.textID);
-
+//        bigParent=(FrameLayout) ((Activity) mContext).findViewById(R.id.bigParent);
+        drawView = (sdem.unimore.com.sdemapp.DrawView) ((Activity) mContext).findViewById(R.id.drawingSurface);
         while (mThreadRun) {
             synchronized (this) {
                 try {
@@ -199,10 +222,10 @@ public final class CameraView extends SurfaceView implements
                 Utils.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        //textID.setText(Arrays.toString(cornersList));
-                        textID.setText(Arrays.toString(nMarkers));
-
-//                        drawView.setCorners(cornersList);
+                        textID.setText(Arrays.toString(cornersList));
+                        if (cornersList != null) {
+                            drawView.drawCorners(cornersList);
+                        }
                         postInvalidate();
                     }
                 });
@@ -226,11 +249,11 @@ public final class CameraView extends SurfaceView implements
 
 //    private native void provaJNI(byte[] data);
 
-    private native void detectAndDrawMarkersJNI(byte[] data, int height, int width);
+//    private native void detectAndDrawMarkersJNI(byte[] data, int height, int width);
 
-    private native void detectMarkersJNI(byte[] data, int height, int width, float[] markerList);
+//    private native void detectMarkersJNI(byte[] data, int height, int width, float[] markerList);
 
-    private native int getMarkersNumber(byte[] data, int height, int width);
+//    private native int getMarkersNumber(byte[] data, int height, int width);
 
     private native void detectJNI(byte[] data, int height, int width, int[] nMarker, int[] idList, float[] cornerList);
 

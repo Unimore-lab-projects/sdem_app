@@ -1,7 +1,6 @@
 package sdem.unimore.com.sdemapp;
 
 import android.annotation.SuppressLint;
-import android.hardware.Camera;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.ActionBar;
@@ -85,10 +84,8 @@ public class FullscreenActivity extends AppCompatActivity {
         }
     };
 
-
-    private Camera mCamera;
     private CameraView mPreview;
-    private DrawView dv;
+    private DrawView drawView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,14 +113,13 @@ public class FullscreenActivity extends AppCompatActivity {
 
 
         mPreview = new CameraView(this);
-        dv = new DrawView(this);
+        drawView = (sdem.unimore.com.sdemapp.DrawView) findViewById(R.id.drawingSurface);
+
         FrameLayout bigParent = (FrameLayout) findViewById(R.id.bigParent);
         FrameLayout preview = (FrameLayout) findViewById(R.id.camera_preview);
 
         preview.addView(mPreview);
-        bigParent.addView(dv);
         mPreview.getCameraInstance();
-
     }
 
     @Override
@@ -134,6 +130,18 @@ public class FullscreenActivity extends AppCompatActivity {
         // created, to briefly hint to the user that UI controls
         // are available.
         delayedHide(100);
+    }
+
+    @Override
+    public void onResume() {
+        mPreview.myStartPreview();  // restart preview after awake from phone sleeping
+        super.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        mPreview.myStopPreview();  // stop preview in case phone is going to sleep
+        super.onPause();
     }
 
     private void toggle() {
