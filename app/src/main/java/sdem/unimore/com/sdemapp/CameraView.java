@@ -33,9 +33,9 @@ public final class CameraView extends SurfaceView implements
     private int mWidth;
     private TextView textID = null;
 
-    float[] cornersList = new float[0];
+    private float[] cornersList = new float[0];
     private int[] nMarkers = new int[1];
-    private int[] idList = null;
+    private int[] idList;
     DrawView drawView;
 
 
@@ -52,7 +52,7 @@ public final class CameraView extends SurfaceView implements
         // deprecated setting, but required on Android versions prior to 3.0
         mHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
 
-
+        nMarkers[0] = 1;
     }
 
     public void getCameraInstance() {
@@ -171,9 +171,6 @@ public final class CameraView extends SurfaceView implements
 //    }
 
     public void onPreviewFrame(byte[] data, Camera camera) {
-
-        nMarkers[0] = 1;
-        textID = (TextView) ((Activity) mContext).findViewById(R.id.textID);
         drawView = (sdem.unimore.com.sdemapp.DrawView) ((Activity) mContext).findViewById(R.id.drawingSurface);
 
         if (cornersList.length == 0) {
@@ -183,17 +180,15 @@ public final class CameraView extends SurfaceView implements
             idList = new int[nMarkers[0]];
         }
 
-        // process data function
         detectJNI(data, mHeight, mWidth, nMarkers, idList, cornersList);
-
+        if(nMarkers[0]==0){
+            cornersList=new float[0];
+            idList=null;
+        }
 
         ((Activity) mContext).runOnUiThread(new Runnable() {
             public void run() {
-                textID.setText(Arrays.toString(idList));
-                if (cornersList != null) {
-                    drawView.drawCorners(cornersList);
-
-                }
+                    drawView.drawCorners(cornersList, idList);
                 postInvalidate();
             }
         });
@@ -202,7 +197,6 @@ public final class CameraView extends SurfaceView implements
     public void surfaceDestroyed(SurfaceHolder holder) {
 //        mThreadRun = false;
     }
-
 
 
     private native void detectJNI(byte[] data, int height, int width, int[] nMarker, int[] idList, float[] cornerList);

@@ -35,7 +35,7 @@ public class DrawView extends SurfaceView implements SurfaceHolder.Callback {
         linePaint.setStyle(Paint.Style.STROKE);
 
         textPaint.setTextSize(40);
-        textPaint.setColor(Color.RED);
+        textPaint.setColor(Color.BLUE);
         setWillNotDraw(false);
     }
 
@@ -49,9 +49,13 @@ public class DrawView extends SurfaceView implements SurfaceHolder.Callback {
 //        }
     }
 
-    public void drawCorners(float[] corners) {
+    public void drawCorners(float[] corners, int[] idList) {
         Path path = new Path();
-        if (corners.length != 0 && corners != null) {
+        Canvas canvas = getHolder().lockCanvas();
+        if (corners.length > 0 && corners != null) {
+            if (idList.length > 0 && idList != null) {
+                canvas.drawText(Integer.toString(idList[0]), corners[0], corners[1], textPaint);
+            }
             path.moveTo(corners[0], corners[1]);
             path.lineTo(corners[2], corners[3]);
             path.lineTo(corners[4], corners[5]);
@@ -66,8 +70,7 @@ public class DrawView extends SurfaceView implements SurfaceHolder.Callback {
 //                path.lineTo(corners[i], corners[i + 1]);
 //            }
         }
-        Canvas canvas = getHolder().lockCanvas();
-        if(canvas!=null) {
+        if (canvas != null) {
             canvas.drawColor(0, PorterDuff.Mode.CLEAR);
             canvas.drawPath(path, linePaint);
         }
