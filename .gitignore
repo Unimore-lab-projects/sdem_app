@@ -4,3 +4,5 @@
 .DS_Store
 /build
 /captures
+/camera_calibr
+/detection_marker
