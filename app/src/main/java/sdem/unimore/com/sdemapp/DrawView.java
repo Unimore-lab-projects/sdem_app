@@ -67,8 +67,10 @@ public class DrawView extends SurfaceView implements SurfaceHolder.Callback {
 //            }
         }
         Canvas canvas = getHolder().lockCanvas();
-        canvas.drawColor(0, PorterDuff.Mode.CLEAR);
-        canvas.drawPath(path, linePaint);
+        if(canvas!=null) {
+            canvas.drawColor(0, PorterDuff.Mode.CLEAR);
+            canvas.drawPath(path, linePaint);
+        }
         getHolder().unlockCanvasAndPost(canvas);
     }
 

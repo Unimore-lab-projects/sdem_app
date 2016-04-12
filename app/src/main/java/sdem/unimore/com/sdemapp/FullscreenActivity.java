@@ -132,18 +132,6 @@ public class FullscreenActivity extends AppCompatActivity {
         delayedHide(100);
     }
 
-    @Override
-    public void onResume() {
-        mPreview.myStartPreview();  // restart preview after awake from phone sleeping
-        super.onResume();
-    }
-
-    @Override
-    public void onPause() {
-        mPreview.myStopPreview();  // stop preview in case phone is going to sleep
-        super.onPause();
-    }
-
     private void toggle() {
         if (mVisible) {
             hide();

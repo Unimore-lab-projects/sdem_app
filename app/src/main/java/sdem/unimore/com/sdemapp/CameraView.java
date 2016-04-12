@@ -11,28 +11,33 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
+
 /**
  * Classe di gestione e configurazione della Camera.
  */
+@SuppressWarnings("deprecation")
 public final class CameraView extends SurfaceView implements
-        SurfaceHolder.Callback, Runnable, PreviewCallback {
+        SurfaceHolder.Callback, PreviewCallback {
 
     private SurfaceHolder mHolder;
     private Camera mCamera;
-    private byte[] mBuffer = null;
-    private boolean mThreadRun;
     private static final String TAG = "CameraView";
     private Context mContext;
     private int mHeight;
     private int mWidth;
-    private boolean previewIsRunning;
+    private TextView textID = null;
+
+    float[] cornersList = new float[0];
+    private int[] nMarkers = new int[1];
+    private int[] idList = null;
+    DrawView drawView;
+
 
     /**
      * Costruttore oggetto Camera
@@ -62,7 +67,7 @@ public final class CameraView extends SurfaceView implements
 
     public void surfaceCreated(SurfaceHolder holder) {
         Log.i(TAG, "surface created");
-        new Thread(this).start();
+//        new Thread(this).start();
 
         final Camera.Parameters params = mCamera.getParameters();
         final List<Camera.Size> sizes = params.getSupportedPreviewSizes();
@@ -111,10 +116,10 @@ public final class CameraView extends SurfaceView implements
         mCamera.setParameters(params);
 
         //buffer di uscita
-        int size = previewWidth * previewHeight *
-                ImageFormat.getBitsPerPixel(params.getPreviewFormat()) / 8;
-        mBuffer = new byte[size];
-        mCamera.addCallbackBuffer(mBuffer);
+//        int size = previewWidth * previewHeight *
+//                ImageFormat.getBitsPerPixel(params.getPreviewFormat()) / 8;
+//        mBuffer = new byte[size];
+//        mCamera.addCallbackBuffer(mBuffer);
 
         // Esecuzione preview
         try {
@@ -157,103 +162,48 @@ public final class CameraView extends SurfaceView implements
         }
     }
 
+//  OLD
+//    public void onPreviewFrame(byte[] data, Camera camera) {
+//        synchronized (this) {
+//            CameraView.this.notify();
+//            mBuffer = data; // migliorabile
+//        }
+//    }
+
     public void onPreviewFrame(byte[] data, Camera camera) {
-        synchronized (this) {
-            CameraView.this.notify();
-            mBuffer = data; // migliorabile
-        }
-    }
 
-    public void myStartPreview() {
-        if (!previewIsRunning && (mCamera != null)) {
-            mCamera.startPreview();
-            previewIsRunning = true;
-        }
-    }
-
-    // same for stopping the preview
-    public void myStopPreview() {
-        if (previewIsRunning && (mCamera != null)) {
-            mCamera.stopPreview();
-            previewIsRunning = false;
-        }
-    }
-
-    /**
-     * Sezione AR
-     */
-
-    private TextView textID = null;
-    private FrameLayout bigParent = null;
-
-    float[] cornersList = new float[0];
-    private int[] nMarkers = new int[1];
-    private int[] idList = null;
-    DrawView drawView;
-
-
-    public float[] getCornersList() {
-        return cornersList;
-    }
-
-    public void run() {
-        mThreadRun = true;
-        Log.i(TAG, "frame processing thread started");
-
-        nMarkers[0] = 0;
+        nMarkers[0] = 1;
         textID = (TextView) ((Activity) mContext).findViewById(R.id.textID);
-//        bigParent=(FrameLayout) ((Activity) mContext).findViewById(R.id.bigParent);
         drawView = (sdem.unimore.com.sdemapp.DrawView) ((Activity) mContext).findViewById(R.id.drawingSurface);
-        while (mThreadRun) {
-            synchronized (this) {
-                try {
-                    this.wait();
 
-                    cornersList = new float[nMarkers[0] * 8];
-                    idList = new int[nMarkers[0]];
-
-                    detectJNI(mBuffer, mHeight, mWidth, nMarkers, idList, cornersList);
-
-                } catch (InterruptedException e) {
-                    Log.e(TAG, "Error in frame processing thread: " + e.getMessage());
-                }
-
-                // thread di aggiornamento della UI
-                Utils.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        textID.setText(Arrays.toString(cornersList));
-                        if (cornersList != null) {
-                            drawView.drawCorners(cornersList);
-                        }
-                        postInvalidate();
-                    }
-                });
-            }
-            //richiesta nuovo frame alla camera
-            mCamera.addCallbackBuffer(mBuffer);
+        if (cornersList.length == 0) {
+            cornersList = new float[nMarkers[0] * 8];
+        }
+        if (idList == null) {
+            idList = new int[nMarkers[0]];
         }
 
-        Log.i(TAG, "frame processing thread loop ended");
-        mHolder.removeCallback(this);
-        mCamera.stopPreview();
-        mCamera.setPreviewCallback(null);
-        mCamera.release();
-        mCamera = null;
-        Log.i(TAG, "camera released");
+        // process data function
+        detectJNI(data, mHeight, mWidth, nMarkers, idList, cornersList);
+
+
+        ((Activity) mContext).runOnUiThread(new Runnable() {
+            public void run() {
+                textID.setText(Arrays.toString(idList));
+                if (cornersList != null) {
+                    drawView.drawCorners(cornersList);
+
+                }
+                postInvalidate();
+            }
+        });
     }
 
     public void surfaceDestroyed(SurfaceHolder holder) {
-        mThreadRun = false;
+//        mThreadRun = false;
     }
 
-//    private native void provaJNI(byte[] data);
 
-//    private native void detectAndDrawMarkersJNI(byte[] data, int height, int width);
-
-//    private native void detectMarkersJNI(byte[] data, int height, int width, float[] markerList);
-
-//    private native int getMarkersNumber(byte[] data, int height, int width);
 
     private native void detectJNI(byte[] data, int height, int width, int[] nMarker, int[] idList, float[] cornerList);
 
