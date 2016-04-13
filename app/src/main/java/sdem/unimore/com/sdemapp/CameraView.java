@@ -6,15 +6,15 @@ import android.content.res.Configuration;
 import android.graphics.ImageFormat;
 import android.hardware.Camera;
 import android.hardware.Camera.PreviewCallback;
+import android.os.Handler;
+import android.os.HandlerThread;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.List;
 
 
@@ -31,11 +31,9 @@ public final class CameraView extends SurfaceView implements
     private Context mContext;
     private int mHeight;
     private int mWidth;
-    private TextView textID = null;
-
     private float[] cornersList = new float[0];
     private int[] nMarkers = new int[1];
-    private int[] idList;
+    private int[] idList = null;
     DrawView drawView;
 
 
@@ -56,12 +54,26 @@ public final class CameraView extends SurfaceView implements
     }
 
     public void getCameraInstance() {
+        newOpenCamera();
+    }
+
+    private void oldOpenCamera() {
         try {
             mCamera = Camera.open(); // attempt to get a Camera instance
             mCamera.setPreviewCallbackWithBuffer(this);
             Log.i(TAG, "Instance created");
         } catch (Exception e) {
             Log.e(TAG, "Error getting Camera instance: " + e.getMessage());
+        }
+    }
+
+    private void newOpenCamera() {
+        if (mThread == null) {
+            mThread = new CameraHandlerThread();
+        }
+
+        synchronized (mThread) {
+            mThread.openCamera();
         }
     }
 
@@ -111,15 +123,14 @@ public final class CameraView extends SurfaceView implements
         // FORMATO PREVIEW
         params.setPreviewFormat(ImageFormat.NV21);
         params.setPreviewSize(previewWidth, previewHeight);
-        params.setFocusMode(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE);
+        params.setFocusMode(Camera.Parameters.FOCUS_MODE_AUTO);
 
         mCamera.setParameters(params);
 
         //buffer di uscita
-//        int size = previewWidth * previewHeight *
-//                ImageFormat.getBitsPerPixel(params.getPreviewFormat()) / 8;
-//        mBuffer = new byte[size];
-//        mCamera.addCallbackBuffer(mBuffer);
+        int size = previewWidth * previewHeight *
+                ImageFormat.getBitsPerPixel(params.getPreviewFormat()) / 8;
+        setupCallback(size);
 
         // Esecuzione preview
         try {
@@ -130,6 +141,16 @@ public final class CameraView extends SurfaceView implements
             Log.e(TAG, "Error setting camera preview: " + e.getMessage());
         }
 
+    }
+
+    static final private int NUM_BUFFERS = 10;
+
+    private void setupCallback(int bufferSize) {
+        mCamera.setPreviewCallbackWithBuffer(this);
+        for (int i = 0; i <= NUM_BUFFERS; ++i) {
+            byte[] cameraBuffer = new byte[bufferSize];
+            mCamera.addCallbackBuffer(cameraBuffer);
+        }
     }
 
     @Override
@@ -162,40 +183,41 @@ public final class CameraView extends SurfaceView implements
         }
     }
 
-//  OLD
-//    public void onPreviewFrame(byte[] data, Camera camera) {
-//        synchronized (this) {
-//            CameraView.this.notify();
-//            mBuffer = data; // migliorabile
-//        }
-//    }
 
     public void onPreviewFrame(byte[] data, Camera camera) {
         drawView = (sdem.unimore.com.sdemapp.DrawView) ((Activity) mContext).findViewById(R.id.drawingSurface);
 
-        if (cornersList.length == 0) {
+
+        if (cornersList.length == 0 ) {
             cornersList = new float[nMarkers[0] * 8];
         }
-        if (idList == null) {
+        if(idList == null){
             idList = new int[nMarkers[0]];
         }
 
         detectJNI(data, mHeight, mWidth, nMarkers, idList, cornersList);
-        if(nMarkers[0]==0){
-            cornersList=new float[0];
-            idList=null;
+        if (nMarkers[0] == 0) {
+            cornersList = new float[nMarkers[0] * 8];
+            idList = null;
         }
 
         ((Activity) mContext).runOnUiThread(new Runnable() {
             public void run() {
-                    drawView.drawCorners(cornersList, idList);
+                drawView.drawCorners(cornersList, idList);
                 postInvalidate();
             }
         });
+
+        camera.addCallbackBuffer(data);
     }
 
     public void surfaceDestroyed(SurfaceHolder holder) {
-//        mThreadRun = false;
+        if (mCamera != null) {
+            mCamera.setPreviewCallback(null);
+            mCamera.stopPreview();
+            mCamera.release();
+        }
+        mCamera = null;
     }
 
 
@@ -203,6 +225,37 @@ public final class CameraView extends SurfaceView implements
 
     static {
         System.loadLibrary("SdemAppJNI");
+    }
+
+    private CameraHandlerThread mThread = null;
+
+    private class CameraHandlerThread extends HandlerThread {
+        Handler mHandler = null;
+
+        CameraHandlerThread() {
+            super("CameraHandlerThread");
+            start();
+            mHandler = new Handler(getLooper());
+        }
+
+        synchronized void notifyCameraOpened() {
+            notify();
+        }
+
+        void openCamera() {
+            mHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    oldOpenCamera();
+                    notifyCameraOpened();
+                }
+            });
+            try {
+                wait();
+            } catch (InterruptedException e) {
+                Log.w(TAG, "wait was interrupted");
+            }
+        }
     }
 
 }

@@ -37,8 +37,8 @@ Java_sdem_unimore_com_sdemapp_CameraView_detectJNI(JNIEnv *env, jobject instance
     vector<int> detectedMarkersId;
 
 //    Mat dst;
-
-    resize(m, m, Size(width/8, height/8), 0, 0, INTER_CUBIC); // resize to 1024x768 resolution
+    int DOWNSIZE=6;
+    resize(m, m, Size(width/DOWNSIZE, height/DOWNSIZE), 0, 0, INTER_CUBIC); // resize to 1024x768 resolution
 
 
     dm.detect(m);
@@ -47,8 +47,8 @@ Java_sdem_unimore_com_sdemapp_CameraView_detectJNI(JNIEnv *env, jobject instance
 
     for (i = 0; i < v.size(); i++) {
         for (j = 0; j < v[i].size(); j++) {
-            out.push_back(v[i][j].x*8);
-            out.push_back(v[i][j].y*8);
+            out.push_back(v[i][j].x*DOWNSIZE);
+            out.push_back(v[i][j].y*DOWNSIZE);
         }
     }
     if(i>0){
