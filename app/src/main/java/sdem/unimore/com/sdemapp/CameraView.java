@@ -8,6 +8,7 @@ import android.hardware.Camera;
 import android.hardware.Camera.PreviewCallback;
 import android.os.Handler;
 import android.os.HandlerThread;
+import android.test.suitebuilder.annotation.Suppress;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -204,7 +205,7 @@ public final class CameraView extends SurfaceView implements
         ((Activity) mContext).runOnUiThread(new Runnable() {
             public void run() {
                 drawView.drawCorners(cornersList, idList);
-                postInvalidate();
+                invalidate();
             }
         });
 
@@ -219,7 +220,6 @@ public final class CameraView extends SurfaceView implements
         }
         mCamera = null;
     }
-
 
     private native void detectJNI(byte[] data, int height, int width, int[] nMarker, int[] idList, float[] cornerList);
 

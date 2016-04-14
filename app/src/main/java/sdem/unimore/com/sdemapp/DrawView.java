@@ -13,6 +13,9 @@ import android.util.AttributeSet;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class DrawView extends SurfaceView implements SurfaceHolder.Callback {
 
@@ -29,38 +32,57 @@ public class DrawView extends SurfaceView implements SurfaceHolder.Callback {
         getHolder().setFormat(PixelFormat.TRANSPARENT);
 
         linePaint.setColor(getColor(context, R.color.colorAccent));
-        linePaint.setStrokeWidth(3);
+        linePaint.setStrokeWidth(5);
         linePaint.setPathEffect(null);
-        linePaint.setStyle(Paint.Style.STROKE);
+        linePaint.setAntiAlias(true);
+        linePaint.setStyle(Paint.Style.FILL);
 
         textPaint = new Paint();
-        textPaint.setColor(getColor(context, R.color.colorAccent));
+        textPaint.setColor(getColor(context, R.color.colorPrimaryDark));
         textPaint.setAntiAlias(true);
-        textPaint.setTextSize(50);
+        textPaint.setTextSize(100);
         setWillNotDraw(false);
     }
 
     public void drawCorners(float[] corners, int[] idList) {
         Path path = new Path();
+        Path textPath = new Path();
         Canvas canvas = getHolder().lockCanvas();
+        List<Float> resX, resY;
+        float sumX, sumY;
         if (canvas != null) {
+            resX = new ArrayList<>();
+            resY = new ArrayList<>();
+
             canvas.drawColor(0, PorterDuff.Mode.CLEAR);
-            if (corners.length > 0 && corners != null) {
 
-                path.moveTo(corners[0], corners[1]);
-                path.lineTo(corners[2], corners[3]);
-                path.lineTo(corners[4], corners[5]);
-                path.lineTo(corners[6], corners[7]);
-                path.lineTo(corners[0], corners[1]);
+            if (corners.length > 0) {
+                for (int i = 0; i < corners.length; i = i + 8) {
+                    path.moveTo(corners[i], corners[i + 1]);
+                    sumX = corners[i];
+                    sumY = corners[i + 1];
 
+                    for (int j = i + 2; j < i + 8; j = j + 2) {
+                        path.lineTo(corners[j], corners[j + 1]);
+                        sumX = sumX+corners[j];
+                        sumY = sumX+corners[j + 1];
+                    }
+                    path.lineTo(corners[i], corners[i + 1]);
 
-                if (idList.length > 0 && idList != null) {
+                    resX.add(sumX / 4);
+                    resY.add(sumY / 4);
+                }
+
+                canvas.drawPath(path, linePaint);
+
+                if (idList.length > 0) {
                     canvas.drawText(Integer.toString(idList[0]), corners[0], corners[1], textPaint);
                 }
-                canvas.drawPath(path, linePaint);
+                canvas.drawTextOnPath("99", textPath, resX.get(0), resY.get(0), textPaint);
             }
             getHolder().unlockCanvasAndPost(canvas);
         }
+
     }
 
     @Override
@@ -78,11 +100,13 @@ public class DrawView extends SurfaceView implements SurfaceHolder.Callback {
 
     }
 
-    public static final int getColor(Context context, int id) {
+    @SuppressWarnings("deprecation")
+    public static int getColor(Context context, int id) {
         final int version = Build.VERSION.SDK_INT;
         if (version >= 23) {
             return ContextCompat.getColor(context, id);
         } else {
+
             return context.getResources().getColor(id);
         }
     }
