@@ -37,7 +37,7 @@ Java_sdem_unimore_com_sdemapp_CameraView_detectJNI(JNIEnv *env, jobject instance
     vector<int> detectedMarkersId;
 
 //    Mat dst;
-    int DOWNSIZE=6;
+    int DOWNSIZE=8;
     resize(m, m, Size(width/DOWNSIZE, height/DOWNSIZE), 0, 0, INTER_CUBIC); // resize to 1024x768 resolution
 
 
