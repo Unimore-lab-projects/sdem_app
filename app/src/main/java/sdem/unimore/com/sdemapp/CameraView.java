@@ -41,7 +41,8 @@ public final class CameraView extends SurfaceView implements
     private int mWidth;
     private float[] cornersList = new float[0];
     private int[] nMarkers = new int[1];
-    private int[] idList = null;
+    private int previuosMarkersNumber=0;
+    private int[] idList = new int[0];
     private CameraHandlerThread mThread = null;
 
     /**
@@ -224,22 +225,12 @@ public final class CameraView extends SurfaceView implements
      */
     public void onPreviewFrame(final byte[] data, Camera camera) {
 
-        if (cornersList.length == 0) {
-            cornersList = new float[nMarkers[0] * 8];
-        }
 
-        if (idList == null) {
-            idList = new int[nMarkers[0]];
-        }
 
         //DETECTION AR MARKER
         detectJNI(data, mHeight, mWidth, nMarkers, idList, cornersList);
-        popupLogic(idList);
 
-        if (nMarkers[0] == 0) {
-            cornersList = new float[nMarkers[0] * 8];
-            Arrays.fill(idList, 0);
-        }
+        popupLogic(idList);
 
         ((Activity) mContext).runOnUiThread(new Runnable() {
             public void run() {
@@ -247,6 +238,14 @@ public final class CameraView extends SurfaceView implements
                 invalidate();
             }
         });
+        if(nMarkers[0]!=previuosMarkersNumber){
+            cornersList = new float[nMarkers[0] * 8];
+            idList = new int[nMarkers[0]];
+            previuosMarkersNumber=nMarkers[0];
+        }
+
+
+
 
         camera.addCallbackBuffer(data);
     }
@@ -264,7 +263,7 @@ public final class CameraView extends SurfaceView implements
      */
     private void popupLogic(int[] idList) {
         int id;
-        if (idList == null) {
+        if (idList.length == 0) {
             return;
         } else {
             id = idList[0];
