@@ -7,6 +7,7 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PixelFormat;
 import android.graphics.PorterDuff;
+import android.graphics.Rect;
 import android.os.Build;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
@@ -24,6 +25,7 @@ public class DrawView extends SurfaceView implements SurfaceHolder.Callback {
     private String TAG = "DrawView";
     private Paint linePaint = new Paint();
     private Paint textPaint = new Paint();
+    private Paint stkPaint = new Paint();
 
     /**
      * Costruttore oggetto Drawview. Al suo interno vengono impostati i valori di linePaint e textPaint oltre che gli attributi necessari ad avere una superficie trasparente.
@@ -46,11 +48,20 @@ public class DrawView extends SurfaceView implements SurfaceHolder.Callback {
         linePaint.setAntiAlias(true);
         linePaint.setStyle(Paint.Style.STROKE);
 
-        textPaint = new Paint();
         textPaint.setColor(getColor(context, R.color.colorAccent));
         textPaint.setAntiAlias(true);
-        textPaint.setTextSize(100);
+        textPaint.setTextSize(200);
         textPaint.setTextAlign(Paint.Align.CENTER);
+        textPaint.setStyle(Paint.Style.FILL);
+
+        stkPaint.setColor(getColor(context, R.color.colorPrimary));
+        stkPaint.setAntiAlias(true);
+        stkPaint.setTextSize(200);
+        stkPaint.setTextAlign(Paint.Align.CENTER);
+        stkPaint.setStyle(Paint.Style.STROKE);
+        stkPaint.setStrokeWidth(4);
+
+
         setWillNotDraw(false);
     }
 
@@ -85,28 +96,36 @@ public class DrawView extends SurfaceView implements SurfaceHolder.Callback {
 
                     for (int j = i + 2; j < i + 8; j = j + 2) {
                         path.lineTo(corners[j], corners[j + 1]);
-                        sumX = sumX + corners[j];
-                        sumY = sumY + corners[j + 1];
+                        sumX += corners[j];
+                        sumY += corners[j + 1];
                     }
                     path.lineTo(corners[i], corners[i + 1]);
 
                     resX.add(sumX / 4);
-                    resY.add(sumY / 4);
+                    resY.add((sumY / 4));
                 }
-
                 canvas.drawPath(path, linePaint);
 
-//                if (idList.length > 0) {
-//                    for (int i = 0; i < idList.length; i++) {
-//                canvas.drawText("99", resX.get(0), resY.get(0), textPaint);
-//                    }
-//                }
-                canvas.drawText("99", resX.get(0), resY.get(0), textPaint);
+                if (idList.length > 0) {
+                    for (int i = 0; i < idList.length; i++) {
+                        drawTextCentred(canvas, textPaint,Integer.toString(idList[i]),resX.get(i),resY.get(i));
+                        drawTextCentred(canvas, stkPaint,Integer.toString(idList[i]),resX.get(i),resY.get(i));
 
+//                        canvas.drawText(Integer.toString(idList[i]), resX.get(i), resY.get(i), textPaint);
+//                        canvas.drawText(Integer.toString(idList[i]), resX.get(i), resY.get(i), stkPaint);
+                    }
+                }
             }
             getHolder().unlockCanvasAndPost(canvas);
         }
 
+    }
+
+    private final Rect textBounds = new Rect(); //don't new this up in a draw method
+
+    public void drawTextCentred(Canvas canvas, Paint paint, String text, float cx, float cy){
+        paint.getTextBounds(text, 0, text.length(), textBounds);
+        canvas.drawText(text, cx, cy - textBounds.exactCenterY(), paint);
     }
 
     /**

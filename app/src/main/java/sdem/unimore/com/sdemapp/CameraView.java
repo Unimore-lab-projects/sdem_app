@@ -15,7 +15,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.List;
 
 
@@ -41,7 +40,7 @@ public final class CameraView extends SurfaceView implements
     private int mWidth;
     private float[] cornersList = new float[0];
     private int[] nMarkers = new int[1];
-    private int previuosMarkersNumber=0;
+    private int previuosMarkersNumber = 0;
     private int[] idList = new int[0];
     private CameraHandlerThread mThread = null;
 
@@ -104,67 +103,68 @@ public final class CameraView extends SurfaceView implements
      */
     public void surfaceCreated(SurfaceHolder holder) {
         Log.i(TAG, "surface created");
-
-        final Camera.Parameters params = mCamera.getParameters();
-        final List<Camera.Size> sizes = params.getSupportedPreviewSizes();
-        final int screenWidth = ((View) getParent()).getWidth();
-        int minDiff = Integer.MAX_VALUE;
-        Camera.Size bestSize = null;
+        if (mCamera != null) {
+            final Camera.Parameters params = mCamera.getParameters();
+            final List<Camera.Size> sizes = params.getSupportedPreviewSizes();
+            final int screenWidth = ((View) getParent()).getWidth();
+            int minDiff = Integer.MAX_VALUE;
+            Camera.Size bestSize = null;
 
         /*
         * Impostazione dimensione frame a seconda delle dimensioni ottimali e dell'orientamento
         */
-        if (getResources().getConfiguration().orientation
-                == Configuration.ORIENTATION_LANDSCAPE) {
-            for (Camera.Size size : sizes) {
-                final int diff = Math.abs(size.width - screenWidth);
-                if (diff < minDiff) {
-                    minDiff = diff;
-                    bestSize = size;
+            if (getResources().getConfiguration().orientation
+                    == Configuration.ORIENTATION_LANDSCAPE) {
+                for (Camera.Size size : sizes) {
+                    final int diff = Math.abs(size.width - screenWidth);
+                    if (diff < minDiff) {
+                        minDiff = diff;
+                        bestSize = size;
+                    }
+                }
+            } else {
+                mCamera.setDisplayOrientation(90);
+                for (Camera.Size size : sizes) {
+                    final int diff = Math.abs(size.height - screenWidth);
+                    if (Math.abs(size.height - screenWidth) < minDiff) {
+                        minDiff = diff;
+                        bestSize = size;
+                    }
                 }
             }
-        } else {
-            mCamera.setDisplayOrientation(90);
-            for (Camera.Size size : sizes) {
-                final int diff = Math.abs(size.height - screenWidth);
-                if (Math.abs(size.height - screenWidth) < minDiff) {
-                    minDiff = diff;
-                    bestSize = size;
-                }
+
+            final int previewWidth = bestSize.width;
+            final int previewHeight = bestSize.height;
+            mHeight = previewHeight;
+            mWidth = previewWidth;
+
+            ViewGroup.LayoutParams layoutParams = getLayoutParams();
+            layoutParams.height = previewHeight;
+            layoutParams.width = previewWidth;
+            setLayoutParams(layoutParams);
+
+            // FORMATO PREVIEW
+            params.setPreviewFormat(ImageFormat.NV21);
+            params.setPreviewSize(previewWidth, previewHeight);
+            params.setFocusMode(Camera.Parameters.FOCUS_MODE_CONTINUOUS_VIDEO);
+
+            mCamera.setParameters(params);
+
+            //buffer di uscita
+            int size = previewWidth * previewHeight *
+                    ImageFormat.getBitsPerPixel(params.getPreviewFormat()) / 8;
+            setupCallback(size);
+
+            // Esecuzione preview
+            try {
+                mCamera.setPreviewDisplay(holder);
+                mCamera.startPreview();
+                Log.i(TAG, "preview started");
+            } catch (IOException e) {
+                Log.e(TAG, "Error setting camera preview: " + e.getMessage());
             }
+
         }
-
-        final int previewWidth = bestSize.width;
-        final int previewHeight = bestSize.height;
-        mHeight = previewHeight;
-        mWidth = previewWidth;
-
-        ViewGroup.LayoutParams layoutParams = getLayoutParams();
-        layoutParams.height = previewHeight;
-        layoutParams.width = previewWidth;
-        setLayoutParams(layoutParams);
-
-        // FORMATO PREVIEW
-        params.setPreviewFormat(ImageFormat.NV21);
-        params.setPreviewSize(previewWidth, previewHeight);
-        params.setFocusMode(Camera.Parameters.FOCUS_MODE_CONTINUOUS_VIDEO);
-
-        mCamera.setParameters(params);
-
-        //buffer di uscita
-        int size = previewWidth * previewHeight *
-                ImageFormat.getBitsPerPixel(params.getPreviewFormat()) / 8;
-        setupCallback(size);
-
-        // Esecuzione preview
-        try {
-            mCamera.setPreviewDisplay(holder);
-            mCamera.startPreview();
-            Log.i(TAG, "preview started");
-        } catch (IOException e) {
-            Log.e(TAG, "Error setting camera preview: " + e.getMessage());
-        }
-
     }
 
     /**
@@ -225,8 +225,6 @@ public final class CameraView extends SurfaceView implements
      */
     public void onPreviewFrame(final byte[] data, Camera camera) {
 
-
-
         //DETECTION AR MARKER
         detectJNI(data, mHeight, mWidth, nMarkers, idList, cornersList);
 
@@ -238,14 +236,11 @@ public final class CameraView extends SurfaceView implements
                 invalidate();
             }
         });
-        if(nMarkers[0]!=previuosMarkersNumber){
+        if (nMarkers[0] != previuosMarkersNumber) {
             cornersList = new float[nMarkers[0] * 8];
             idList = new int[nMarkers[0]];
-            previuosMarkersNumber=nMarkers[0];
+            previuosMarkersNumber = nMarkers[0];
         }
-
-
-
 
         camera.addCallbackBuffer(data);
     }
@@ -259,6 +254,7 @@ public final class CameraView extends SurfaceView implements
 
     /**
      * Mostra i popup appropriati a seconda del marker rilevato
+     *
      * @param idList lista di ID
      */
     private void popupLogic(int[] idList) {
