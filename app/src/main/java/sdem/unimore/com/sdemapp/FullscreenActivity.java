@@ -1,8 +1,12 @@
 package sdem.unimore.com.sdemapp;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
@@ -32,6 +36,7 @@ public class FullscreenActivity extends AppCompatActivity {
      * and a change of the status and navigation bar.
      */
     private static final int UI_ANIMATION_DELAY = 300;
+    private static final int MY_PERMISSIONS_REQUEST_READ_CAMERA = 123;
     private final Handler mHideHandler = new Handler();
     private View mContentView;
     private final Runnable mHidePart2Runnable = new Runnable() {
@@ -87,11 +92,12 @@ public class FullscreenActivity extends AppCompatActivity {
 
     private CameraView mPreview;
     private FrameLayout preview;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_fullscreen);
+               setContentView(R.layout.activity_fullscreen);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
 
@@ -108,16 +114,18 @@ public class FullscreenActivity extends AppCompatActivity {
             }
         });
 
-        // Upon interacting with UI controls, delay any scheduled hide()
-        // operations to prevent the jarring behavior of controls going away
-        // while interacting with the UI.
-//        findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
-
-
         mPreview = new CameraView(this);
         preview = (FrameLayout) findViewById(R.id.camera_preview);
         preview.addView(mPreview);
-        mPreview.getCameraInstance();
+
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.CAMERA)
+                != PackageManager.PERMISSION_GRANTED) {
+
+           ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, MY_PERMISSIONS_REQUEST_READ_CAMERA);
+
+           }
+//        mPreview.getCameraInstance();
     }
 
     @Override
@@ -126,6 +134,19 @@ public class FullscreenActivity extends AppCompatActivity {
         preview.removeAllViews();
         preview.addView(mPreview);
         mPreview.getCameraInstance();
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case MY_PERMISSIONS_REQUEST_READ_CAMERA: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // permission was granted
+                    mPreview.getCameraInstance();
+                }
+            }
+        }
     }
 
     @Override

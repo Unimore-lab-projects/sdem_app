@@ -108,11 +108,8 @@ public class DrawView extends SurfaceView implements SurfaceHolder.Callback {
 
                 if (idList.length > 0) {
                     for (int i = 0; i < idList.length; i++) {
-                        drawTextCentred(canvas, textPaint,Integer.toString(idList[i]),resX.get(i),resY.get(i));
-                        drawTextCentred(canvas, stkPaint,Integer.toString(idList[i]),resX.get(i),resY.get(i));
-
-//                        canvas.drawText(Integer.toString(idList[i]), resX.get(i), resY.get(i), textPaint);
-//                        canvas.drawText(Integer.toString(idList[i]), resX.get(i), resY.get(i), stkPaint);
+                        drawTextCentred(canvas, textPaint, Integer.toString(idList[i]), resX.get(i), resY.get(i));
+                        drawTextCentred(canvas, stkPaint, Integer.toString(idList[i]), resX.get(i), resY.get(i));
                     }
                 }
             }
@@ -123,7 +120,7 @@ public class DrawView extends SurfaceView implements SurfaceHolder.Callback {
 
     private final Rect textBounds = new Rect(); //don't new this up in a draw method
 
-    public void drawTextCentred(Canvas canvas, Paint paint, String text, float cx, float cy){
+    public void drawTextCentred(Canvas canvas, Paint paint, String text, float cx, float cy) {
         paint.getTextBounds(text, 0, text.length(), textBounds);
         canvas.drawText(text, cx, cy - textBounds.exactCenterY(), paint);
     }
