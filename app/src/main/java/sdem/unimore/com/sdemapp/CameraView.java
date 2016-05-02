@@ -47,6 +47,12 @@ public final class CameraView extends SurfaceView implements
     private int[] idList = new int[0];
     private CameraHandlerThread mThread = null;
 
+    private boolean startup = false;
+    private boolean foundID1 = false;
+    private boolean foundID2 = false;
+    private boolean foundID3 = false;
+
+
     /**
      * Costruttore oggetto Camera
      *
@@ -231,10 +237,10 @@ public final class CameraView extends SurfaceView implements
         //DETECTION AR MARKER
         detectJNI(data, mHeight, mWidth, nMarkers, idList, cornersList);
 
-        popupLogic(idList);
 
         ((Activity) mContext).runOnUiThread(new Runnable() {
             public void run() {
+                popupLogic(idList);
                 drawView.drawCorners(cornersList, idList);
                 invalidate();
             }
@@ -255,37 +261,57 @@ public final class CameraView extends SurfaceView implements
 
     private void showDialog(int ID, boolean correct) {
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-        String OKmessage = "Hai trovato il prossimo Marker! Ora cerca il numero: " + ID;
-        String NOmessage = "Devi trovare il marker" + ID;
-        String ID1hint = "\nCercalo vicino ad un aeroplano";
-        String ID2hint = "\nCercalo vicino a tanti cavalli";
-
+        String messageFindNext = "Hai trovato il Marker corretto! Ora cerca il numero: " + ID;
+        String messageRetry = "Devi trovare il marker " + ID;
+        String hintID1 = "\nCercalo vicino ad un aeroplano";
+        String hintID2 = "\nCercalo vicino a tanti cavalli";
+        String hintID3 = "\nCercalo vicino a grosso 26";
 
         if (correct) {
             builder.setTitle("Congratulazioni");
             switch (ID) {
                 case ID1: {
-                    builder.setMessage(OKmessage + ID1hint);
+                    builder.setMessage(messageFindNext + hintID2);
+                    break;
                 }
                 case ID2: {
-                    builder.setMessage(OKmessage + ID2hint);
+                    builder.setMessage(messageFindNext + hintID3);
+                    break;
                 }
                 case ID3: {
                     builder.setMessage("Hai trovato tutti i marker!");
+                    break;
                 }
             }
         } else {
             builder.setTitle("Riprova");
             switch (ID) {
                 case ID1: {
-                    builder.setMessage(NOmessage + ID1hint);
+                    builder.setMessage(messageRetry + hintID1);
+                    break;
                 }
                 case ID2: {
-                    builder.setMessage(NOmessage + ID2hint);
+                    builder.setMessage(messageRetry + hintID2);
+                    break;
+                }
+                case ID3: {
+                    builder.setMessage(messageRetry + hintID3);
+                    break;
                 }
             }
         }
 
+        int TIME;
+
+        if (!startup) {        //messaggio di startup
+
+            builder.setTitle("BENVENUTO");
+            builder.setMessage("Devi trovare 3 marker nell'ordine corretto." +
+                    "\nComincia dal Marker numero 23, lo troverai vicino ad un grosso aereo");
+            TIME = 5000;
+        } else {
+            TIME = 2000;
+        }
 
         final AlertDialog dlg = builder.create();
         dlg.show();
@@ -296,11 +322,8 @@ public final class CameraView extends SurfaceView implements
                 dlg.dismiss();
                 t.cancel();
             }
-        }, 2000);
+        }, TIME);
     }
-
-    private boolean found1 = false;
-    private boolean found2 = false;
 
     /**
      * Mostra i popup appropriati a seconda del marker rilevato
@@ -310,41 +333,57 @@ public final class CameraView extends SurfaceView implements
     private void popupLogic(int[] idList) {
         int markerId;
         if (idList.length == 0) {
+            //messaggio di startup
+            if (!foundID1 && !foundID2 && !startup) {
+                showDialog(ID1, false); //trova ID1
+                startup = true; //non viene piu mostrato
+            }
             return;
         } else {
             markerId = idList[0];
         }
 
+
         switch (markerId) {
-            case ID1: {
-                if (!found1) {
-                    showDialog(ID2, true);
-                    found1 = true;
+            case ID1: { //23
+                if (!foundID1) {
+                    showDialog(ID2, true); //OK, vai a ID2
+                    foundID1 = true;
+                    break;
+                } else {
+                    break;
                 }
             }
-            case ID2: {
-                if (found1) {
-                    showDialog(ID2, true);
-                    found2 = true;
-                    return;
-                } else {
-                    showDialog(ID1, false);
-                    return;
+            case ID2: { //3
+                if (foundID1) { //Se ID1 è già stato trovato
+                    showDialog(ID3, true); //OK, vai a ID3
+                    foundID2 = true;
+                    break;
+                } else { //devi trovare prima ID1
+                    showDialog(ID1, false); //NO, cerca ID1
+                    foundID1 = false;
+                    break;
                 }
             }
-            case ID3: {
-                if (found1 && found2) {
-                    showDialog(ID3, true);
-                } else {
-                    if (!found2) {
-                        if (!found1) {
-                            showDialog(ID1, false);
-                            return;
+            case ID3: { //5
+                if (!foundID3) { //se ID3 non è ancora stato trovato
+                    if (foundID1 && foundID2) { //se ID1 e ID2 sono già stati trovati
+                        showDialog(ID3, true); //congrats
+                        foundID3 = true;
+                        break;
+                    } else {
+                        if (!foundID2) { //ID2 non è stato trovato
+                            if (!foundID1) { // ID1 non è stato trovato
+                                showDialog(ID1, false); //trova ID1
+                                break;
+                            }
+                            showDialog(ID2, false); //trova ID2
+                            break;
                         }
-                        showDialog(ID2, false);
-                        return;
+                        break;
                     }
                 }
+                break;
             }
         }
 
