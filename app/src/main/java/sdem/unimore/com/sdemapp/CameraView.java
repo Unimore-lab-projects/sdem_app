@@ -48,7 +48,6 @@ public final class CameraView extends SurfaceView implements
     private CameraHandlerThread mThread = null;
 
 
-
     /**
      * Costruttore oggetto Camera
      *
@@ -254,15 +253,20 @@ public final class CameraView extends SurfaceView implements
     final static private int ID1 = 23;
     final static private int ID2 = 3;
     final static private int ID3 = 5;
+    private boolean popupTimeout = false; //evita di far ripetere il popup troppe volte.
+
 
     private void showDialog(int ID, boolean correct) {
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-        String messageFindNext = "Hai trovato il Marker corretto! Ora cerca il numero: " + ID;
-        String messageRetry = "Devi trovare il marker " + ID;
-        String hintID1 = "\nCercalo vicino ad un aeroplano";
-        String hintID2 = "\nCercalo vicino a tanti cavalli";
-        String hintID3 = "\nCercalo vicino ad un grosso 26";
 
+        int TIME = 3000;
+        final String messageFindNext = "Hai trovato il Marker corretto! Ora cerca il prossimo!";
+        final String messageRetry = "Devi trovare il marker corretto!";
+        final String hintID1 = "\nCerca il marker " + ID1 + " vicino ad un aeroplano";
+        final String hintID2 = "\nCerca il marker " + ID2 + " vicino a tanti cavalli";
+        final String hintID3 = "\nCerca il marker " + ID3 + " vicino ad un grosso 26";
+
+//        if (!popupTimeout) {
         if (correct) {
             builder.setTitle("Congratulazioni");
             switch (ID) {
@@ -294,20 +298,16 @@ public final class CameraView extends SurfaceView implements
                     builder.setMessage(messageRetry + hintID3);
                     break;
                 }
+                case 9999: { // messaggio di benvenuto
+                    builder.setTitle("BENVENUTO");
+                    builder.setMessage("Devi trovare 3 marker nell'ordine corretto." + hintID1);
+                    TIME = 5000;
+                    break;
+                }
             }
         }
-
-        int TIME;
-
-        if (startup) {        //messaggio di startup
-
-            builder.setTitle("BENVENUTO");
-            builder.setMessage("Devi trovare 3 marker nell'ordine corretto." +
-                    "\nComincia dal Marker numero 23, cercalo vicino ad un aereo");
-            TIME = 5000;
-        } else {
-            TIME = 2000;
-        }
+//            popupTimeout=true;
+//        }
 
         final AlertDialog dlg = builder.create();
         dlg.show();
@@ -316,6 +316,7 @@ public final class CameraView extends SurfaceView implements
         t.schedule(new TimerTask() {
             public void run() {
                 dlg.dismiss();
+//                popupTimeout = false;
                 t.cancel();
             }
         }, TIME);
@@ -338,7 +339,7 @@ public final class CameraView extends SurfaceView implements
         if (idList.length == 0) {
             //startup
             if (startup) { //mostra messaggio di benvenuto
-                showDialog(ID1, false); //trova ID1
+                showDialog(9999, false); //trova ID1
                 startup = false; //non viene piu mostrato
             }
             return; //non fa nulla
@@ -349,7 +350,7 @@ public final class CameraView extends SurfaceView implements
         switch (markerId) {
             case ID1: { //23
                 if (!foundID1) { //non ancora stato trovato
-                    showDialog(ID2, true); //OK, vai a ID2
+                    showDialog(ID1, true); //OK, vai a ID2
                     foundID1 = true;
                     break;
                 } else {
@@ -358,7 +359,7 @@ public final class CameraView extends SurfaceView implements
             }
             case ID2: { //3
                 if (foundID1) { //Se ID1 è già stato trovato
-                    showDialog(ID3, true); //OK, vai a ID3
+                    showDialog(ID2, true); //OK, vai a ID3
                     foundID2 = true;
                     break;
                 } else { //devi trovare prima ID1
