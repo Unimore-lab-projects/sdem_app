@@ -159,7 +159,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        }</div>
 <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    };</div>
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="keyword">private</span> CameraView mPreview;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="keyword">private</span> <a class="code" href="classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view.html">CameraView</a> mPreview;</div>
 <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <span class="keyword">private</span> FrameLayout preview;</div>
 <div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;</div>
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    @Override</div>
@@ -183,7 +183,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;            }</div>
 <div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        });</div>
 <div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        mPreview = <span class="keyword">new</span> CameraView(<span class="keyword">this</span>);</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        mPreview = <span class="keyword">new</span> <a class="code" href="classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view.html">CameraView</a>(<span class="keyword">this</span>);</div>
 <div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        preview = (FrameLayout) findViewById(R.id.camera_preview);</div>
 <div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;        preview.addView(mPreview);</div>
 <div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;</div>
@@ -202,7 +202,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;        super.onResume();</div>
 <div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;        preview.removeAllViews();</div>
 <div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;        preview.addView(mPreview);</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;        mPreview.getCameraInstance();</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;        mPreview.<a class="code" href="classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view.html#a67b6b078d0431699ce46317d9286158f">getCameraInstance</a>();</div>
 <div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    }</div>
 <div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;</div>
 <div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;    @Override</div>
@@ -212,7 +212,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;                <span class="comment">// If request is cancelled, the result arrays are empty.</span></div>
 <div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;                <span class="keywordflow">if</span> (grantResults.length &gt; 0 &amp;&amp; grantResults[0] == PackageManager.PERMISSION_GRANTED) {</div>
 <div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;                    <span class="comment">// permission was granted</span></div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;                    mPreview.getCameraInstance();</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;                    mPreview.<a class="code" href="classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view.html#a67b6b078d0431699ce46317d9286158f">getCameraInstance</a>();</div>
 <div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;                }</div>
 <div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;            }</div>
 <div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;        }</div>
@@ -270,13 +270,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;}</div>
 <div class="ttc" id="classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_fullscreen_activity_html"><div class="ttname"><a href="classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_fullscreen_activity.html">sdem.unimore.com.sdemapp.FullscreenActivity</a></div><div class="ttdef"><b>Definition:</b> <a href="_fullscreen_activity_8java_source.html#l00021">FullscreenActivity.java:21</a></div></div>
 <div class="ttc" id="classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_fullscreen_activity_html_a6ce6eebdc04c389cedbb9f2a86214b8a"><div class="ttname"><a href="classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_fullscreen_activity.html#a6ce6eebdc04c389cedbb9f2a86214b8a">sdem.unimore.com.sdemapp.FullscreenActivity.onPostCreate</a></div><div class="ttdeci">void onPostCreate(Bundle savedInstanceState)</div><div class="ttdef"><b>Definition:</b> <a href="_fullscreen_activity_8java_source.html#l00153">FullscreenActivity.java:153</a></div></div>
+<div class="ttc" id="classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_html_a67b6b078d0431699ce46317d9286158f"><div class="ttname"><a href="classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view.html#a67b6b078d0431699ce46317d9286158f">sdem.unimore.com.sdemapp.CameraView.getCameraInstance</a></div><div class="ttdeci">void getCameraInstance()</div><div class="ttdef"><b>Definition:</b> <a href="_camera_view_8java_source.html#l00071">CameraView.java:71</a></div></div>
 <div class="ttc" id="classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_fullscreen_activity_html_aa00cf64d5669932c3b4ca55e3dee382c"><div class="ttname"><a href="classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_fullscreen_activity.html#aa00cf64d5669932c3b4ca55e3dee382c">sdem.unimore.com.sdemapp.FullscreenActivity.onRequestPermissionsResult</a></div><div class="ttdeci">void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults)</div><div class="ttdef"><b>Definition:</b> <a href="_fullscreen_activity_8java_source.html#l00140">FullscreenActivity.java:140</a></div></div>
 <div class="ttc" id="classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_fullscreen_activity_html_aa47fc4234b35e26366da2aeded279ed4"><div class="ttname"><a href="classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_fullscreen_activity.html#aa47fc4234b35e26366da2aeded279ed4">sdem.unimore.com.sdemapp.FullscreenActivity.onCreate</a></div><div class="ttdeci">void onCreate(Bundle savedInstanceState)</div><div class="ttdef"><b>Definition:</b> <a href="_fullscreen_activity_8java_source.html#l00097">FullscreenActivity.java:97</a></div></div>
 <div class="ttc" id="classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_fullscreen_activity_html_ab4610475ff6a0a0099971f041a95f5ba"><div class="ttname"><a href="classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_fullscreen_activity.html#ab4610475ff6a0a0099971f041a95f5ba">sdem.unimore.com.sdemapp.FullscreenActivity.onResume</a></div><div class="ttdeci">void onResume()</div><div class="ttdef"><b>Definition:</b> <a href="_fullscreen_activity_8java_source.html#l00132">FullscreenActivity.java:132</a></div></div>
+<div class="ttc" id="classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_html"><div class="ttname"><a href="classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view.html">sdem.unimore.com.sdemapp.CameraView</a></div><div class="ttdef"><b>Definition:</b> <a href="_camera_view_8java_source.html#l00028">CameraView.java:28</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue May 3 2016 20:56:18 for sdemApp by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue May 3 2016 23:24:18 for sdemApp by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

@@ -1,6 +1,8 @@
 var searchData=
 [
-  ['surfacechanged',['surfaceChanged',['../classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_draw_view.html#ac654c04ec20230794d1f7d4205ff6ccc',1,'sdem::unimore::com::sdemapp::DrawView']]],
-  ['surfacecreated',['surfaceCreated',['../classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_draw_view.html#adac404d58277c2e02759e52a007ff2f2',1,'sdem::unimore::com::sdemapp::DrawView']]],
-  ['surfacedestroyed',['surfaceDestroyed',['../classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_draw_view.html#ada0d09df8995e1a3b2356d3d99d79808',1,'sdem::unimore::com::sdemapp::DrawView']]]
+  ['oncreate',['onCreate',['../classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_fullscreen_activity.html#aa47fc4234b35e26366da2aeded279ed4',1,'sdem::unimore::com::sdemapp::FullscreenActivity']]],
+  ['onpostcreate',['onPostCreate',['../classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_fullscreen_activity.html#a6ce6eebdc04c389cedbb9f2a86214b8a',1,'sdem::unimore::com::sdemapp::FullscreenActivity']]],
+  ['onpreviewframe',['onPreviewFrame',['../classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view.html#a25879df1d6c2e44dbfb06c3545f01520',1,'sdem::unimore::com::sdemapp::CameraView']]],
+  ['onrequestpermissionsresult',['onRequestPermissionsResult',['../classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_fullscreen_activity.html#aa00cf64d5669932c3b4ca55e3dee382c',1,'sdem::unimore::com::sdemapp::FullscreenActivity']]],
+  ['onresume',['onResume',['../classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_fullscreen_activity.html#ab4610475ff6a0a0099971f041a95f5ba',1,'sdem::unimore::com::sdemapp::FullscreenActivity']]]
 ];

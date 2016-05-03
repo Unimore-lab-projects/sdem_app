@@ -108,6 +108,12 @@ Macros</h2></td></tr>
 Functions</h2></td></tr>
 <tr class="memitem:a4ef21b1af2fe4b375d387031ec26223d"><td class="memItemLeft" align="right" valign="top">JNIEXPORT void JNICALL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_sdem_app_j_n_i_8cpp.html#a4ef21b1af2fe4b375d387031ec26223d">Java_sdem_unimore_com_sdemapp_CameraView_detectJNI</a> (JNIEnv *env, jobject instance, jbyteArray data_, jint height, jint width, jintArray nMarker_, jintArray idList_, jfloatArray cornerList_)</td></tr>
 <tr class="separator:a4ef21b1af2fe4b375d387031ec26223d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e02827ac5cd9badfc30dd5d6871d4c3"><td class="memItemLeft" align="right" valign="top">JNIEXPORT void JNICALL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_sdem_app_j_n_i_8cpp.html#a8e02827ac5cd9badfc30dd5d6871d4c3">Java_sdem_unimore_com_sdemapp_CameraView_detectAndDrawMarkersJNI</a> (JNIEnv *env, jobject instance, jbyteArray data_, jint height_, jint width_)</td></tr>
+<tr class="separator:a8e02827ac5cd9badfc30dd5d6871d4c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa5f82b23caa8e4a6d5a73f40e5218b36"><td class="memItemLeft" align="right" valign="top">JNIEXPORT void JNICALL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_sdem_app_j_n_i_8cpp.html#aa5f82b23caa8e4a6d5a73f40e5218b36">Java_sdem_unimore_com_sdemapp_CameraView_detectMarkersJNI</a> (JNIEnv *env, jobject instance, jbyteArray data_, jint height, jint width, jfloatArray markers_)</td></tr>
+<tr class="separator:aa5f82b23caa8e4a6d5a73f40e5218b36"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76b04fbdbb60e36d8f48a3d250f1584d"><td class="memItemLeft" align="right" valign="top">JNIEXPORT jint JNICALL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_sdem_app_j_n_i_8cpp.html#a76b04fbdbb60e36d8f48a3d250f1584d">Java_sdem_unimore_com_sdemapp_CameraView_getMarkersNumber</a> (JNIEnv *env, jobject instance, jbyteArray data_, jint height, jint width)</td></tr>
+<tr class="separator:a76b04fbdbb60e36d8f48a3d250f1584d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
 <a class="anchor" id="a070d2ce7b6bb7e5c05602aa8c308d0c4"></a>
@@ -125,6 +131,52 @@ Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="a8e02827ac5cd9badfc30dd5d6871d4c3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">JNIEXPORT void JNICALL Java_sdem_unimore_com_sdemapp_CameraView_detectAndDrawMarkersJNI </td>
+          <td>(</td>
+          <td class="paramtype">JNIEnv *&#160;</td>
+          <td class="paramname"><em>env</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">jobject&#160;</td>
+          <td class="paramname"><em>instance</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">jbyteArray&#160;</td>
+          <td class="paramname"><em>data_</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">jint&#160;</td>
+          <td class="paramname"><em>height_</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">jint&#160;</td>
+          <td class="paramname"><em>width_</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_sdem_app_j_n_i_8cpp_source.html#l00099">99</a> of file <a class="el" href="_sdem_app_j_n_i_8cpp_source.html">SdemAppJNI.cpp</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a4ef21b1af2fe4b375d387031ec26223d"></a>
 <div class="memitem">
 <div class="memproto">
@@ -184,17 +236,113 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Metodo nativo che si occupa del rilevamento dei Marker. Restituisce attraverso nMarker_ il numero di marker rilevati nel frame precedente, in modo che sia possibile, se necessario, riallocare i vettori idList_ e cornerList_ a una dimensione adeguata. Il numero di vertici e id che detectJNI scrive rispettivamente sui due vettori, dipende dal valore letto su nMarker_ (che deve valere zero alla prima chiamata del metodo).</p>
-<p>|param data_ Contenuto frame di preview |param height altezza frame |param width larghezza frame |param nMarker_ numero di markers rilevati |param idList_ vettore di ID dei marker rilevati |param cornerList_ vettore di corners rilevati per ogni marker </p>
 
-<p>Definition at line <a class="el" href="_sdem_app_j_n_i_8cpp_source.html#l00036">36</a> of file <a class="el" href="_sdem_app_j_n_i_8cpp_source.html">SdemAppJNI.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_sdem_app_j_n_i_8cpp_source.html#l00023">23</a> of file <a class="el" href="_sdem_app_j_n_i_8cpp_source.html">SdemAppJNI.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa5f82b23caa8e4a6d5a73f40e5218b36"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">JNIEXPORT void JNICALL Java_sdem_unimore_com_sdemapp_CameraView_detectMarkersJNI </td>
+          <td>(</td>
+          <td class="paramtype">JNIEnv *&#160;</td>
+          <td class="paramname"><em>env</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">jobject&#160;</td>
+          <td class="paramname"><em>instance</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">jbyteArray&#160;</td>
+          <td class="paramname"><em>data_</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">jint&#160;</td>
+          <td class="paramname"><em>height</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">jint&#160;</td>
+          <td class="paramname"><em>width</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">jfloatArray&#160;</td>
+          <td class="paramname"><em>markers_</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_sdem_app_j_n_i_8cpp_source.html#l00118">118</a> of file <a class="el" href="_sdem_app_j_n_i_8cpp_source.html">SdemAppJNI.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a76b04fbdbb60e36d8f48a3d250f1584d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">JNIEXPORT jint JNICALL Java_sdem_unimore_com_sdemapp_CameraView_getMarkersNumber </td>
+          <td>(</td>
+          <td class="paramtype">JNIEnv *&#160;</td>
+          <td class="paramname"><em>env</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">jobject&#160;</td>
+          <td class="paramname"><em>instance</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">jbyteArray&#160;</td>
+          <td class="paramname"><em>data_</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">jint&#160;</td>
+          <td class="paramname"><em>height</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">jint&#160;</td>
+          <td class="paramname"><em>width</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_sdem_app_j_n_i_8cpp_source.html#l00162">162</a> of file <a class="el" href="_sdem_app_j_n_i_8cpp_source.html">SdemAppJNI.cpp</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue May 3 2016 20:56:18 for sdemApp by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue May 3 2016 23:24:19 for sdemApp by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

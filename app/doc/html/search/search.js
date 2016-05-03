@@ -7,11 +7,11 @@
 
 var indexSectionsWithContent =
 {
-  0: "cdfijnos",
-  1: "df",
+  0: "cdfgijnos",
+  1: "cdf",
   2: "s",
   3: "cdfs",
-  4: "cdijos",
+  4: "cdgijos",
   5: "n"
 };
 

@@ -23,9 +23,9 @@ void \hyperlink{classdetection__marker_a4149fb9467f5cc15b1086c548821d925}{detect
 
 
 \subsection{Detailed Description}
-Classe che contiene i metodi necessari per effettuare la detection dei marker di aruco. 
 
-Definition at line 20 of file detection.\+h.
+
+Definition at line 18 of file detection.\+h.
 
 
 
@@ -37,13 +37,6 @@ Definition at line 20 of file detection.\+h.
 \item[{P\+R\+E\+D\+E\+F\+I\+N\+E\+D\+\_\+\+D\+I\+C\+T\+I\+O\+N\+A\+R\+Y\+\_\+\+N\+A\+M\+E}]{name}
 \end{DoxyParamCaption}
 )}}\label{classdetection__marker_a78703d9cfece4550684a3f6e0dfd659b}
-Costruttore che imposta il dizionario di marker aruco che verrà utilizzato nella detection
-
-
-\begin{DoxyParams}{Parameters}
-{\em name} & Nome del dizionario \\
-\hline
-\end{DoxyParams}
 
 
 Definition at line 15 of file detection.\+cpp.
@@ -58,11 +51,6 @@ Definition at line 15 of file detection.\+cpp.
 {}
 \end{DoxyParamCaption}
 ) const}}\label{classdetection__marker_a243c4a54a4b9d9c084672660e5d47f39}
-Restituisce un vettore contenente i vertici di tutti i marker rilevati da uno dei metodi di detection
-
-\begin{DoxyReturn}{Returns}
-vector contenente un vector di 4 Point2f per ogni marker rilevato 
-\end{DoxyReturn}
 
 
 Definition at line 18 of file detection.\+cpp.
@@ -74,13 +62,6 @@ Definition at line 18 of file detection.\+cpp.
 \item[{Mat \&}]{in\+Image}
 \end{DoxyParamCaption}
 )}}\label{classdetection__marker_a4149fb9467f5cc15b1086c548821d925}
-Esegue la detection dei marker sul Frame in\+Image
-
-
-\begin{DoxyParams}{Parameters}
-{\em in\+Image} & Frame su cui eseguire la detection \\
-\hline
-\end{DoxyParams}
 
 
 Definition at line 28 of file detection.\+cpp.
@@ -92,13 +73,6 @@ Definition at line 28 of file detection.\+cpp.
 \item[{Mat \&}]{in\+Image}
 \end{DoxyParamCaption}
 )}}\label{classdetection__marker_a08cd89907df009bce97bb5a6561074e6}
-Esegue la detection dei marker sul frame in\+Image e disegna il contorno dei marker rilevati correttamente
-
-
-\begin{DoxyParams}{Parameters}
-{\em in\+Image} & Frame su cui eseguire la detection \\
-\hline
-\end{DoxyParams}
 
 
 Definition at line 21 of file detection.\+cpp.
@@ -110,11 +84,6 @@ Definition at line 21 of file detection.\+cpp.
 {}
 \end{DoxyParamCaption}
 ) const}}\label{classdetection__marker_a486d89e7f7008d87a1c3c26c89ad3b74}
-Restituisce il vettore degli identificatori dei marker rilevati da uno dei metodi di detection
-
-\begin{DoxyReturn}{Returns}
-vector contenente gli identificatori dei marker rilevati 
-\end{DoxyReturn}
 
 
 Definition at line 17 of file detection.\+cpp.
@@ -126,11 +95,6 @@ Definition at line 17 of file detection.\+cpp.
 {}
 \end{DoxyParamCaption}
 ) const}}\label{classdetection__marker_a770b0b3075bf960621006f7f939b9757}
-Restituisce il frame precedentemente elaborato dal metodo detect\+And\+Draw
-
-\begin{DoxyReturn}{Returns}
-oggetto Mat corrispondente al frame 
-\end{DoxyReturn}
 
 
 Definition at line 19 of file detection.\+cpp.
