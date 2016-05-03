@@ -222,7 +222,8 @@ public final class CameraView extends SurfaceView implements
 
     /**
      * Overload metodo di Camera.PreviewCallback
-     * Viene chiamato quando i frame di preview vengono mostrati. Questo callback viene invocato all'interno del thread in cui la camera viene lanciata.
+     * Viene chiamato quando i frame di preview vengono mostrati. Questo callback viene invocato
+     * all'interno del thread in cui la camera viene lanciata.
      *
      * @param data   contenuti del preview frame
      * @param camera oggetto camera
@@ -253,10 +254,18 @@ public final class CameraView extends SurfaceView implements
     final static private int ID1 = 23;
     final static private int ID2 = 3;
     final static private int ID3 = 5;
-    private boolean popupTimeout = false; //evita di far ripetere il popup troppe volte.
+    private AlertDialog dlg;
 
-
+    /**
+     * Gestisce il contenuto del dialog a seconda dell'ID e della correttezza dell'azione.
+     * @param ID ID del marker
+     * @param correct flag di servizio. true se il marker trovato è corretto
+     */
     private void showDialog(int ID, boolean correct) {
+        if (dlg != null && dlg.isShowing()) {
+            return;
+        }
+
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
 
         int TIME = 3000;
@@ -266,7 +275,6 @@ public final class CameraView extends SurfaceView implements
         final String hintID2 = "\nCerca il marker " + ID2 + " vicino a tanti cavalli";
         final String hintID3 = "\nCerca il marker " + ID3 + " vicino ad un grosso 26";
 
-//        if (!popupTimeout) {
         if (correct) {
             builder.setTitle("Congratulazioni");
             switch (ID) {
@@ -306,23 +314,20 @@ public final class CameraView extends SurfaceView implements
                 }
             }
         }
-//            popupTimeout=true;
-//        }
 
-        final AlertDialog dlg = builder.create();
+        dlg = builder.create();
         dlg.show();
 
         final Timer t = new Timer();
         t.schedule(new TimerTask() {
             public void run() {
                 dlg.dismiss();
-//                popupTimeout = false;
                 t.cancel();
             }
         }, TIME);
     }
 
-    private boolean startup = true;
+    private boolean startupFlag = true;
     private boolean foundID1 = false;
     private boolean foundID2 = false;
     private boolean foundID3 = false;
@@ -337,10 +342,10 @@ public final class CameraView extends SurfaceView implements
         int markerId;
 
         if (idList.length == 0) {
-            //startup
-            if (startup) { //mostra messaggio di benvenuto
+            //startupFlag
+            if (startupFlag) { //mostra messaggio di benvenuto
                 showDialog(9999, false); //trova ID1
-                startup = false; //non viene piu mostrato
+                startupFlag = false; //non viene piu mostrato
             }
             return; //non fa nulla
         } else {
@@ -353,20 +358,22 @@ public final class CameraView extends SurfaceView implements
                     showDialog(ID1, true); //OK, vai a ID2
                     foundID1 = true;
                     break;
-                } else {
-                    break; //non fare niente
                 }
+                break;
             }
             case ID2: { //3
-                if (foundID1) { //Se ID1 è già stato trovato
-                    showDialog(ID2, true); //OK, vai a ID3
-                    foundID2 = true;
-                    break;
-                } else { //devi trovare prima ID1
-                    showDialog(ID1, false); //NO, cerca ID1 prima.
-                    foundID1 = false;
-                    break;
+                if (!foundID2) {
+                    if (foundID1) { //Se ID1 è già stato trovato
+                        showDialog(ID2, true); //OK, vai a ID3
+                        foundID2 = true;
+                        break;
+                    } else { //devi trovare prima ID1
+                        showDialog(ID1, false); //NO, cerca ID1 prima.
+                        foundID1 = false;
+                        break;
+                    }
                 }
+                break;
             }
             case ID3: { //5
                 if (!foundID3) { //se ID3 non è ancora stato trovato
