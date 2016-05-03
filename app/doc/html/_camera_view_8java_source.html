@@ -111,8 +111,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keyword">import</span> java.util.TimerTask;</div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;@SuppressWarnings(<span class="stringliteral">&quot;deprecation&quot;</span>)</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">class </span>CameraView <span class="keyword">extends</span> SurfaceView implements</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment">//@SuppressWarnings(&quot;deprecation&quot;)</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view.html">   28</a></span>&#160;<span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">class </span><a class="code" href="classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view.html">CameraView</a> <span class="keyword">extends</span> SurfaceView implements</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        SurfaceHolder.Callback, PreviewCallback {</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String TAG = <span class="stringliteral">&quot;CameraView&quot;</span>;</div>
@@ -135,7 +135,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keyword">private</span> CameraHandlerThread mThread = null;</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keyword">public</span> CameraView(Context context) {</div>
+<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view.html#af5ea121550990df11719c2af26240ac2">   56</a></span>&#160;    <span class="keyword">public</span> <a class="code" href="classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view.html#af5ea121550990df11719c2af26240ac2">CameraView</a>(Context context) {</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        super(context);</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        mContext = context;</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        mHolder = getHolder();</div>
@@ -147,7 +147,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        drawView = (<a class="code" href="namespacesdem.html">sdem</a>.<a class="code" href="namespacesdem_1_1unimore.html">unimore</a>.<a class="code" href="namespacesdem_1_1unimore_1_1com.html">com</a>.<a class="code" href="namespacesdem_1_1unimore_1_1com_1_1sdemapp.html">sdemapp</a>.<a class="code" href="classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_draw_view.html">DrawView</a>) ((Activity) mContext).findViewById(R.id.drawingSurface);</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    }</div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keyword">public</span> <span class="keywordtype">void</span> getCameraInstance() {</div>
+<div class="line"><a name="l00071"></a><span class="lineno"><a class="line" href="classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view.html#a67b6b078d0431699ce46317d9286158f">   71</a></span>&#160;    <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view.html#a67b6b078d0431699ce46317d9286158f">getCameraInstance</a>() {</div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        newOpenCamera();</div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    }</div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
@@ -171,7 +171,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        }</div>
 <div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    }</div>
 <div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    <span class="keyword">public</span> <span class="keywordtype">void</span> surfaceCreated(SurfaceHolder holder) {</div>
+<div class="line"><a name="l00108"></a><span class="lineno"><a class="line" href="classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view.html#ace511ad999943fe26880cad904a9ceec">  108</a></span>&#160;    <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view.html#ace511ad999943fe26880cad904a9ceec">surfaceCreated</a>(SurfaceHolder holder) {</div>
 <div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        Log.i(TAG, <span class="stringliteral">&quot;surface created&quot;</span>);</div>
 <div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        <span class="keywordflow">if</span> (mCamera != null) {</div>
 <div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;            <span class="keyword">final</span> Camera.Parameters params = mCamera.getParameters();</div>
@@ -246,7 +246,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;    }</div>
 <div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;</div>
 <div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;    @Override</div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;    <span class="keyword">public</span> <span class="keywordtype">void</span> surfaceChanged(SurfaceHolder holder, <span class="keywordtype">int</span> format, <span class="keywordtype">int</span> width, <span class="keywordtype">int</span> height) {</div>
+<div class="line"><a name="l00197"></a><span class="lineno"><a class="line" href="classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view.html#a9e58ea3f8f605797b28cd41c9fd4c973">  197</a></span>&#160;    <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view.html#a9e58ea3f8f605797b28cd41c9fd4c973">surfaceChanged</a>(SurfaceHolder holder, <span class="keywordtype">int</span> format, <span class="keywordtype">int</span> width, <span class="keywordtype">int</span> height) {</div>
 <div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;        Log.i(TAG, <span class="stringliteral">&quot;surface changed&quot;</span>);</div>
 <div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;</div>
 <div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;        <span class="keywordflow">if</span> (mHolder.getSurface() == null) {</div>
@@ -272,7 +272,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;        }</div>
 <div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;    }</div>
 <div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;</div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;    <span class="keyword">public</span> <span class="keywordtype">void</span> onPreviewFrame(<span class="keyword">final</span> byte[] data, Camera camera) {</div>
+<div class="line"><a name="l00231"></a><span class="lineno"><a class="line" href="classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view.html#a25879df1d6c2e44dbfb06c3545f01520">  231</a></span>&#160;    <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view.html#a25879df1d6c2e44dbfb06c3545f01520">onPreviewFrame</a>(<span class="keyword">final</span> byte[] data, Camera camera) {</div>
 <div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;</div>
 <div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;        <span class="comment">//DETECTION AR MARKER</span></div>
 <div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;        detectJNI(data, mHeight, mWidth, nMarkers, idList, cornersList);</div>
@@ -434,7 +434,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;</div>
 <div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;    }</div>
 <div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;</div>
-<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;    <span class="keyword">public</span> <span class="keywordtype">void</span> surfaceDestroyed(SurfaceHolder holder) {</div>
+<div class="line"><a name="l00410"></a><span class="lineno"><a class="line" href="classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view.html#a9a27054b8ad448e20eabb5b468e8257d">  410</a></span>&#160;    <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view.html#a9a27054b8ad448e20eabb5b468e8257d">surfaceDestroyed</a>(SurfaceHolder holder) {</div>
 <div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;        <span class="keywordflow">if</span> (mCamera != null) {</div>
 <div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;            mCamera.setPreviewCallback(null);</div>
 <div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;            mCamera.stopPreview();</div>
@@ -481,15 +481,22 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00472"></a><span class="lineno">  472</span>&#160;</div>
 <div class="line"><a name="l00473"></a><span class="lineno">  473</span>&#160;}</div>
 <div class="ttc" id="namespacesdem_1_1unimore_1_1com_html"><div class="ttname"><a href="namespacesdem_1_1unimore_1_1com.html">sdem.unimore.com</a></div></div>
+<div class="ttc" id="classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_html_a9a27054b8ad448e20eabb5b468e8257d"><div class="ttname"><a href="classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view.html#a9a27054b8ad448e20eabb5b468e8257d">sdem.unimore.com.sdemapp.CameraView.surfaceDestroyed</a></div><div class="ttdeci">void surfaceDestroyed(SurfaceHolder holder)</div><div class="ttdef"><b>Definition:</b> <a href="_camera_view_8java_source.html#l00410">CameraView.java:410</a></div></div>
+<div class="ttc" id="classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_html_ace511ad999943fe26880cad904a9ceec"><div class="ttname"><a href="classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view.html#ace511ad999943fe26880cad904a9ceec">sdem.unimore.com.sdemapp.CameraView.surfaceCreated</a></div><div class="ttdeci">void surfaceCreated(SurfaceHolder holder)</div><div class="ttdef"><b>Definition:</b> <a href="_camera_view_8java_source.html#l00108">CameraView.java:108</a></div></div>
 <div class="ttc" id="namespacesdem_html"><div class="ttname"><a href="namespacesdem.html">sdem</a></div></div>
+<div class="ttc" id="classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_html_a67b6b078d0431699ce46317d9286158f"><div class="ttname"><a href="classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view.html#a67b6b078d0431699ce46317d9286158f">sdem.unimore.com.sdemapp.CameraView.getCameraInstance</a></div><div class="ttdeci">void getCameraInstance()</div><div class="ttdef"><b>Definition:</b> <a href="_camera_view_8java_source.html#l00071">CameraView.java:71</a></div></div>
 <div class="ttc" id="classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_draw_view_html"><div class="ttname"><a href="classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_draw_view.html">sdem.unimore.com.sdemapp.DrawView</a></div><div class="ttdef"><b>Definition:</b> <a href="_draw_view_8java_source.html#l00023">DrawView.java:23</a></div></div>
+<div class="ttc" id="classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_html_af5ea121550990df11719c2af26240ac2"><div class="ttname"><a href="classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view.html#af5ea121550990df11719c2af26240ac2">sdem.unimore.com.sdemapp.CameraView.CameraView</a></div><div class="ttdeci">CameraView(Context context)</div><div class="ttdef"><b>Definition:</b> <a href="_camera_view_8java_source.html#l00056">CameraView.java:56</a></div></div>
+<div class="ttc" id="classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_html_a25879df1d6c2e44dbfb06c3545f01520"><div class="ttname"><a href="classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view.html#a25879df1d6c2e44dbfb06c3545f01520">sdem.unimore.com.sdemapp.CameraView.onPreviewFrame</a></div><div class="ttdeci">void onPreviewFrame(final byte[] data, Camera camera)</div><div class="ttdef"><b>Definition:</b> <a href="_camera_view_8java_source.html#l00231">CameraView.java:231</a></div></div>
 <div class="ttc" id="namespacesdem_1_1unimore_1_1com_1_1sdemapp_html"><div class="ttname"><a href="namespacesdem_1_1unimore_1_1com_1_1sdemapp.html">sdem.unimore.com.sdemapp</a></div><div class="ttdef"><b>Definition:</b> <a href="_camera_view_8java_source.html#l00001">CameraView.java:1</a></div></div>
 <div class="ttc" id="namespacesdem_1_1unimore_html"><div class="ttname"><a href="namespacesdem_1_1unimore.html">sdem.unimore</a></div></div>
+<div class="ttc" id="classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_html"><div class="ttname"><a href="classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view.html">sdem.unimore.com.sdemapp.CameraView</a></div><div class="ttdef"><b>Definition:</b> <a href="_camera_view_8java_source.html#l00028">CameraView.java:28</a></div></div>
+<div class="ttc" id="classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_html_a9e58ea3f8f605797b28cd41c9fd4c973"><div class="ttname"><a href="classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view.html#a9e58ea3f8f605797b28cd41c9fd4c973">sdem.unimore.com.sdemapp.CameraView.surfaceChanged</a></div><div class="ttdeci">void surfaceChanged(SurfaceHolder holder, int format, int width, int height)</div><div class="ttdef"><b>Definition:</b> <a href="_camera_view_8java_source.html#l00197">CameraView.java:197</a></div></div>
 <div class="ttc" id="classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_draw_view_html_aae745ca136fcbfcac69ebdaa4d106711"><div class="ttname"><a href="classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_draw_view.html#aae745ca136fcbfcac69ebdaa4d106711">sdem.unimore.com.sdemapp.DrawView.drawCorners</a></div><div class="ttdeci">void drawCorners(float[] corners, int[] idList)</div><div class="ttdef"><b>Definition:</b> <a href="_draw_view_8java_source.html#l00075">DrawView.java:75</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue May 3 2016 20:56:18 for sdemApp by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue May 3 2016 22:38:50 for sdemApp by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>
