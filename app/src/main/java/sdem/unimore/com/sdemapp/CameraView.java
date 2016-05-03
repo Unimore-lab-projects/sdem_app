@@ -24,7 +24,7 @@ import java.util.TimerTask;
 /**
  * Classe di gestione e configurazione della Camera.
  */
-@SuppressWarnings("deprecation")
+//@SuppressWarnings("deprecation")
 public final class CameraView extends SurfaceView implements
         SurfaceHolder.Callback, PreviewCallback {
 
