@@ -47,10 +47,6 @@ public final class CameraView extends SurfaceView implements
     private int[] idList = new int[0];
     private CameraHandlerThread mThread = null;
 
-    private boolean startup = false;
-    private boolean foundID1 = false;
-    private boolean foundID2 = false;
-    private boolean foundID3 = false;
 
 
     /**
@@ -265,7 +261,7 @@ public final class CameraView extends SurfaceView implements
         String messageRetry = "Devi trovare il marker " + ID;
         String hintID1 = "\nCercalo vicino ad un aeroplano";
         String hintID2 = "\nCercalo vicino a tanti cavalli";
-        String hintID3 = "\nCercalo vicino a grosso 26";
+        String hintID3 = "\nCercalo vicino ad un grosso 26";
 
         if (correct) {
             builder.setTitle("Congratulazioni");
@@ -303,11 +299,11 @@ public final class CameraView extends SurfaceView implements
 
         int TIME;
 
-        if (!startup) {        //messaggio di startup
+        if (startup) {        //messaggio di startup
 
             builder.setTitle("BENVENUTO");
             builder.setMessage("Devi trovare 3 marker nell'ordine corretto." +
-                    "\nComincia dal Marker numero 23, lo troverai vicino ad un grosso aereo");
+                    "\nComincia dal Marker numero 23, cercalo vicino ad un aereo");
             TIME = 5000;
         } else {
             TIME = 2000;
@@ -325,33 +321,39 @@ public final class CameraView extends SurfaceView implements
         }, TIME);
     }
 
+    private boolean startup = true;
+    private boolean foundID1 = false;
+    private boolean foundID2 = false;
+    private boolean foundID3 = false;
+
     /**
-     * Mostra i popup appropriati a seconda del marker rilevato
+     * Mostra i popup appropriati a seconda del marker rilevato. vengono utilizzati i flag foundID
+     * per non ripetere i messaggi di avviso piu di una volta.
      *
      * @param idList lista di ID
      */
     private void popupLogic(int[] idList) {
         int markerId;
-        if (idList.length == 0) {
-            //messaggio di startup
-            if (!foundID1 && !foundID2 && !startup) {
-                showDialog(ID1, false); //trova ID1
-                startup = true; //non viene piu mostrato
-            }
-            return;
-        } else {
-            markerId = idList[0];
-        }
 
+        if (idList.length == 0) {
+            //startup
+            if (startup) { //mostra messaggio di benvenuto
+                showDialog(ID1, false); //trova ID1
+                startup = false; //non viene piu mostrato
+            }
+            return; //non fa nulla
+        } else {
+            markerId = idList[0]; //controlla solo il primo marker tra tutti i rilevati nel frame.
+        }
 
         switch (markerId) {
             case ID1: { //23
-                if (!foundID1) {
+                if (!foundID1) { //non ancora stato trovato
                     showDialog(ID2, true); //OK, vai a ID2
                     foundID1 = true;
                     break;
                 } else {
-                    break;
+                    break; //non fare niente
                 }
             }
             case ID2: { //3
@@ -360,7 +362,7 @@ public final class CameraView extends SurfaceView implements
                     foundID2 = true;
                     break;
                 } else { //devi trovare prima ID1
-                    showDialog(ID1, false); //NO, cerca ID1
+                    showDialog(ID1, false); //NO, cerca ID1 prima.
                     foundID1 = false;
                     break;
                 }
@@ -376,9 +378,10 @@ public final class CameraView extends SurfaceView implements
                             if (!foundID1) { // ID1 non è stato trovato
                                 showDialog(ID1, false); //trova ID1
                                 break;
+                            } else { // ID1 trovato
+                                showDialog(ID2, false); //trova ID2
+                                break;
                             }
-                            showDialog(ID2, false); //trova ID2
-                            break;
                         }
                         break;
                     }
@@ -396,7 +399,6 @@ public final class CameraView extends SurfaceView implements
      *
      * @param holder holder della surface.
      */
-
     public void surfaceDestroyed(SurfaceHolder holder) {
         if (mCamera != null) {
             mCamera.setPreviewCallback(null);
