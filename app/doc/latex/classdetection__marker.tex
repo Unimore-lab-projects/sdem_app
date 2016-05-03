@@ -1,0 +1,143 @@
+\hypertarget{classdetection__marker}{\section{detection\+\_\+marker Class Reference}
+\label{classdetection__marker}\index{detection\+\_\+marker@{detection\+\_\+marker}}
+}
+
+
+{\ttfamily \#include $<$detection.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classdetection__marker_a78703d9cfece4550684a3f6e0dfd659b}{detection\+\_\+marker} (P\+R\+E\+D\+E\+F\+I\+N\+E\+D\+\_\+\+D\+I\+C\+T\+I\+O\+N\+A\+R\+Y\+\_\+\+N\+A\+M\+E name)
+\item 
+const vector$<$ int $>$ \& \hyperlink{classdetection__marker_a486d89e7f7008d87a1c3c26c89ad3b74}{ids} () const 
+\item 
+const vector$<$ vector$<$ Point2f $>$ $>$ \& \hyperlink{classdetection__marker_a243c4a54a4b9d9c084672660e5d47f39}{corners} () const 
+\item 
+const Mat \& \hyperlink{classdetection__marker_a770b0b3075bf960621006f7f939b9757}{img} () const 
+\item 
+void \hyperlink{classdetection__marker_a08cd89907df009bce97bb5a6561074e6}{detect\+And\+Draw} (Mat \&in\+Image)
+\item 
+void \hyperlink{classdetection__marker_a4149fb9467f5cc15b1086c548821d925}{detect} (Mat \&in\+Image)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Classe che contiene i metodi necessari per effettuare la detection dei marker di aruco. 
+
+Definition at line 20 of file detection.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classdetection__marker_a78703d9cfece4550684a3f6e0dfd659b}{\index{detection\+\_\+marker@{detection\+\_\+marker}!detection\+\_\+marker@{detection\+\_\+marker}}
+\index{detection\+\_\+marker@{detection\+\_\+marker}!detection\+\_\+marker@{detection\+\_\+marker}}
+\subsubsection[{detection\+\_\+marker}]{\setlength{\rightskip}{0pt plus 5cm}detection\+\_\+marker\+::detection\+\_\+marker (
+\begin{DoxyParamCaption}
+\item[{P\+R\+E\+D\+E\+F\+I\+N\+E\+D\+\_\+\+D\+I\+C\+T\+I\+O\+N\+A\+R\+Y\+\_\+\+N\+A\+M\+E}]{name}
+\end{DoxyParamCaption}
+)}}\label{classdetection__marker_a78703d9cfece4550684a3f6e0dfd659b}
+Costruttore che imposta il dizionario di marker aruco che verrà utilizzato nella detection
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & Nome del dizionario \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 15 of file detection.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classdetection__marker_a243c4a54a4b9d9c084672660e5d47f39}{\index{detection\+\_\+marker@{detection\+\_\+marker}!corners@{corners}}
+\index{corners@{corners}!detection\+\_\+marker@{detection\+\_\+marker}}
+\subsubsection[{corners}]{\setlength{\rightskip}{0pt plus 5cm}const vector$<$ vector$<$ Point2f $>$ $>$ \& detection\+\_\+marker\+::corners (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classdetection__marker_a243c4a54a4b9d9c084672660e5d47f39}
+Restituisce un vettore contenente i vertici di tutti i marker rilevati da uno dei metodi di detection
+
+\begin{DoxyReturn}{Returns}
+vector contenente un vector di 4 Point2f per ogni marker rilevato 
+\end{DoxyReturn}
+
+
+Definition at line 18 of file detection.\+cpp.
+
+\hypertarget{classdetection__marker_a4149fb9467f5cc15b1086c548821d925}{\index{detection\+\_\+marker@{detection\+\_\+marker}!detect@{detect}}
+\index{detect@{detect}!detection\+\_\+marker@{detection\+\_\+marker}}
+\subsubsection[{detect}]{\setlength{\rightskip}{0pt plus 5cm}void detection\+\_\+marker\+::detect (
+\begin{DoxyParamCaption}
+\item[{Mat \&}]{in\+Image}
+\end{DoxyParamCaption}
+)}}\label{classdetection__marker_a4149fb9467f5cc15b1086c548821d925}
+Esegue la detection dei marker sul Frame in\+Image
+
+
+\begin{DoxyParams}{Parameters}
+{\em in\+Image} & Frame su cui eseguire la detection \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 28 of file detection.\+cpp.
+
+\hypertarget{classdetection__marker_a08cd89907df009bce97bb5a6561074e6}{\index{detection\+\_\+marker@{detection\+\_\+marker}!detect\+And\+Draw@{detect\+And\+Draw}}
+\index{detect\+And\+Draw@{detect\+And\+Draw}!detection\+\_\+marker@{detection\+\_\+marker}}
+\subsubsection[{detect\+And\+Draw}]{\setlength{\rightskip}{0pt plus 5cm}void detection\+\_\+marker\+::detect\+And\+Draw (
+\begin{DoxyParamCaption}
+\item[{Mat \&}]{in\+Image}
+\end{DoxyParamCaption}
+)}}\label{classdetection__marker_a08cd89907df009bce97bb5a6561074e6}
+Esegue la detection dei marker sul frame in\+Image e disegna il contorno dei marker rilevati correttamente
+
+
+\begin{DoxyParams}{Parameters}
+{\em in\+Image} & Frame su cui eseguire la detection \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 21 of file detection.\+cpp.
+
+\hypertarget{classdetection__marker_a486d89e7f7008d87a1c3c26c89ad3b74}{\index{detection\+\_\+marker@{detection\+\_\+marker}!ids@{ids}}
+\index{ids@{ids}!detection\+\_\+marker@{detection\+\_\+marker}}
+\subsubsection[{ids}]{\setlength{\rightskip}{0pt plus 5cm}const vector$<$ int $>$ \& detection\+\_\+marker\+::ids (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classdetection__marker_a486d89e7f7008d87a1c3c26c89ad3b74}
+Restituisce il vettore degli identificatori dei marker rilevati da uno dei metodi di detection
+
+\begin{DoxyReturn}{Returns}
+vector contenente gli identificatori dei marker rilevati 
+\end{DoxyReturn}
+
+
+Definition at line 17 of file detection.\+cpp.
+
+\hypertarget{classdetection__marker_a770b0b3075bf960621006f7f939b9757}{\index{detection\+\_\+marker@{detection\+\_\+marker}!img@{img}}
+\index{img@{img}!detection\+\_\+marker@{detection\+\_\+marker}}
+\subsubsection[{img}]{\setlength{\rightskip}{0pt plus 5cm}const Mat \& detection\+\_\+marker\+::img (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classdetection__marker_a770b0b3075bf960621006f7f939b9757}
+Restituisce il frame precedentemente elaborato dal metodo detect\+And\+Draw
+
+\begin{DoxyReturn}{Returns}
+oggetto Mat corrispondente al frame 
+\end{DoxyReturn}
+
+
+Definition at line 19 of file detection.\+cpp.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/francesco/\+Android\+Studio\+Projects/sdem\+\_\+app/app/src/main/jni/\hyperlink{detection_8h}{detection.\+h}\item 
+/home/francesco/\+Android\+Studio\+Projects/sdem\+\_\+app/app/src/main/jni/\hyperlink{detection_8cpp}{detection.\+cpp}\end{DoxyCompactItemize}
