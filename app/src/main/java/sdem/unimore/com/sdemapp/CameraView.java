@@ -251,9 +251,9 @@ public final class CameraView extends SurfaceView implements
     }
 
 
-    final static private int ID1 = 23;
-    final static private int ID2 = 3;
-    final static private int ID3 = 5;
+    final static private int ID1 = 1;
+    final static private int ID2 = 2;
+    final static private int ID3 = 3;
     private AlertDialog dlg;
 
     /**
