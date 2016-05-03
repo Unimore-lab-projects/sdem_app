@@ -461,9 +461,4 @@ public final class CameraView extends SurfaceView implements
         }
     }
 
-//    public static void runOnUiThread(Runnable runnable) {
-//        final Handler UIHandler = new Handler(Looper.getMainLooper());
-//        UIHandler.post(runnable);
-//    }
-
 }
