@@ -251,14 +251,15 @@ public final class CameraView extends SurfaceView implements
     }
 
 
-    final static private int ID1 = 1;
-    final static private int ID2 = 2;
-    final static private int ID3 = 3;
+    final static private int ID1 = 23;
+    final static private int ID2 = 3;
+    final static private int ID3 = 5;
     private AlertDialog dlg;
 
     /**
      * Gestisce il contenuto del dialog a seconda dell'ID e della correttezza dell'azione.
-     * @param ID ID del marker
+     *
+     * @param ID      ID del marker
      * @param correct flag di servizio. true se il marker trovato è corretto
      */
     private void showDialog(int ID, boolean correct) {
@@ -354,8 +355,8 @@ public final class CameraView extends SurfaceView implements
 
         switch (markerId) {
             case ID1: { //23
-                if (!foundID1) { //non ancora stato trovato
-                    showDialog(ID1, true); //OK, vai a ID2
+            if (!foundID1) {                    //non ancora stato trovato
+                    showDialog(ID1, true);       //OK, vai a ID2
                     foundID1 = true;
                     break;
                 }
@@ -363,11 +364,11 @@ public final class CameraView extends SurfaceView implements
             }
             case ID2: { //3
                 if (!foundID2) {
-                    if (foundID1) { //Se ID1 è già stato trovato
-                        showDialog(ID2, true); //OK, vai a ID3
+                    if (foundID1) {             //Se ID1 è già stato trovato
+                        showDialog(ID2, true);  //OK, vai a ID3
                         foundID2 = true;
                         break;
-                    } else { //devi trovare prima ID1
+                    } else {                    //devi trovare prima ID1
                         showDialog(ID1, false); //NO, cerca ID1 prima.
                         foundID1 = false;
                         break;
@@ -382,12 +383,14 @@ public final class CameraView extends SurfaceView implements
                         foundID3 = true;
                         break;
                     } else {
-                        if (!foundID2) { //ID2 non è stato trovato
-                            if (!foundID1) { // ID1 non è stato trovato
-                                showDialog(ID1, false); //trova ID1
+                        if (!foundID2) {                //ID2 non è stato trovato
+                            if (!foundID1) {            // ID1 non è stato trovato
+                                showDialog(ID1, false);
+                                foundID1 = false;       //trova ID1
                                 break;
-                            } else { // ID1 trovato
+                            } else {                    // ID1 trovato
                                 showDialog(ID2, false); //trova ID2
+                                foundID2 = false;
                                 break;
                             }
                         }
