@@ -1,7 +1,8 @@
 var searchData=
 [
-  ['java_5fsdem_5funimore_5fcom_5fsdemapp_5fcameraview_5fdetectanddrawmarkersjni',['Java_sdem_unimore_com_sdemapp_CameraView_detectAndDrawMarkersJNI',['../_sdem_app_j_n_i_8cpp.html#a8e02827ac5cd9badfc30dd5d6871d4c3',1,'SdemAppJNI.cpp']]],
-  ['java_5fsdem_5funimore_5fcom_5fsdemapp_5fcameraview_5fdetectjni',['Java_sdem_unimore_com_sdemapp_CameraView_detectJNI',['../_sdem_app_j_n_i_8cpp.html#a4ef21b1af2fe4b375d387031ec26223d',1,'SdemAppJNI.cpp']]],
-  ['java_5fsdem_5funimore_5fcom_5fsdemapp_5fcameraview_5fdetectmarkersjni',['Java_sdem_unimore_com_sdemapp_CameraView_detectMarkersJNI',['../_sdem_app_j_n_i_8cpp.html#aa5f82b23caa8e4a6d5a73f40e5218b36',1,'SdemAppJNI.cpp']]],
-  ['java_5fsdem_5funimore_5fcom_5fsdemapp_5fcameraview_5fgetmarkersnumber',['Java_sdem_unimore_com_sdemapp_CameraView_getMarkersNumber',['../_sdem_app_j_n_i_8cpp.html#a76b04fbdbb60e36d8f48a3d250f1584d',1,'SdemAppJNI.cpp']]]
+  ['foundid1',['foundID1',['../classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view.html#a2fc0e0fbf2913dad2f579a58be29eb90',1,'sdem::unimore::com::sdemapp::CameraView']]],
+  ['foundid2',['foundID2',['../classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view.html#ae9b4adebfb828f92c072643bac1789bd',1,'sdem::unimore::com::sdemapp::CameraView']]],
+  ['foundid3',['foundID3',['../classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view.html#ac34c35419c994bb836d0920611bfd614',1,'sdem::unimore::com::sdemapp::CameraView']]],
+  ['fullscreenactivity',['FullscreenActivity',['../classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_fullscreen_activity.html',1,'sdem::unimore::com::sdemapp']]],
+  ['fullscreenactivity_2ejava',['FullscreenActivity.java',['../_fullscreen_activity_8java.html',1,'']]]
 ];

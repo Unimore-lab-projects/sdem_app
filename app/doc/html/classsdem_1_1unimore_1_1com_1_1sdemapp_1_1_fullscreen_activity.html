@@ -71,7 +71,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -89,6 +89,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="#pri-static-attribs">Static Private Attributes</a> &#124;
 <a href="classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_fullscreen_activity-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">sdem.unimore.com.sdemapp.FullscreenActivity Class Reference</div>  </div>
@@ -116,12 +119,78 @@ Protected Member Functions</h2></td></tr>
 <tr class="separator:ab4610475ff6a0a0099971f041a95f5ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6ce6eebdc04c389cedbb9f2a86214b8a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_fullscreen_activity.html#a6ce6eebdc04c389cedbb9f2a86214b8a">onPostCreate</a> (Bundle savedInstanceState)</td></tr>
 <tr class="separator:a6ce6eebdc04c389cedbb9f2a86214b8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:ac1d00a3d08c1320338db8cf01d4b19e1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_fullscreen_activity.html#ac1d00a3d08c1320338db8cf01d4b19e1">toggle</a> ()</td></tr>
+<tr class="separator:ac1d00a3d08c1320338db8cf01d4b19e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76e0f8b9e6b1bb7510336190cf6440ae"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_fullscreen_activity.html#a76e0f8b9e6b1bb7510336190cf6440ae">hide</a> ()</td></tr>
+<tr class="separator:a76e0f8b9e6b1bb7510336190cf6440ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:ad4475520f7d10bee6847afe83221d311"><td class="memItemLeft" align="right" valign="top">final Handler&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_fullscreen_activity.html#ad4475520f7d10bee6847afe83221d311">mHideHandler</a> = new Handler()</td></tr>
+<tr class="separator:ad4475520f7d10bee6847afe83221d311"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a16c3f7ad16b7cb1e5edd2fb951bca41f"><td class="memItemLeft" align="right" valign="top">View&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_fullscreen_activity.html#a16c3f7ad16b7cb1e5edd2fb951bca41f">mContentView</a></td></tr>
+<tr class="separator:a16c3f7ad16b7cb1e5edd2fb951bca41f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b840b0dda8f24f21123d96b06a6576d"><td class="memItemLeft" align="right" valign="top">final Runnable&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_fullscreen_activity.html#a2b840b0dda8f24f21123d96b06a6576d">mHidePart2Runnable</a></td></tr>
+<tr class="separator:a2b840b0dda8f24f21123d96b06a6576d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ee2fd73847cb62532e245338c584285"><td class="memItemLeft" align="right" valign="top">View&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_fullscreen_activity.html#a6ee2fd73847cb62532e245338c584285">mControlsView</a></td></tr>
+<tr class="separator:a6ee2fd73847cb62532e245338c584285"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca929d5b4bff4f4a52c843e94ea54433"><td class="memItemLeft" align="right" valign="top">final Runnable&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_fullscreen_activity.html#aca929d5b4bff4f4a52c843e94ea54433">mShowPart2Runnable</a></td></tr>
+<tr class="separator:aca929d5b4bff4f4a52c843e94ea54433"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae802b628029f2684f3f26db19a4cf784"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_fullscreen_activity.html#ae802b628029f2684f3f26db19a4cf784">mVisible</a></td></tr>
+<tr class="separator:ae802b628029f2684f3f26db19a4cf784"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac827eae51a46edd22c566d19809e6bd1"><td class="memItemLeft" align="right" valign="top">final Runnable&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_fullscreen_activity.html#ac827eae51a46edd22c566d19809e6bd1">mHideRunnable</a></td></tr>
+<tr class="separator:ac827eae51a46edd22c566d19809e6bd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a04fe84a1508ac134e93696b9a8706af9"><td class="memItemLeft" align="right" valign="top">final View.OnTouchListener&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_fullscreen_activity.html#a04fe84a1508ac134e93696b9a8706af9">mDelayHideTouchListener</a></td></tr>
+<tr class="separator:a04fe84a1508ac134e93696b9a8706af9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a84c4f3cc1fb84eba7a4cddbc27f4e11b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view.html">CameraView</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_fullscreen_activity.html#a84c4f3cc1fb84eba7a4cddbc27f4e11b">mPreview</a></td></tr>
+<tr class="separator:a84c4f3cc1fb84eba7a4cddbc27f4e11b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7a18a5ddea253a2942b56ac95b9af864"><td class="memItemLeft" align="right" valign="top">FrameLayout&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_fullscreen_activity.html#a7a18a5ddea253a2942b56ac95b9af864">preview</a></td></tr>
+<tr class="separator:a7a18a5ddea253a2942b56ac95b9af864"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-attribs"></a>
+Static Private Attributes</h2></td></tr>
+<tr class="memitem:a3befdb5b9ed48acbcdcf233e5b4f83f6"><td class="memItemLeft" align="right" valign="top">static final boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_fullscreen_activity.html#a3befdb5b9ed48acbcdcf233e5b4f83f6">AUTO_HIDE</a> = true</td></tr>
+<tr class="separator:a3befdb5b9ed48acbcdcf233e5b4f83f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3d1d9220a43ad429f99d5aafff51584"><td class="memItemLeft" align="right" valign="top">static final int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_fullscreen_activity.html#af3d1d9220a43ad429f99d5aafff51584">AUTO_HIDE_DELAY_MILLIS</a> = 1000</td></tr>
+<tr class="separator:af3d1d9220a43ad429f99d5aafff51584"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f1011912e7fd216a50482d516e03998"><td class="memItemLeft" align="right" valign="top">static final int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_fullscreen_activity.html#a9f1011912e7fd216a50482d516e03998">UI_ANIMATION_DELAY</a> = 300</td></tr>
+<tr class="separator:a9f1011912e7fd216a50482d516e03998"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac2f4238ff398def18c94fdcc010b7301"><td class="memItemLeft" align="right" valign="top">static final int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_fullscreen_activity.html#ac2f4238ff398def18c94fdcc010b7301">MY_PERMISSIONS_REQUEST_READ_CAMERA</a> = 123</td></tr>
+<tr class="separator:ac2f4238ff398def18c94fdcc010b7301"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>An example full-screen activity that shows and hides the system UI (i.e. status bar and navigation/system bar) with user interaction. </p>
 
 <p>Definition at line <a class="el" href="_fullscreen_activity_8java_source.html#l00021">21</a> of file <a class="el" href="_fullscreen_activity_8java_source.html">FullscreenActivity.java</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a76e0f8b9e6b1bb7510336190cf6440ae"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sdem.unimore.com.sdemapp.FullscreenActivity.hide </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_fullscreen_activity_8java_source.html#l00170">170</a> of file <a class="el" href="_fullscreen_activity_8java_source.html">FullscreenActivity.java</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="aa47fc4234b35e26366da2aeded279ed4"></a>
 <div class="memitem">
 <div class="memproto">
@@ -241,13 +310,394 @@ Protected Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="ac1d00a3d08c1320338db8cf01d4b19e1"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sdem.unimore.com.sdemapp.FullscreenActivity.toggle </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_fullscreen_activity_8java_source.html#l00162">162</a> of file <a class="el" href="_fullscreen_activity_8java_source.html">FullscreenActivity.java</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a3befdb5b9ed48acbcdcf233e5b4f83f6"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">final boolean sdem.unimore.com.sdemapp.FullscreenActivity.AUTO_HIDE = true</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Whether or not the system UI should be auto-hidden after <a class="el" href="classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_fullscreen_activity.html#af3d1d9220a43ad429f99d5aafff51584">AUTO_HIDE_DELAY_MILLIS</a> milliseconds. </p>
+
+<p>Definition at line <a class="el" href="_fullscreen_activity_8java_source.html#l00026">26</a> of file <a class="el" href="_fullscreen_activity_8java_source.html">FullscreenActivity.java</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af3d1d9220a43ad429f99d5aafff51584"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">final int sdem.unimore.com.sdemapp.FullscreenActivity.AUTO_HIDE_DELAY_MILLIS = 1000</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>If <a class="el" href="classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_fullscreen_activity.html#a3befdb5b9ed48acbcdcf233e5b4f83f6">AUTO_HIDE</a> is set, the number of milliseconds to wait after user interaction before hiding the system UI. </p>
+
+<p>Definition at line <a class="el" href="_fullscreen_activity_8java_source.html#l00032">32</a> of file <a class="el" href="_fullscreen_activity_8java_source.html">FullscreenActivity.java</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a16c3f7ad16b7cb1e5edd2fb951bca41f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">View sdem.unimore.com.sdemapp.FullscreenActivity.mContentView</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_fullscreen_activity_8java_source.html#l00041">41</a> of file <a class="el" href="_fullscreen_activity_8java_source.html">FullscreenActivity.java</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a6ee2fd73847cb62532e245338c584285"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">View sdem.unimore.com.sdemapp.FullscreenActivity.mControlsView</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_fullscreen_activity_8java_source.html#l00059">59</a> of file <a class="el" href="_fullscreen_activity_8java_source.html">FullscreenActivity.java</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a04fe84a1508ac134e93696b9a8706af9"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">final View.OnTouchListener sdem.unimore.com.sdemapp.FullscreenActivity.mDelayHideTouchListener</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">= <span class="keyword">new</span> View.OnTouchListener() {</div>
+<div class="line">        @Override</div>
+<div class="line">        <span class="keyword">public</span> <span class="keywordtype">boolean</span> onTouch(View view, MotionEvent motionEvent) {</div>
+<div class="line">            <span class="keywordflow">if</span> (<a class="code" href="classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_fullscreen_activity.html#a3befdb5b9ed48acbcdcf233e5b4f83f6">AUTO_HIDE</a>) {</div>
+<div class="line">                delayedHide(<a class="code" href="classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_fullscreen_activity.html#af3d1d9220a43ad429f99d5aafff51584">AUTO_HIDE_DELAY_MILLIS</a>);</div>
+<div class="line">            }</div>
+<div class="line">            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line">        }</div>
+<div class="line">    }</div>
+</div><!-- fragment --><p>Touch listener to use for in-layout UI controls to delay hiding the system UI. This is to prevent the jarring behavior of controls going away while interacting with activity UI. </p>
+
+<p>Definition at line <a class="el" href="_fullscreen_activity_8java_source.html#l00083">83</a> of file <a class="el" href="_fullscreen_activity_8java_source.html">FullscreenActivity.java</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad4475520f7d10bee6847afe83221d311"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">final Handler sdem.unimore.com.sdemapp.FullscreenActivity.mHideHandler = new Handler()</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_fullscreen_activity_8java_source.html#l00040">40</a> of file <a class="el" href="_fullscreen_activity_8java_source.html">FullscreenActivity.java</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2b840b0dda8f24f21123d96b06a6576d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">final Runnable sdem.unimore.com.sdemapp.FullscreenActivity.mHidePart2Runnable</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">= <span class="keyword">new</span> Runnable() {</div>
+<div class="line">        @SuppressLint(<span class="stringliteral">&quot;InlinedApi&quot;</span>)</div>
+<div class="line">        @Override</div>
+<div class="line">        <span class="keyword">public</span> <span class="keywordtype">void</span> run() {</div>
+<div class="line">            </div>
+<div class="line"></div>
+<div class="line">            </div>
+<div class="line">            </div>
+<div class="line">            </div>
+<div class="line">            <a class="code" href="classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_fullscreen_activity.html#a16c3f7ad16b7cb1e5edd2fb951bca41f">mContentView</a>.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LOW_PROFILE</div>
+<div class="line">                    | View.SYSTEM_UI_FLAG_FULLSCREEN</div>
+<div class="line">                    | View.SYSTEM_UI_FLAG_LAYOUT_STABLE</div>
+<div class="line">                    | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY</div>
+<div class="line">                    | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION</div>
+<div class="line">                    | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);</div>
+<div class="line">        }</div>
+<div class="line">    }</div>
+</div><!-- fragment -->
+<p>Definition at line <a class="el" href="_fullscreen_activity_8java_source.html#l00042">42</a> of file <a class="el" href="_fullscreen_activity_8java_source.html">FullscreenActivity.java</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac827eae51a46edd22c566d19809e6bd1"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">final Runnable sdem.unimore.com.sdemapp.FullscreenActivity.mHideRunnable</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">= <span class="keyword">new</span> Runnable() {</div>
+<div class="line">        @Override</div>
+<div class="line">        <span class="keyword">public</span> <span class="keywordtype">void</span> run() {</div>
+<div class="line">            <a class="code" href="classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_fullscreen_activity.html#a76e0f8b9e6b1bb7510336190cf6440ae">hide</a>();</div>
+<div class="line">        }</div>
+<div class="line">    }</div>
+</div><!-- fragment -->
+<p>Definition at line <a class="el" href="_fullscreen_activity_8java_source.html#l00072">72</a> of file <a class="el" href="_fullscreen_activity_8java_source.html">FullscreenActivity.java</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a84c4f3cc1fb84eba7a4cddbc27f4e11b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view.html">CameraView</a> sdem.unimore.com.sdemapp.FullscreenActivity.mPreview</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_fullscreen_activity_8java_source.html#l00093">93</a> of file <a class="el" href="_fullscreen_activity_8java_source.html">FullscreenActivity.java</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aca929d5b4bff4f4a52c843e94ea54433"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">final Runnable sdem.unimore.com.sdemapp.FullscreenActivity.mShowPart2Runnable</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">= <span class="keyword">new</span> Runnable() {</div>
+<div class="line">        @Override</div>
+<div class="line">        <span class="keyword">public</span> <span class="keywordtype">void</span> run() {</div>
+<div class="line">            </div>
+<div class="line">            ActionBar actionBar = getSupportActionBar();</div>
+<div class="line">            <span class="keywordflow">if</span> (actionBar != null) {</div>
+<div class="line">                actionBar.show();</div>
+<div class="line">            }</div>
+<div class="line">            <a class="code" href="classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_fullscreen_activity.html#a6ee2fd73847cb62532e245338c584285">mControlsView</a>.setVisibility(View.VISIBLE);</div>
+<div class="line">        }</div>
+<div class="line">    }</div>
+</div><!-- fragment -->
+<p>Definition at line <a class="el" href="_fullscreen_activity_8java_source.html#l00060">60</a> of file <a class="el" href="_fullscreen_activity_8java_source.html">FullscreenActivity.java</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae802b628029f2684f3f26db19a4cf784"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">boolean sdem.unimore.com.sdemapp.FullscreenActivity.mVisible</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_fullscreen_activity_8java_source.html#l00071">71</a> of file <a class="el" href="_fullscreen_activity_8java_source.html">FullscreenActivity.java</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac2f4238ff398def18c94fdcc010b7301"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">final int sdem.unimore.com.sdemapp.FullscreenActivity.MY_PERMISSIONS_REQUEST_READ_CAMERA = 123</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_fullscreen_activity_8java_source.html#l00039">39</a> of file <a class="el" href="_fullscreen_activity_8java_source.html">FullscreenActivity.java</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7a18a5ddea253a2942b56ac95b9af864"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">FrameLayout sdem.unimore.com.sdemapp.FullscreenActivity.preview</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_fullscreen_activity_8java_source.html#l00094">94</a> of file <a class="el" href="_fullscreen_activity_8java_source.html">FullscreenActivity.java</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9f1011912e7fd216a50482d516e03998"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">final int sdem.unimore.com.sdemapp.FullscreenActivity.UI_ANIMATION_DELAY = 300</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Some older devices needs a small delay between UI widget updates and a change of the status and navigation bar. </p>
+
+<p>Definition at line <a class="el" href="_fullscreen_activity_8java_source.html#l00038">38</a> of file <a class="el" href="_fullscreen_activity_8java_source.html">FullscreenActivity.java</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>/home/francesco/AndroidStudioProjects/sdem_app/app/src/main/java/sdem/unimore/com/sdemapp/<a class="el" href="_fullscreen_activity_8java_source.html">FullscreenActivity.java</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon May 23 2016 14:32:21 for sdemApp by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon May 23 2016 14:56:02 for sdemApp by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

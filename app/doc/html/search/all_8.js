@@ -1,11 +1,12 @@
 var searchData=
 [
-  ['com',['com',['../namespacesdem_1_1unimore_1_1com.html',1,'sdem::unimore']]],
-  ['sdem',['sdem',['../namespacesdem.html',1,'']]],
-  ['sdemapp',['sdemapp',['../namespacesdem_1_1unimore_1_1com_1_1sdemapp.html',1,'sdem::unimore::com']]],
-  ['sdemappjni_2ecpp',['SdemAppJNI.cpp',['../_sdem_app_j_n_i_8cpp.html',1,'']]],
-  ['surfacechanged',['surfaceChanged',['../classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view.html#a9e58ea3f8f605797b28cd41c9fd4c973',1,'sdem.unimore.com.sdemapp.CameraView.surfaceChanged()'],['../classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_draw_view.html#ac654c04ec20230794d1f7d4205ff6ccc',1,'sdem.unimore.com.sdemapp.DrawView.surfaceChanged()']]],
-  ['surfacecreated',['surfaceCreated',['../classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view.html#ace511ad999943fe26880cad904a9ceec',1,'sdem.unimore.com.sdemapp.CameraView.surfaceCreated()'],['../classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_draw_view.html#adac404d58277c2e02759e52a007ff2f2',1,'sdem.unimore.com.sdemapp.DrawView.surfaceCreated()']]],
-  ['surfacedestroyed',['surfaceDestroyed',['../classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view.html#a9a27054b8ad448e20eabb5b468e8257d',1,'sdem.unimore.com.sdemapp.CameraView.surfaceDestroyed()'],['../classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_draw_view.html#ada0d09df8995e1a3b2356d3d99d79808',1,'sdem.unimore.com.sdemapp.DrawView.surfaceDestroyed()']]],
-  ['unimore',['unimore',['../namespacesdem_1_1unimore.html',1,'sdem']]]
+  ['id1',['ID1',['../classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view.html#a72f57aecb1908f9b3602c0cfd5a08f16',1,'sdem::unimore::com::sdemapp::CameraView']]],
+  ['id2',['ID2',['../classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view.html#a3c4253e5d83076aebfc830494b70f1a1',1,'sdem::unimore::com::sdemapp::CameraView']]],
+  ['id3',['ID3',['../classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view.html#a83e18adb3c9936536943699dc730f6bd',1,'sdem::unimore::com::sdemapp::CameraView']]],
+  ['idlist',['idList',['../classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view.html#a93a3fb2662449c848c4e853aa41d603c',1,'sdem::unimore::com::sdemapp::CameraView']]],
+  ['ids',['ids',['../classdetection__marker.html#a486d89e7f7008d87a1c3c26c89ad3b74',1,'detection_marker']]],
+  ['img',['img',['../classdetection__marker.html#a770b0b3075bf960621006f7f939b9757',1,'detection_marker']]],
+  ['introduzione',['Introduzione',['../index.html',1,'']]],
+  ['inimage',['inImage',['../classdetection__marker.html#a38b3944516f9a3ae26d23ed9a8b5ce52',1,'detection_marker']]],
+  ['intro_5fapp_2ecpp',['intro_app.cpp',['../intro__app_8cpp.html',1,'']]]
 ];

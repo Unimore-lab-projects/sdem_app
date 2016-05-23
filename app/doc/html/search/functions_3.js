@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['ids',['ids',['../classdetection__marker.html#a486d89e7f7008d87a1c3c26c89ad3b74',1,'detection_marker']]],
-  ['img',['img',['../classdetection__marker.html#a770b0b3075bf960621006f7f939b9757',1,'detection_marker']]]
+  ['getcamerainstance',['getCameraInstance',['../classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view.html#a67b6b078d0431699ce46317d9286158f',1,'sdem::unimore::com::sdemapp::CameraView']]]
 ];

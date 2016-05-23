@@ -7,13 +7,14 @@
 
 var indexSectionsWithContent =
 {
-  0: "cdfgijnos",
+  0: "[_acdfghijlmnopstu",
   1: "cdf",
   2: "s",
   3: "cdfis",
-  4: "cdgijos",
-  5: "n",
-  6: "i"
+  4: "[cdghijnopst",
+  5: "_acdfilmnpstu",
+  6: "n",
+  7: "i"
 };
 
 var indexSectionNames =
@@ -23,8 +24,9 @@ var indexSectionNames =
   2: "namespaces",
   3: "files",
   4: "functions",
-  5: "defines",
-  6: "pages"
+  5: "variables",
+  6: "defines",
+  7: "pages"
 };
 
 function convertToId(search)

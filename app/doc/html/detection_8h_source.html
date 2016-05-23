@@ -69,7 +69,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -107,10 +107,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div>
 <div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="classdetection__marker.html">   22</a></span>&#160;<span class="keyword">class </span><a class="code" href="classdetection__marker.html">detection_marker</a> {</div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    Ptr&lt;Dictionary&gt; _dictionary;<span class="comment">// use: (DICT_6X6_250);</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    vector&lt;int&gt; _markerIds;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    vector&lt;vector&lt;Point2f&gt;&gt; _markerCorners;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    Mat inImage;</div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="classdetection__marker.html#a2cc4c5ea62ab82cd0d6f2b744bb57611">   24</a></span>&#160;    Ptr&lt;Dictionary&gt; <a class="code" href="classdetection__marker.html#a2cc4c5ea62ab82cd0d6f2b744bb57611">_dictionary</a>;<span class="comment">// use: (DICT_6X6_250);</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="classdetection__marker.html#ae0518eaa5762d3cf2d6570cb3440bd91">   25</a></span>&#160;    vector&lt;int&gt; <a class="code" href="classdetection__marker.html#ae0518eaa5762d3cf2d6570cb3440bd91">_markerIds</a>;</div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="classdetection__marker.html#a32435b120f01d7a7ed4d0e6e926aa5c9">   26</a></span>&#160;    vector&lt;vector&lt;Point2f&gt;&gt; <a class="code" href="classdetection__marker.html#a32435b120f01d7a7ed4d0e6e926aa5c9">_markerCorners</a>;</div>
+<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="classdetection__marker.html#a38b3944516f9a3ae26d23ed9a8b5ce52">   27</a></span>&#160;    Mat <a class="code" href="classdetection__marker.html#a38b3944516f9a3ae26d23ed9a8b5ce52">inImage</a>;</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keyword">public</span>:</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <a class="code" href="classdetection__marker.html">detection_marker</a>(PREDEFINED_DICTIONARY_NAME name);</div>
@@ -132,12 +132,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="preprocessor">#endif //DETECTION_H</span></div>
 <div class="ttc" id="namespacestd_html"><div class="ttname"><a href="namespacestd.html">std</a></div></div>
 <div class="ttc" id="namespacecv_html"><div class="ttname"><a href="namespacecv.html">cv</a></div></div>
+<div class="ttc" id="classdetection__marker_html_a38b3944516f9a3ae26d23ed9a8b5ce52"><div class="ttname"><a href="classdetection__marker.html#a38b3944516f9a3ae26d23ed9a8b5ce52">detection_marker::inImage</a></div><div class="ttdeci">Mat inImage</div><div class="ttdef"><b>Definition:</b> <a href="detection_8h_source.html#l00027">detection.h:27</a></div></div>
+<div class="ttc" id="classdetection__marker_html_a2cc4c5ea62ab82cd0d6f2b744bb57611"><div class="ttname"><a href="classdetection__marker.html#a2cc4c5ea62ab82cd0d6f2b744bb57611">detection_marker::_dictionary</a></div><div class="ttdeci">Ptr&lt; Dictionary &gt; _dictionary</div><div class="ttdef"><b>Definition:</b> <a href="detection_8h_source.html#l00024">detection.h:24</a></div></div>
 <div class="ttc" id="namespacearuco_html"><div class="ttname"><a href="namespacearuco.html">aruco</a></div></div>
+<div class="ttc" id="classdetection__marker_html_ae0518eaa5762d3cf2d6570cb3440bd91"><div class="ttname"><a href="classdetection__marker.html#ae0518eaa5762d3cf2d6570cb3440bd91">detection_marker::_markerIds</a></div><div class="ttdeci">vector&lt; int &gt; _markerIds</div><div class="ttdef"><b>Definition:</b> <a href="detection_8h_source.html#l00025">detection.h:25</a></div></div>
 <div class="ttc" id="classdetection__marker_html"><div class="ttname"><a href="classdetection__marker.html">detection_marker</a></div><div class="ttdef"><b>Definition:</b> <a href="detection_8h_source.html#l00022">detection.h:22</a></div></div>
+<div class="ttc" id="classdetection__marker_html_a32435b120f01d7a7ed4d0e6e926aa5c9"><div class="ttname"><a href="classdetection__marker.html#a32435b120f01d7a7ed4d0e6e926aa5c9">detection_marker::_markerCorners</a></div><div class="ttdeci">vector&lt; vector&lt; Point2f &gt; &gt; _markerCorners</div><div class="ttdef"><b>Definition:</b> <a href="detection_8h_source.html#l00026">detection.h:26</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon May 23 2016 14:32:21 for sdemApp by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon May 23 2016 14:56:02 for sdemApp by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

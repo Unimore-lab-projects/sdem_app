@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['surfacechanged',['surfaceChanged',['../classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view.html#a9e58ea3f8f605797b28cd41c9fd4c973',1,'sdem.unimore.com.sdemapp.CameraView.surfaceChanged()'],['../classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_draw_view.html#ac654c04ec20230794d1f7d4205ff6ccc',1,'sdem.unimore.com.sdemapp.DrawView.surfaceChanged()']]],
-  ['surfacecreated',['surfaceCreated',['../classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view.html#ace511ad999943fe26880cad904a9ceec',1,'sdem.unimore.com.sdemapp.CameraView.surfaceCreated()'],['../classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_draw_view.html#adac404d58277c2e02759e52a007ff2f2',1,'sdem.unimore.com.sdemapp.DrawView.surfaceCreated()']]],
-  ['surfacedestroyed',['surfaceDestroyed',['../classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view.html#a9a27054b8ad448e20eabb5b468e8257d',1,'sdem.unimore.com.sdemapp.CameraView.surfaceDestroyed()'],['../classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_draw_view.html#ada0d09df8995e1a3b2356d3d99d79808',1,'sdem.unimore.com.sdemapp.DrawView.surfaceDestroyed()']]]
+  ['java_5fsdem_5funimore_5fcom_5fsdemapp_5fcameraview_5fdetectanddrawmarkersjni',['Java_sdem_unimore_com_sdemapp_CameraView_detectAndDrawMarkersJNI',['../_sdem_app_j_n_i_8cpp.html#a8e02827ac5cd9badfc30dd5d6871d4c3',1,'SdemAppJNI.cpp']]],
+  ['java_5fsdem_5funimore_5fcom_5fsdemapp_5fcameraview_5fdetectjni',['Java_sdem_unimore_com_sdemapp_CameraView_detectJNI',['../_sdem_app_j_n_i_8cpp.html#a4ef21b1af2fe4b375d387031ec26223d',1,'SdemAppJNI.cpp']]],
+  ['java_5fsdem_5funimore_5fcom_5fsdemapp_5fcameraview_5fdetectmarkersjni',['Java_sdem_unimore_com_sdemapp_CameraView_detectMarkersJNI',['../_sdem_app_j_n_i_8cpp.html#aa5f82b23caa8e4a6d5a73f40e5218b36',1,'SdemAppJNI.cpp']]],
+  ['java_5fsdem_5funimore_5fcom_5fsdemapp_5fcameraview_5fgetmarkersnumber',['Java_sdem_unimore_com_sdemapp_CameraView_getMarkersNumber',['../_sdem_app_j_n_i_8cpp.html#a76b04fbdbb60e36d8f48a3d250f1584d',1,'SdemAppJNI.cpp']]]
 ];

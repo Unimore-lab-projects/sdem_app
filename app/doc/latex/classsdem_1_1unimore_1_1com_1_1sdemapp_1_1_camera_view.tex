@@ -7,6 +7,11 @@ Inheritance diagram for sdem.\+unimore.\+com.\+sdemapp.\+Camera\+View\+:\begin{f
 \includegraphics[height=1.464052cm]{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view}
 \end{center}
 \end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_1_1_camera_handler_thread}{Camera\+Handler\+Thread}
+\end{DoxyCompactItemize}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -22,12 +27,83 @@ void \hyperlink{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_a25879df1
 \item 
 void \hyperlink{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_a9a27054b8ad448e20eabb5b468e8257d}{surface\+Destroyed} (Surface\+Holder holder)
 \end{DoxyCompactItemize}
+\subsection*{Static Package Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_a280b642876ffeeaf862ef26b35a59ce4}{\mbox{[}static initializer\mbox{]}}
+\end{DoxyCompactItemize}
+\subsection*{Package Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_draw_view}{Draw\+View} \hyperlink{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_a27e349c15ba4f303127dbce08aed7c4f}{draw\+View}
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_ac02db324e42c2267824d3bd3ca420fcf}{old\+Open\+Camera} ()
+\item 
+void \hyperlink{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_a9d800698f11dca3e4cbeb756c82719c3}{new\+Open\+Camera} ()
+\item 
+void \hyperlink{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_a64ac2459a0115aacee85726bc4d83ed9}{setup\+Callback} (int buffer\+Size)
+\item 
+void \hyperlink{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_aee169b8cbcf35388039cf57279b394ca}{show\+Dialog} (int I\+D, boolean correct)
+\item 
+void \hyperlink{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_ad89b9876843e04f227bb2ec5eccdb6db}{popup\+Logic} (int\mbox{[}$\,$\mbox{]} \hyperlink{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_a93a3fb2662449c848c4e853aa41d603c}{id\+List})
+\item 
+native void \hyperlink{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_a56fbf943f868becfab4e5578987f2bdb}{detect\+J\+N\+I} (byte\mbox{[}$\,$\mbox{]} data, int height, int width, int\mbox{[}$\,$\mbox{]} n\+Marker, int\mbox{[}$\,$\mbox{]} \hyperlink{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_a93a3fb2662449c848c4e853aa41d603c}{id\+List}, float\mbox{[}$\,$\mbox{]} corner\+List)
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Surface\+Holder \hyperlink{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_ae76cc9a21aaf87eeec89eeab7098197b}{m\+Holder}
+\item 
+Camera \hyperlink{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_a9cff9932f9c42f306bf742f1a5202b04}{m\+Camera}
+\item 
+Context \hyperlink{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_a277f9e02a27eaebc0d06166aa6fdcd3b}{m\+Context}
+\item 
+int \hyperlink{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_ab8c6faf182aab5fa2a4fb732046d69d5}{m\+Height}
+\item 
+int \hyperlink{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_a3d402c5574142241cb45c88209f3cd05}{m\+Width}
+\item 
+float\mbox{[}$\,$\mbox{]} \hyperlink{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_ae79d568475e05039fa7eeaa71c1fa4d7}{corners\+List} = new float\mbox{[}0\mbox{]}
+\item 
+int\mbox{[}$\,$\mbox{]} \hyperlink{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_ae6e04f93a296446a1d14a00fcd0483b4}{n\+Markers} = new int\mbox{[}1\mbox{]}
+\item 
+int \hyperlink{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_ad81a0ee28c133e298f3f06dcd7d4b020}{previuos\+Markers\+Number} = 0
+\item 
+int\mbox{[}$\,$\mbox{]} \hyperlink{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_a93a3fb2662449c848c4e853aa41d603c}{id\+List} = new int\mbox{[}0\mbox{]}
+\item 
+\hyperlink{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_1_1_camera_handler_thread}{Camera\+Handler\+Thread} \hyperlink{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_a9ffad8e816f47e03bc0c24976b6eabcd}{m\+Thread} = null
+\item 
+Alert\+Dialog \hyperlink{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_a16c343ddd35e05221fe34dda8901b514}{dlg}
+\item 
+boolean \hyperlink{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_a03232dc6ad762f65c82ad343ec3f2e61}{startup\+Flag} = true
+\item 
+boolean \hyperlink{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_a2fc0e0fbf2913dad2f579a58be29eb90}{found\+I\+D1} = false
+\item 
+boolean \hyperlink{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_ae9b4adebfb828f92c072643bac1789bd}{found\+I\+D2} = false
+\item 
+boolean \hyperlink{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_ac34c35419c994bb836d0920611bfd614}{found\+I\+D3} = false
+\end{DoxyCompactItemize}
+\subsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static final String \hyperlink{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_a8a53915e6431e00f1220c305d16e999e}{T\+A\+G} = \char`\"{}Camera\+View\char`\"{}
+\item 
+static final int \hyperlink{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_a68cd63f6ce9ff3f300b25cc49e0d73ee}{N\+U\+M\+\_\+\+B\+U\+F\+F\+E\+R\+S} = 5
+\item 
+static final int \hyperlink{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_a72f57aecb1908f9b3602c0cfd5a08f16}{I\+D1} = 23
+\item 
+static final int \hyperlink{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_a3c4253e5d83076aebfc830494b70f1a1}{I\+D2} = 3
+\item 
+static final int \hyperlink{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_a83e18adb3c9936536943699dc730f6bd}{I\+D3} = 5
+\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 Classe di gestione e configurazione della Camera. 
 
-Definition at line 28 of file Camera\+View.\+java.
+Definition at line 27 of file Camera\+View.\+java.
 
 
 
@@ -48,11 +124,47 @@ Costruttore oggetto Camera
 \end{DoxyParams}
 
 
-Definition at line 56 of file Camera\+View.\+java.
+Definition at line 55 of file Camera\+View.\+java.
 
 
 
 \subsection{Member Function Documentation}
+\hypertarget{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_a280b642876ffeeaf862ef26b35a59ce4}{\index{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View@{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View}!\mbox{[}static initializer\mbox{]}@{[static initializer]}}
+\index{\mbox{[}static initializer\mbox{]}@{[static initializer]}!sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View@{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View}}
+\subsubsection[{[static initializer]}]{\setlength{\rightskip}{0pt plus 5cm}sdem.\+unimore.\+com.\+sdemapp.\+Camera\+View.\mbox{[}static initializer\mbox{]} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [package]}}}\label{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_a280b642876ffeeaf862ef26b35a59ce4}
+\hypertarget{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_a56fbf943f868becfab4e5578987f2bdb}{\index{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View@{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View}!detect\+J\+N\+I@{detect\+J\+N\+I}}
+\index{detect\+J\+N\+I@{detect\+J\+N\+I}!sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View@{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View}}
+\subsubsection[{detect\+J\+N\+I}]{\setlength{\rightskip}{0pt plus 5cm}native void sdem.\+unimore.\+com.\+sdemapp.\+Camera\+View.\+detect\+J\+N\+I (
+\begin{DoxyParamCaption}
+\item[{byte\mbox{[}$\,$\mbox{]}}]{data, }
+\item[{int}]{height, }
+\item[{int}]{width, }
+\item[{int\mbox{[}$\,$\mbox{]}}]{n\+Marker, }
+\item[{int\mbox{[}$\,$\mbox{]}}]{id\+List, }
+\item[{float\mbox{[}$\,$\mbox{]}}]{corner\+List}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_a56fbf943f868becfab4e5578987f2bdb}
+Metodo nativo di rilevamento del marker.
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & Contenuto frame di preview \\
+\hline
+{\em height} & altezza frame \\
+\hline
+{\em width} & larghezza frame \\
+\hline
+{\em n\+Marker} & numero di markers rilevati \\
+\hline
+{\em id\+List} & vettore di I\+D dei marker rilevati \\
+\hline
+{\em corner\+List} & vettore di corners rilevati per ogni marker \\
+\hline
+\end{DoxyParams}
 \hypertarget{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_a67b6b078d0431699ce46317d9286158f}{\index{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View@{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View}!get\+Camera\+Instance@{get\+Camera\+Instance}}
 \index{get\+Camera\+Instance@{get\+Camera\+Instance}!sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View@{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View}}
 \subsubsection[{get\+Camera\+Instance}]{\setlength{\rightskip}{0pt plus 5cm}void sdem.\+unimore.\+com.\+sdemapp.\+Camera\+View.\+get\+Camera\+Instance (
@@ -62,7 +174,29 @@ Definition at line 56 of file Camera\+View.\+java.
 )\hspace{0.3cm}{\ttfamily [inline]}}}\label{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_a67b6b078d0431699ce46317d9286158f}
 Lancia una nuova istanza della Camera. 
 
-Definition at line 71 of file Camera\+View.\+java.
+Definition at line 70 of file Camera\+View.\+java.
+
+\hypertarget{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_a9d800698f11dca3e4cbeb756c82719c3}{\index{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View@{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View}!new\+Open\+Camera@{new\+Open\+Camera}}
+\index{new\+Open\+Camera@{new\+Open\+Camera}!sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View@{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View}}
+\subsubsection[{new\+Open\+Camera}]{\setlength{\rightskip}{0pt plus 5cm}void sdem.\+unimore.\+com.\+sdemapp.\+Camera\+View.\+new\+Open\+Camera (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}}\label{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_a9d800698f11dca3e4cbeb756c82719c3}
+Genera una nuova istanza della camera chiamando un nuovo thread di gestione, separatamente dal thread principale. 
+
+Definition at line 90 of file Camera\+View.\+java.
+
+\hypertarget{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_ac02db324e42c2267824d3bd3ca420fcf}{\index{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View@{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View}!old\+Open\+Camera@{old\+Open\+Camera}}
+\index{old\+Open\+Camera@{old\+Open\+Camera}!sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View@{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View}}
+\subsubsection[{old\+Open\+Camera}]{\setlength{\rightskip}{0pt plus 5cm}void sdem.\+unimore.\+com.\+sdemapp.\+Camera\+View.\+old\+Open\+Camera (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}}\label{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_ac02db324e42c2267824d3bd3ca420fcf}
+Metodo standard per aprire una nuova istanza della camera. 
+
+Definition at line 77 of file Camera\+View.\+java.
 
 \hypertarget{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_a25879df1d6c2e44dbfb06c3545f01520}{\index{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View@{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View}!on\+Preview\+Frame@{on\+Preview\+Frame}}
 \index{on\+Preview\+Frame@{on\+Preview\+Frame}!sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View@{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View}}
@@ -83,7 +217,64 @@ Overload metodo di Camera.\+Preview\+Callback Viene chiamato quando i frame di p
 \end{DoxyParams}
 
 
-Definition at line 231 of file Camera\+View.\+java.
+Definition at line 230 of file Camera\+View.\+java.
+
+\hypertarget{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_ad89b9876843e04f227bb2ec5eccdb6db}{\index{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View@{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View}!popup\+Logic@{popup\+Logic}}
+\index{popup\+Logic@{popup\+Logic}!sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View@{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View}}
+\subsubsection[{popup\+Logic}]{\setlength{\rightskip}{0pt plus 5cm}void sdem.\+unimore.\+com.\+sdemapp.\+Camera\+View.\+popup\+Logic (
+\begin{DoxyParamCaption}
+\item[{int\mbox{[}$\,$\mbox{]}}]{id\+List}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}}\label{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_ad89b9876843e04f227bb2ec5eccdb6db}
+Mostra i popup appropriati a seconda del marker rilevato. vengono utilizzati i flag found\+I\+D per non ripetere i messaggi di avviso piu di una volta.
+
+
+\begin{DoxyParams}{Parameters}
+{\em id\+List} & lista di I\+D \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 341 of file Camera\+View.\+java.
+
+\hypertarget{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_a64ac2459a0115aacee85726bc4d83ed9}{\index{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View@{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View}!setup\+Callback@{setup\+Callback}}
+\index{setup\+Callback@{setup\+Callback}!sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View@{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View}}
+\subsubsection[{setup\+Callback}]{\setlength{\rightskip}{0pt plus 5cm}void sdem.\+unimore.\+com.\+sdemapp.\+Camera\+View.\+setup\+Callback (
+\begin{DoxyParamCaption}
+\item[{int}]{buffer\+Size}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}}\label{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_a64ac2459a0115aacee85726bc4d83ed9}
+Imposta la dimensione del buffer pre-\/allocato nella coda dei buffer della preview.
+
+
+\begin{DoxyParams}{Parameters}
+{\em buffer\+Size} & dimensione del buffer \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 178 of file Camera\+View.\+java.
+
+\hypertarget{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_aee169b8cbcf35388039cf57279b394ca}{\index{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View@{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View}!show\+Dialog@{show\+Dialog}}
+\index{show\+Dialog@{show\+Dialog}!sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View@{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View}}
+\subsubsection[{show\+Dialog}]{\setlength{\rightskip}{0pt plus 5cm}void sdem.\+unimore.\+com.\+sdemapp.\+Camera\+View.\+show\+Dialog (
+\begin{DoxyParamCaption}
+\item[{int}]{I\+D, }
+\item[{boolean}]{correct}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}}\label{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_aee169b8cbcf35388039cf57279b394ca}
+Gestisce il contenuto del dialog a seconda dell'I\+D e della correttezza dell'azione.
+
+
+\begin{DoxyParams}{Parameters}
+{\em I\+D} & I\+D del marker \\
+\hline
+{\em correct} & flag di servizio. true se il marker trovato è corretto \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 264 of file Camera\+View.\+java.
 
 \hypertarget{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_a9e58ea3f8f605797b28cd41c9fd4c973}{\index{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View@{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View}!surface\+Changed@{surface\+Changed}}
 \index{surface\+Changed@{surface\+Changed}!sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View@{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View}}
@@ -110,7 +301,7 @@ Overload metodo di Surface\+Holder.\+Callback Viene chiamato nel momento in cui 
 \end{DoxyParams}
 
 
-Definition at line 197 of file Camera\+View.\+java.
+Definition at line 196 of file Camera\+View.\+java.
 
 \hypertarget{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_ace511ad999943fe26880cad904a9ceec}{\index{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View@{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View}!surface\+Created@{surface\+Created}}
 \index{surface\+Created@{surface\+Created}!sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View@{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View}}
@@ -128,7 +319,7 @@ Overload metodo di Surface\+Holder.\+Callback. Viene chiamato immediatamente dop
 \end{DoxyParams}
 
 
-Definition at line 108 of file Camera\+View.\+java.
+Definition at line 107 of file Camera\+View.\+java.
 
 \hypertarget{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_a9a27054b8ad448e20eabb5b468e8257d}{\index{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View@{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View}!surface\+Destroyed@{surface\+Destroyed}}
 \index{surface\+Destroyed@{surface\+Destroyed}!sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View@{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View}}
@@ -146,7 +337,157 @@ Overload metodo di Surface\+Holder.\+Callback. Viene chiamato immediatamente dop
 \end{DoxyParams}
 
 
-Definition at line 413 of file Camera\+View.\+java.
+Definition at line 412 of file Camera\+View.\+java.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_ae79d568475e05039fa7eeaa71c1fa4d7}{\index{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View@{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View}!corners\+List@{corners\+List}}
+\index{corners\+List@{corners\+List}!sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View@{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View}}
+\subsubsection[{corners\+List}]{\setlength{\rightskip}{0pt plus 5cm}float \mbox{[}$\,$\mbox{]} sdem.\+unimore.\+com.\+sdemapp.\+Camera\+View.\+corners\+List = new float\mbox{[}0\mbox{]}\hspace{0.3cm}{\ttfamily [private]}}}\label{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_ae79d568475e05039fa7eeaa71c1fa4d7}
+
+
+Definition at line 43 of file Camera\+View.\+java.
+
+\hypertarget{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_a16c343ddd35e05221fe34dda8901b514}{\index{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View@{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View}!dlg@{dlg}}
+\index{dlg@{dlg}!sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View@{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View}}
+\subsubsection[{dlg}]{\setlength{\rightskip}{0pt plus 5cm}Alert\+Dialog sdem.\+unimore.\+com.\+sdemapp.\+Camera\+View.\+dlg\hspace{0.3cm}{\ttfamily [private]}}}\label{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_a16c343ddd35e05221fe34dda8901b514}
+
+
+Definition at line 256 of file Camera\+View.\+java.
+
+\hypertarget{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_a27e349c15ba4f303127dbce08aed7c4f}{\index{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View@{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View}!draw\+View@{draw\+View}}
+\index{draw\+View@{draw\+View}!sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View@{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View}}
+\subsubsection[{draw\+View}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Draw\+View} sdem.\+unimore.\+com.\+sdemapp.\+Camera\+View.\+draw\+View\hspace{0.3cm}{\ttfamily [package]}}}\label{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_a27e349c15ba4f303127dbce08aed7c4f}
+
+
+Definition at line 37 of file Camera\+View.\+java.
+
+\hypertarget{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_a2fc0e0fbf2913dad2f579a58be29eb90}{\index{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View@{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View}!found\+I\+D1@{found\+I\+D1}}
+\index{found\+I\+D1@{found\+I\+D1}!sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View@{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View}}
+\subsubsection[{found\+I\+D1}]{\setlength{\rightskip}{0pt plus 5cm}boolean sdem.\+unimore.\+com.\+sdemapp.\+Camera\+View.\+found\+I\+D1 = false\hspace{0.3cm}{\ttfamily [private]}}}\label{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_a2fc0e0fbf2913dad2f579a58be29eb90}
+
+
+Definition at line 331 of file Camera\+View.\+java.
+
+\hypertarget{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_ae9b4adebfb828f92c072643bac1789bd}{\index{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View@{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View}!found\+I\+D2@{found\+I\+D2}}
+\index{found\+I\+D2@{found\+I\+D2}!sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View@{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View}}
+\subsubsection[{found\+I\+D2}]{\setlength{\rightskip}{0pt plus 5cm}boolean sdem.\+unimore.\+com.\+sdemapp.\+Camera\+View.\+found\+I\+D2 = false\hspace{0.3cm}{\ttfamily [private]}}}\label{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_ae9b4adebfb828f92c072643bac1789bd}
+
+
+Definition at line 332 of file Camera\+View.\+java.
+
+\hypertarget{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_ac34c35419c994bb836d0920611bfd614}{\index{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View@{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View}!found\+I\+D3@{found\+I\+D3}}
+\index{found\+I\+D3@{found\+I\+D3}!sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View@{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View}}
+\subsubsection[{found\+I\+D3}]{\setlength{\rightskip}{0pt plus 5cm}boolean sdem.\+unimore.\+com.\+sdemapp.\+Camera\+View.\+found\+I\+D3 = false\hspace{0.3cm}{\ttfamily [private]}}}\label{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_ac34c35419c994bb836d0920611bfd614}
+
+
+Definition at line 333 of file Camera\+View.\+java.
+
+\hypertarget{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_a72f57aecb1908f9b3602c0cfd5a08f16}{\index{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View@{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View}!I\+D1@{I\+D1}}
+\index{I\+D1@{I\+D1}!sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View@{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View}}
+\subsubsection[{I\+D1}]{\setlength{\rightskip}{0pt plus 5cm}final int sdem.\+unimore.\+com.\+sdemapp.\+Camera\+View.\+I\+D1 = 23\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_a72f57aecb1908f9b3602c0cfd5a08f16}
+
+
+Definition at line 253 of file Camera\+View.\+java.
+
+\hypertarget{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_a3c4253e5d83076aebfc830494b70f1a1}{\index{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View@{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View}!I\+D2@{I\+D2}}
+\index{I\+D2@{I\+D2}!sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View@{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View}}
+\subsubsection[{I\+D2}]{\setlength{\rightskip}{0pt plus 5cm}final int sdem.\+unimore.\+com.\+sdemapp.\+Camera\+View.\+I\+D2 = 3\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_a3c4253e5d83076aebfc830494b70f1a1}
+
+
+Definition at line 254 of file Camera\+View.\+java.
+
+\hypertarget{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_a83e18adb3c9936536943699dc730f6bd}{\index{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View@{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View}!I\+D3@{I\+D3}}
+\index{I\+D3@{I\+D3}!sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View@{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View}}
+\subsubsection[{I\+D3}]{\setlength{\rightskip}{0pt plus 5cm}final int sdem.\+unimore.\+com.\+sdemapp.\+Camera\+View.\+I\+D3 = 5\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_a83e18adb3c9936536943699dc730f6bd}
+
+
+Definition at line 255 of file Camera\+View.\+java.
+
+\hypertarget{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_a93a3fb2662449c848c4e853aa41d603c}{\index{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View@{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View}!id\+List@{id\+List}}
+\index{id\+List@{id\+List}!sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View@{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View}}
+\subsubsection[{id\+List}]{\setlength{\rightskip}{0pt plus 5cm}int \mbox{[}$\,$\mbox{]} sdem.\+unimore.\+com.\+sdemapp.\+Camera\+View.\+id\+List = new int\mbox{[}0\mbox{]}\hspace{0.3cm}{\ttfamily [private]}}}\label{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_a93a3fb2662449c848c4e853aa41d603c}
+
+
+Definition at line 46 of file Camera\+View.\+java.
+
+\hypertarget{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_a9cff9932f9c42f306bf742f1a5202b04}{\index{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View@{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View}!m\+Camera@{m\+Camera}}
+\index{m\+Camera@{m\+Camera}!sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View@{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View}}
+\subsubsection[{m\+Camera}]{\setlength{\rightskip}{0pt plus 5cm}Camera sdem.\+unimore.\+com.\+sdemapp.\+Camera\+View.\+m\+Camera\hspace{0.3cm}{\ttfamily [private]}}}\label{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_a9cff9932f9c42f306bf742f1a5202b04}
+
+
+Definition at line 39 of file Camera\+View.\+java.
+
+\hypertarget{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_a277f9e02a27eaebc0d06166aa6fdcd3b}{\index{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View@{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View}!m\+Context@{m\+Context}}
+\index{m\+Context@{m\+Context}!sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View@{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View}}
+\subsubsection[{m\+Context}]{\setlength{\rightskip}{0pt plus 5cm}Context sdem.\+unimore.\+com.\+sdemapp.\+Camera\+View.\+m\+Context\hspace{0.3cm}{\ttfamily [private]}}}\label{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_a277f9e02a27eaebc0d06166aa6fdcd3b}
+
+
+Definition at line 40 of file Camera\+View.\+java.
+
+\hypertarget{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_ab8c6faf182aab5fa2a4fb732046d69d5}{\index{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View@{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View}!m\+Height@{m\+Height}}
+\index{m\+Height@{m\+Height}!sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View@{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View}}
+\subsubsection[{m\+Height}]{\setlength{\rightskip}{0pt plus 5cm}int sdem.\+unimore.\+com.\+sdemapp.\+Camera\+View.\+m\+Height\hspace{0.3cm}{\ttfamily [private]}}}\label{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_ab8c6faf182aab5fa2a4fb732046d69d5}
+
+
+Definition at line 41 of file Camera\+View.\+java.
+
+\hypertarget{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_ae76cc9a21aaf87eeec89eeab7098197b}{\index{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View@{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View}!m\+Holder@{m\+Holder}}
+\index{m\+Holder@{m\+Holder}!sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View@{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View}}
+\subsubsection[{m\+Holder}]{\setlength{\rightskip}{0pt plus 5cm}Surface\+Holder sdem.\+unimore.\+com.\+sdemapp.\+Camera\+View.\+m\+Holder\hspace{0.3cm}{\ttfamily [private]}}}\label{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_ae76cc9a21aaf87eeec89eeab7098197b}
+
+
+Definition at line 38 of file Camera\+View.\+java.
+
+\hypertarget{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_a9ffad8e816f47e03bc0c24976b6eabcd}{\index{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View@{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View}!m\+Thread@{m\+Thread}}
+\index{m\+Thread@{m\+Thread}!sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View@{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View}}
+\subsubsection[{m\+Thread}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Camera\+Handler\+Thread} sdem.\+unimore.\+com.\+sdemapp.\+Camera\+View.\+m\+Thread = null\hspace{0.3cm}{\ttfamily [private]}}}\label{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_a9ffad8e816f47e03bc0c24976b6eabcd}
+
+
+Definition at line 47 of file Camera\+View.\+java.
+
+\hypertarget{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_a3d402c5574142241cb45c88209f3cd05}{\index{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View@{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View}!m\+Width@{m\+Width}}
+\index{m\+Width@{m\+Width}!sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View@{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View}}
+\subsubsection[{m\+Width}]{\setlength{\rightskip}{0pt plus 5cm}int sdem.\+unimore.\+com.\+sdemapp.\+Camera\+View.\+m\+Width\hspace{0.3cm}{\ttfamily [private]}}}\label{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_a3d402c5574142241cb45c88209f3cd05}
+
+
+Definition at line 42 of file Camera\+View.\+java.
+
+\hypertarget{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_ae6e04f93a296446a1d14a00fcd0483b4}{\index{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View@{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View}!n\+Markers@{n\+Markers}}
+\index{n\+Markers@{n\+Markers}!sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View@{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View}}
+\subsubsection[{n\+Markers}]{\setlength{\rightskip}{0pt plus 5cm}int \mbox{[}$\,$\mbox{]} sdem.\+unimore.\+com.\+sdemapp.\+Camera\+View.\+n\+Markers = new int\mbox{[}1\mbox{]}\hspace{0.3cm}{\ttfamily [private]}}}\label{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_ae6e04f93a296446a1d14a00fcd0483b4}
+
+
+Definition at line 44 of file Camera\+View.\+java.
+
+\hypertarget{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_a68cd63f6ce9ff3f300b25cc49e0d73ee}{\index{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View@{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View}!N\+U\+M\+\_\+\+B\+U\+F\+F\+E\+R\+S@{N\+U\+M\+\_\+\+B\+U\+F\+F\+E\+R\+S}}
+\index{N\+U\+M\+\_\+\+B\+U\+F\+F\+E\+R\+S@{N\+U\+M\+\_\+\+B\+U\+F\+F\+E\+R\+S}!sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View@{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View}}
+\subsubsection[{N\+U\+M\+\_\+\+B\+U\+F\+F\+E\+R\+S}]{\setlength{\rightskip}{0pt plus 5cm}final int sdem.\+unimore.\+com.\+sdemapp.\+Camera\+View.\+N\+U\+M\+\_\+\+B\+U\+F\+F\+E\+R\+S = 5\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_a68cd63f6ce9ff3f300b25cc49e0d73ee}
+
+
+Definition at line 31 of file Camera\+View.\+java.
+
+\hypertarget{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_ad81a0ee28c133e298f3f06dcd7d4b020}{\index{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View@{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View}!previuos\+Markers\+Number@{previuos\+Markers\+Number}}
+\index{previuos\+Markers\+Number@{previuos\+Markers\+Number}!sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View@{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View}}
+\subsubsection[{previuos\+Markers\+Number}]{\setlength{\rightskip}{0pt plus 5cm}int sdem.\+unimore.\+com.\+sdemapp.\+Camera\+View.\+previuos\+Markers\+Number = 0\hspace{0.3cm}{\ttfamily [private]}}}\label{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_ad81a0ee28c133e298f3f06dcd7d4b020}
+
+
+Definition at line 45 of file Camera\+View.\+java.
+
+\hypertarget{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_a03232dc6ad762f65c82ad343ec3f2e61}{\index{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View@{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View}!startup\+Flag@{startup\+Flag}}
+\index{startup\+Flag@{startup\+Flag}!sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View@{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View}}
+\subsubsection[{startup\+Flag}]{\setlength{\rightskip}{0pt plus 5cm}boolean sdem.\+unimore.\+com.\+sdemapp.\+Camera\+View.\+startup\+Flag = true\hspace{0.3cm}{\ttfamily [private]}}}\label{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_a03232dc6ad762f65c82ad343ec3f2e61}
+
+
+Definition at line 330 of file Camera\+View.\+java.
+
+\hypertarget{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_a8a53915e6431e00f1220c305d16e999e}{\index{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View@{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View}!T\+A\+G@{T\+A\+G}}
+\index{T\+A\+G@{T\+A\+G}!sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View@{sdem\+::unimore\+::com\+::sdemapp\+::\+Camera\+View}}
+\subsubsection[{T\+A\+G}]{\setlength{\rightskip}{0pt plus 5cm}final String sdem.\+unimore.\+com.\+sdemapp.\+Camera\+View.\+T\+A\+G = \char`\"{}Camera\+View\char`\"{}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{classsdem_1_1unimore_1_1com_1_1sdemapp_1_1_camera_view_a8a53915e6431e00f1220c305d16e999e}
+
+
+Definition at line 30 of file Camera\+View.\+java.
 
 
 

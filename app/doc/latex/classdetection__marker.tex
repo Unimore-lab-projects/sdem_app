@@ -16,9 +16,20 @@ const vector$<$ vector$<$ Point2f $>$ $>$ \& \hyperlink{classdetection__marker_a
 \item 
 const Mat \& \hyperlink{classdetection__marker_a770b0b3075bf960621006f7f939b9757}{img} () const 
 \item 
-void \hyperlink{classdetection__marker_a08cd89907df009bce97bb5a6561074e6}{detect\+And\+Draw} (Mat \&in\+Image)
+void \hyperlink{classdetection__marker_a08cd89907df009bce97bb5a6561074e6}{detect\+And\+Draw} (Mat \&\hyperlink{classdetection__marker_a38b3944516f9a3ae26d23ed9a8b5ce52}{in\+Image})
 \item 
-void \hyperlink{classdetection__marker_a4149fb9467f5cc15b1086c548821d925}{detect} (Mat \&in\+Image)
+void \hyperlink{classdetection__marker_a4149fb9467f5cc15b1086c548821d925}{detect} (Mat \&\hyperlink{classdetection__marker_a38b3944516f9a3ae26d23ed9a8b5ce52}{in\+Image})
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Ptr$<$ Dictionary $>$ \hyperlink{classdetection__marker_a2cc4c5ea62ab82cd0d6f2b744bb57611}{\+\_\+dictionary}
+\item 
+vector$<$ int $>$ \hyperlink{classdetection__marker_ae0518eaa5762d3cf2d6570cb3440bd91}{\+\_\+marker\+Ids}
+\item 
+vector$<$ vector$<$ Point2f $>$ $>$ \hyperlink{classdetection__marker_a32435b120f01d7a7ed4d0e6e926aa5c9}{\+\_\+marker\+Corners}
+\item 
+Mat \hyperlink{classdetection__marker_a38b3944516f9a3ae26d23ed9a8b5ce52}{in\+Image}
 \end{DoxyCompactItemize}
 
 
@@ -134,6 +145,37 @@ reference a Mat.
 
 
 Definition at line 19 of file detection.\+cpp.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classdetection__marker_a2cc4c5ea62ab82cd0d6f2b744bb57611}{\index{detection\+\_\+marker@{detection\+\_\+marker}!\+\_\+dictionary@{\+\_\+dictionary}}
+\index{\+\_\+dictionary@{\+\_\+dictionary}!detection\+\_\+marker@{detection\+\_\+marker}}
+\subsubsection[{\+\_\+dictionary}]{\setlength{\rightskip}{0pt plus 5cm}Ptr$<$Dictionary$>$ detection\+\_\+marker\+::\+\_\+dictionary\hspace{0.3cm}{\ttfamily [private]}}}\label{classdetection__marker_a2cc4c5ea62ab82cd0d6f2b744bb57611}
+
+
+Definition at line 24 of file detection.\+h.
+
+\hypertarget{classdetection__marker_a32435b120f01d7a7ed4d0e6e926aa5c9}{\index{detection\+\_\+marker@{detection\+\_\+marker}!\+\_\+marker\+Corners@{\+\_\+marker\+Corners}}
+\index{\+\_\+marker\+Corners@{\+\_\+marker\+Corners}!detection\+\_\+marker@{detection\+\_\+marker}}
+\subsubsection[{\+\_\+marker\+Corners}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$vector$<$Point2f$>$ $>$ detection\+\_\+marker\+::\+\_\+marker\+Corners\hspace{0.3cm}{\ttfamily [private]}}}\label{classdetection__marker_a32435b120f01d7a7ed4d0e6e926aa5c9}
+
+
+Definition at line 26 of file detection.\+h.
+
+\hypertarget{classdetection__marker_ae0518eaa5762d3cf2d6570cb3440bd91}{\index{detection\+\_\+marker@{detection\+\_\+marker}!\+\_\+marker\+Ids@{\+\_\+marker\+Ids}}
+\index{\+\_\+marker\+Ids@{\+\_\+marker\+Ids}!detection\+\_\+marker@{detection\+\_\+marker}}
+\subsubsection[{\+\_\+marker\+Ids}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$int$>$ detection\+\_\+marker\+::\+\_\+marker\+Ids\hspace{0.3cm}{\ttfamily [private]}}}\label{classdetection__marker_ae0518eaa5762d3cf2d6570cb3440bd91}
+
+
+Definition at line 25 of file detection.\+h.
+
+\hypertarget{classdetection__marker_a38b3944516f9a3ae26d23ed9a8b5ce52}{\index{detection\+\_\+marker@{detection\+\_\+marker}!in\+Image@{in\+Image}}
+\index{in\+Image@{in\+Image}!detection\+\_\+marker@{detection\+\_\+marker}}
+\subsubsection[{in\+Image}]{\setlength{\rightskip}{0pt plus 5cm}Mat detection\+\_\+marker\+::in\+Image\hspace{0.3cm}{\ttfamily [private]}}}\label{classdetection__marker_a38b3944516f9a3ae26d23ed9a8b5ce52}
+
+
+Definition at line 27 of file detection.\+h.
 
 
 
