@@ -71,7 +71,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Macros</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -108,8 +108,9 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a4149fb9467f5cc15b1086c548821d925"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p>Definition at line <a class="el" href="detection_8h_source.html#l00018">18</a> of file <a class="el" href="detection_8h_source.html">detection.h</a>.</p>
+<div class="textblock"><p>Classe di gestione dei marker aruco. </p>
+
+<p>Definition at line <a class="el" href="detection_8h_source.html#l00022">22</a> of file <a class="el" href="detection_8h_source.html">detection.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a78703d9cfece4550684a3f6e0dfd659b"></a>
 <div class="memitem">
@@ -124,6 +125,13 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Costruttore dell'oggetto detection marker. Prende come parametro il nome del dizionario dei marker aruco che si vogliono visualizzare.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>nome del dizionario aruco. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Definition at line <a class="el" href="detection_8cpp_source.html#l00015">15</a> of file <a class="el" href="detection_8cpp_source.html">detection.cpp</a>.</p>
 
@@ -142,6 +150,8 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Restituisce le coordinate dei vertici dei marker che sono stati riconosciuti, nell'ultima chiamata, da uno dei metodi detectAndDraw o detect.</p>
+<dl class="section return"><dt>Returns</dt><dd>reference a vettore di Point2f contenente i punti che rappresentano la posizione a schermo dei vertici dei marker riconosciuti. </dd></dl>
 
 <p>Definition at line <a class="el" href="detection_8cpp_source.html#l00018">18</a> of file <a class="el" href="detection_8cpp_source.html">detection.cpp</a>.</p>
 
@@ -160,6 +170,13 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Esegue la procedura di detection su inImage.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">inImage</td><td>oggetto Mat che rappresenta il frame su cui eseguire la detection. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Definition at line <a class="el" href="detection_8cpp_source.html#l00028">28</a> of file <a class="el" href="detection_8cpp_source.html">detection.cpp</a>.</p>
 
@@ -178,6 +195,13 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Esegue la procedura di detection su inImage. Disegna direttamente sul frame il contorno dei marker individuati correttamente.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">inImage</td><td>oggetto Mat che rappresenta il frame su cui eseguire la detection. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Definition at line <a class="el" href="detection_8cpp_source.html#l00021">21</a> of file <a class="el" href="detection_8cpp_source.html">detection.cpp</a>.</p>
 
@@ -195,6 +219,8 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Restituisce gli identificatori dei marker che sono stati riconosciuti, nell'ultima chiamata, da uno dei metodi detectAndDraw o detect.</p>
+<dl class="section return"><dt>Returns</dt><dd>reference a vettore di interi contenente gli identificatori dei marker riconosciuti. </dd></dl>
 
 <p>Definition at line <a class="el" href="detection_8cpp_source.html#l00017">17</a> of file <a class="el" href="detection_8cpp_source.html">detection.cpp</a>.</p>
 
@@ -212,6 +238,8 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Restituisce l'oggetto Mat corrispondente al frame corrente su cui è stato invocato uno dei metodi detectAndDraw o detect.</p>
+<dl class="section return"><dt>Returns</dt><dd>reference a Mat. </dd></dl>
 
 <p>Definition at line <a class="el" href="detection_8cpp_source.html#l00019">19</a> of file <a class="el" href="detection_8cpp_source.html">detection.cpp</a>.</p>
 
@@ -224,7 +252,7 @@ Public Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue May 3 2016 23:24:19 for sdemApp by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon May 23 2016 14:32:21 for sdemApp by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

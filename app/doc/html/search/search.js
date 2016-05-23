@@ -10,9 +10,10 @@ var indexSectionsWithContent =
   0: "cdfgijnos",
   1: "cdf",
   2: "s",
-  3: "cdfs",
+  3: "cdfis",
   4: "cdgijos",
-  5: "n"
+  5: "n",
+  6: "i"
 };
 
 var indexSectionNames =
@@ -22,7 +23,8 @@ var indexSectionNames =
   2: "namespaces",
   3: "files",
   4: "functions",
-  5: "defines"
+  5: "defines",
+  6: "pages"
 };
 
 function convertToId(search)

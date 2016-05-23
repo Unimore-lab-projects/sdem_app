@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.8"/>
-<title>sdemApp: Main Page</title>
+<title>sdemApp: Introduzione</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -64,7 +64,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Macros</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -75,13 +75,46 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div class="header">
   <div class="headertitle">
-<div class="title">sdemApp Documentation</div>  </div>
+<div class="title">Introduzione </div>  </div>
 </div><!--header-->
 <div class="contents">
-</div><!-- contents -->
+<div class="textblock"><h1><a class="anchor" id="intro_sec"></a>
+Caratteristiche Generali</h1>
+<p>Marker Finder è una applicazione sviluppata per gli smartphone dotati di sistema operativo Android. Essa si</p>
+<p>propone come un rilevatore di specifici Aruco Marker ed è basata principalmente sull'utilizzo di OpenCv, una</p>
+<p>libreria open source orientata alla Computer Vision e ArUco Marker library, una libreria per la realtà</p>
+<p>aumentata che prevede l'impiego di un sistema di markers di riferimento (ArUco Markers).</p>
+<p>Marker Finder è stata sviluppata mediante l'IDE Android Studio, utilizzando i linguaggi di programmazione</p>
+<p>Java e C++ opportunamente combinati attraverso il framework JNI (Java Native Interface).</p>
+<h1><a class="anchor" id="rilevamento"></a>
+Rilevamento Marker</h1>
+<p>Un ArUco marker è un semplice marker di forma quadrata, che presenta un bordo nero ai lati, mentre</p>
+<p>all’interno si configura una matrice binaria che determina il suo identificatore. Il bordo consente una veloce</p>
+<p>e facile rilevazione, la codifica binaria permette la sua identificazione e l’applicazione di tecniche di</p>
+<p>rilevazione e di correzione degli errori. La dimensione del marker definisce quella della sua matrice interna</p>
+<p>(per esempio, un marker di dimensione 4x4 è composto da 16 bits).</p>
+<p>Un marker può trovarsi in qualsiasi posizione nell’ambiente; tuttavia, il processo di rilevazione è in grado di</p>
+<p>determinare la sua rotazione originale, identificando in maniera univoca i suoi 4 angoli, basandosi sulla sua</p>
+<p>codifica binaria.</p>
+<p>Ogni marker appartiene ad uno specifico dizionario predefinito. Esso è semplicemente una lista di codifiche</p>
+<p>binarie di ognuno dei marker che contiene ed è identificato da due parametri principali: la dimensione, ossia</p>
+<p>il numero di marker che contiene e la dimensione dei marker, ovvero il numero di bits da cui sono composti.</p>
+<p>L’identificatore di un marker è, dunque, l’indice di riferimento del dizionario a cui appartiene (per esempio, i</p>
+<p>primi 5 markers di un dizionario hanno i seguenti ids: 0,1,2,3,4).</p>
+<p>Il dizionario utilizzato da Marker Finder è il seguente: DICT_6X6_250.</p>
+<h1><a class="anchor" id="funzionamento"></a>
+Funzionamento</h1>
+<p>Durante la fase di avvio, ArUcoTetsApp accede direttamente alla fotocamera dello smartphone. Posizionando</p>
+<p>il dispositivo in direzione dell'ArUco Marker, l'applicazione attua la rilevazione, restituendo direttamente</p>
+<p>sullo schermo l'identificatore del marker.</p>
+<p>È possibile utilizzare l’applicazione per rilevare un numero arbitrario di ArUco Markers. L’obiettivo è quello</p>
+<p>di effettuare la rilevazione di ognuno, in una precisa sequenza. In seguito ad ogni rilevazione,</p>
+<p>opportunamente verificata mediante l’apparizione dell’identificatore sullo schermo, viene visualizzato un</p>
+<p>messaggio di approvazione insieme ad un indizio sul prossimo marker da rilevare. </p>
+</div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue May 3 2016 23:24:19 for sdemApp by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon May 23 2016 14:32:21 for sdemApp by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>
